@@ -1,0 +1,4 @@
+langchain
+fastapi
+uvicorn
+debugpy
