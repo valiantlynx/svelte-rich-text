@@ -5,6 +5,8 @@ export type SiteConfig = {
   protocol: string
   /** site domain. for example: `example.com` */
   domain: string
+  /** site db. for example: `https://example.com` */
+  pocketbase: string
   /** site title. */
   title: string
   /** site subtitle. */

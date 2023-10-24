@@ -33,9 +33,9 @@
         rel="noopener noreferrer external"
         target="_blank"
         class="tooltip tooltip-secondary hover:text-secondary"
-        data-tip="🌸 [δ] - Based on MDsveX & SvelteKit 🌸"
+        data-tip="🌸 [δ] - I am the Creator 🌸"
         href="https://github.com/importantimport/urara">
-        Urara
+        Valiantlynx
       </a>
       {#if footerConfig.html}
         <br />
