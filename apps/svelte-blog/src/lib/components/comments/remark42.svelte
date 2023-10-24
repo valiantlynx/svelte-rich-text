@@ -6,6 +6,22 @@
 
   let remark42Instance: any
 
+  // example use
+  // <Remark42 post={post} config={{
+  //   host: site.protocol + site.domain + post.path,
+  //   site_id: post.path,
+  //   components: ['embed', 'last-comments'],
+  //   max_shown_comments: 15,
+  //   max_last_comments: 15,
+  //   theme: 'light',
+  //   page_title: post.title,
+  //   locale: 'en',
+  //   show_email_subscription: true,
+  //   show_rss_subscription: true,
+  //   simple_view: false,
+  //   no_footer: false
+  // }} />
+
   onMount(() => {
     const [c, s] = [document.createElement('script'), document.createElement('script')]
 

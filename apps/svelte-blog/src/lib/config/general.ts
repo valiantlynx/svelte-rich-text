@@ -53,15 +53,16 @@ export const theme: ThemeConfig = [
 
 export const head: HeadConfig = {}
 
+
 export const header: HeaderConfig = {
   nav: [
     {
-      text: 'Get Started',
-      link: '/hello-world'
+      text: 'About',
+      link: '/about'
     },
     {
-      text: 'Elements',
-      link: '/hello-world/elements'
+      text: 'Other Projects',
+      link: '/projects'
     }
   ]
 }
@@ -75,6 +76,18 @@ export const footer: FooterConfig = {
     {
       text: 'Sitemap',
       link: '/sitemap.xml'
+    },
+    {
+      text: 'Minfuel',
+      link: 'https://minfuel.no'
+    },
+    {
+      text: 'Altlokalt',
+      link: 'https://Altlokalt.com'
+    },
+    {
+      text: 'Animevariant',
+      link: 'https://Animevariant.com'
     }
   ]
 }

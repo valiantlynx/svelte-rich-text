@@ -38,6 +38,12 @@
   })
 </script>
 
+<svelte:head>
+  <meta
+    name="keywords"
+    content="Valiant Lynx, multi-disciplinary engineer, technology, AI, Blockchain, Web Development, Product Design, virtual world, SEO" />
+</svelte:head>
+
 <Head />
 
 <div class="flex flex-col flex-nowrap justify-center xl:flex-row xl:flex-wrap h-feed">

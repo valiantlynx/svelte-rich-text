@@ -16,61 +16,61 @@ html {
   @apply bg-primary/20;
 }
 
-/* .urara-prose */
+/* .svete-manga-prose */
 
-.urara-prose {
+.svete-manga-prose {
   @apply !max-w-none;
 }
 
-/* .urara-prose heading */
+/* .svete-manga-prose heading */
 
-.urara-prose > :is(h1, h2, h3, h4, h5) > a {
+.svete-manga-prose > :is(h1, h2, h3, h4, h5) > a {
   @apply no-underline font-bold;
 }
 
-.urara-prose > :is(h1, h2, h3, h4, h5) > a::after {
+.svete-manga-prose > :is(h1, h2, h3, h4, h5) > a::after {
   @apply pl-2 text-base-200 transition-all content-['#'];
 }
 
-.urara-prose > :is(h1, h2, h3, h4, h5):hover > a::after {
+.svete-manga-prose > :is(h1, h2, h3, h4, h5):hover > a::after {
   @apply text-primary;
 }
 
-/* .urara-prose table */
+/* .svete-manga-prose table */
 
-.urara-prose div > table > thead {
+.svete-manga-prose div > table > thead {
   @apply border-0;
 }
 
-.urara-prose div > table > thead > tr > th {
+.svete-manga-prose div > table > thead > tr > th {
   @apply !relative;
 }
 
-/* .urara-prose a */
+/* .svete-manga-prose a */
 
-.urara-prose :is(p, li) > a {
+.svete-manga-prose :is(p, li) > a {
   @apply bg-[length:100%_0.2em] hover:bg-[length:100%_100%] bg-[position:0_88%] bg-gradient-to-t from-secondary/50 to-secondary/40 bg-no-repeat transition-all ease-in-out !no-underline;
 }
 
-/* .urara-prose misc */
+/* .svete-manga-prose misc */
 
-.urara-prose > p img {
+.svete-manga-prose > p img {
   @apply w-full;
 }
 
-.urara-prose :is(p, li) > code {
+.svete-manga-prose :is(p, li) > code {
   @apply bg-base-200 px-2;
 }
 
-.urara-prose li > input {
+.svete-manga-prose li > input {
   @apply checkbox checkbox-xs me-2 -my-0.5;
 }
 
-.urara-prose kbd {
+.svete-manga-prose kbd {
   @apply kbd;
 }
 
-.urara-prose hr {
+.svete-manga-prose hr {
   @apply border-none divider;
 }
 
@@ -98,19 +98,19 @@ footer a {
   @apply sticky -left-5 -ml-5;
 }
 
-/* .urara-prose pre */
+/* .svete-manga-prose pre */
 
 @media (max-width: 768px) {
-  .urara-prose > pre {
+  .svete-manga-prose > pre {
     @apply -mx-8 rounded-none;
   }
 }
 
-.urara-prose > pre {
+.svete-manga-prose > pre {
   @apply pb-0;
 }
 
-.urara-prose > pre > div.code-container {
+.svete-manga-prose > pre > div.code-container {
   @apply pb-5 overflow-x-auto;
 }
 

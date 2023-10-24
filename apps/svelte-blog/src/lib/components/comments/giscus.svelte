@@ -4,6 +4,22 @@
   import type { GiscusConfig } from '$lib/types/post'
   export let config: GiscusConfig
 
+  // example use
+  // <Giscus config={{
+  //   src: 'https://giscus.app/client.js',
+  //   repo: 'valiantlynx/urara',
+  //   repoID: 'R_kgDOJ7llog',
+  //   category: 'General',
+  //   categoryID: 'DIC_kwDOJ7llos4CYz8Z',
+  //   mapping: 'pathname',
+  //   strict: false,
+  //   reactionsEnabled: true,
+  //   inputPosition: 'top',
+  //   emitMetadata: true,
+  //   theme: 'light',
+  //   lang: 'en'
+  // }} />
+
   onMount(() => {
     const giscus = document.createElement('script')
     Object.entries({

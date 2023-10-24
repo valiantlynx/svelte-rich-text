@@ -3,6 +3,14 @@
   import type { UtterancesConfig } from '$lib/types/post'
   export let config: UtterancesConfig
 
+  // example use
+  // <Utterances config={{
+  //   repo: 'valiantlynx/urara',
+  //   theme: 'github-light',
+  //   label: 'comment',
+  //   src: 'https://utteranc.es/client.js'
+  // }} />
+
   onMount(() => {
     const utterances = document.createElement('script')
     Object.entries({
