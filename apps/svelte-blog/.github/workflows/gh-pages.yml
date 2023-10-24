@@ -7,7 +7,7 @@ on:
 
 jobs:
   deploy:
-    uses: valiantlynx/valiantlynx-turborepo/.github/dependencies-workflows/yarn-gh-pages.yml@main
+    uses: valiantlynx/valiantlynx-turborepo/.github/workflows/yarn-gh-pages.yml@main
     permissions:
       contents: write
     with:
