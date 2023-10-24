@@ -1,3 +1,3 @@
-git subtree add --prefix=apps/urara https://github.com/valiantlynx/urara.git valiantlynx-turborepo --squash
-git subtree pull --prefix=apps/urara https://github.com/valiantlynx/urara.git valiantlynx-turborepo --squash
-git subtree push --prefix=apps/urara https://github.com/valiantlynx/urara.git valiantlynx-turborepo
+git subtree add --prefix=apps/svelte-blog https://github.com/valiantlynx/svelte-blog.git valiantlynx-turborepo --squash
+git subtree pull --prefix=apps/svelte-blog https://github.com/valiantlynx/svelte-blog.git valiantlynx-turborepo --squash
+git subtree push --prefix=apps/svelte-blog https://github.com/valiantlynx/svelte-blog.git valiantlynx-turborepo
