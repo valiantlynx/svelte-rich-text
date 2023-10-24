@@ -1,5 +1,5 @@
 [build]
-command = "npx pnpm i --store=node_modules/.pnpm-store && npx pnpm build"
+command = "npx yarn --store=node_modules/.yarn-store && npx yarn build"
 publish = "build"
 [build.environment]
 NPM_FLAGS = "--version"
