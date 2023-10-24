@@ -1,0 +1,28 @@
+# build output
+build
+static
+.svelte-kit
+.netlify
+.vercel
+
+# vscode
+.vscode
+
+# dependencies
+node_modules
+
+# env
+*.local
+
+# logs
+pnpm-debug.log*
+
+# macOS-specific files
+.DS_Store
+
+# temp file
+src/routes/**/+page.svelte.md
+src/routes/**/+page.md
+src/static
+*.config.js
+urara.js

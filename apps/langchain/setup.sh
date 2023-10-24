@@ -11,4 +11,3 @@ git subtree pull --prefix=apps/langchain https://github.com/valiantlynx/langchai
 
 # push the subtree
 git subtree push --prefix=apps/langchain https://github.com/valiantlynx/langchain.git valiantlynx-turborepo
-

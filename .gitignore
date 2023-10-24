@@ -36,7 +36,7 @@ yarn-error.log*
 dist/
 
 .dist
-.vscode
+.vscode/
 
 # python
 __pycache__/
