@@ -1,7 +1,7 @@
 from typing import List, Tuple
 from fastapi import FastAPI, Request
 from fastapi.responses import HTMLResponse, JSONResponse
-from queue import Queue
+from src.bfs import bfs
 import random
 import json
 
@@ -38,54 +38,22 @@ def create_maze(rows, cols, start, end):
 
     return maze
 
-def bfs(maze, start, end, visited, path):
-    queue = Queue()
-    queue.put(start)
-    
-    while not queue.empty():
-        current = queue.get()
-        if current == end:
-            break
-        visited.add(current)
-        
-        for neighbor in get_neighbors(maze, current):
-            if neighbor not in visited:
-                queue.put(neighbor)
-                path.append(neighbor)
-                path_history.append(list(path))  # Store the path history
-
-def get_neighbors(maze, current):
-    neighbors = []
-    right = (current[0], current[1] + 1)
-    down = (current[0] + 1, current[1])
-    left = (current[0], current[1] - 1)
-    up = (current[0] - 1, current[1])
-    
-    directions = [right, down, left, up]
-    
-    for neighbor in directions:
-        if (0 <= neighbor[0] < len(maze) and 0 <= neighbor[1] < len(maze[0])):
-            if maze[neighbor[0]][neighbor[1]] != 1:
-                if maze[neighbor[0]][neighbor[1]] == 0 or maze[neighbor[0]][neighbor[1]] == 3:
-                    neighbors.append(neighbor)
-        
-    return neighbors
 
 @app.get("/generate_maze", response_class=JSONResponse)
 def generate_maze(request: Request):
     global path_history
     path_history = []  # Clear the old path history
     
-    rows = 11
-    cols = 11
-    start = (0, 0)
-    end = (random.randint(0, rows - 1), random.randint(0, cols - 1))
+    rows = 51
+    cols = 51
+    start = (random.randint(0, (rows - 1)), random.randint(0, (cols - 1)))
+    end = (random.randint(0, (rows - 1)), random.randint(0, (cols - 1)))
     
     maze = create_maze(rows, cols, start, end)
     
     visited = set()
     path = [start]
-    bfs(maze, start, end, visited, path)
+    bfs(maze, start, end, visited, path, path_history)
     
     # Return the maze and path history as JSON
     return {

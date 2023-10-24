@@ -1,3 +1,3 @@
-git subtree add --prefix=apps/Animevariant https://github.com/Animevariant/Animevariant.git valiantlynx-turborepo --squash
-git subtree pull --prefix=apps/Animevariant https://github.com/Animevariant/Animevariant.git valiantlynx-turborepo --squash
-git subtree push --prefix=apps/Animevariant https://github.com/Animevariant/Animevariant.git valiantlynx-turborepo
+git subtree add --prefix=apps/svelte-blog https://github.com/valiantlynx/svelte-blog.git valiantlynx-turborepo --squash
+git subtree pull --prefix=apps/svelte-blog https://github.com/valiantlynx/svelte-blog.git valiantlynx-turborepo --squash
+git subtree push --prefix=apps/svelte-blog https://github.com/valiantlynx/svelte-blog.git valiantlynx-turborepo

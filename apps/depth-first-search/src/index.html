@@ -4,13 +4,13 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Breadth-First Search Algorithm - Maze</title>
+    <title>Depth-First Search Algorithm - Maze</title>
     <link href="https://cdn.jsdelivr.net/npm/daisyui@3.7.3/dist/full.css" rel="stylesheet" type="text/css" />
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         .animate-path {
             background-color: #0dff00;
-            animation: pathAnimation 3s;
+            animation: pathAnimation 1s;
             /* Adjust the animation speed here */
         }
 
@@ -27,7 +27,7 @@
         /* Define CSS styles for the maze */
         .maze-container {
             display: grid;
-            grid-template-columns: repeat(11, 1fr);
+            grid-template-columns: repeat(51, 1fr);
             grid-gap: 2px;
         }
 
@@ -60,7 +60,7 @@
 <body>
     <div class="min-h-screen flex flex-col justify-center items-center">
         <h1 class="text-3xl font-bold mb-8">
-            Breadth-First Search Algorithm - Maze
+            Depth-First Search Algorithm - Maze
         </h1>
         <button id="generateMaze" class="btn">Generate Maze</button>
         <div id="maze" class="mt-4 maze-container">
@@ -116,18 +116,18 @@
 
                     // Check if row and col are numbers
                     if (typeof row === "number" && typeof col === "number") {
-                        const tileIndex = row * 11 + col;
+                        const tileIndex = row * 51 + col;
                         mazeTiles[tileIndex].classList.add("animate-path"); // Add the animation class
 
                         // Remove the animation class after a delay
                         setTimeout(function () {
                             mazeTiles[tileIndex].classList.remove("animate-path");
-                        }, 5000); // Adjust the duration to match the animation speed
-
+                        }, 200); // Adjust the duration to match the animation speed
+                        
                         index++;
 
                         if (index < flattenedPathData.length) {
-                            setTimeout(animateStep, 400); // Adjust the delay to match the animation speed
+                            setTimeout(animateStep, 16); // Adjust the delay to match the animation speed
                         }
                     } else {
                         console.log("Invalid row or col:", row, col);
