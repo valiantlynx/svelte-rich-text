@@ -1,7 +1,12 @@
-import type { Handle } from '@sveltejs/kit'
-import { site } from '$lib/config/site'
+// hooks.server.ts
+// import type { Handle } from '@sveltejs/kit';
+// import { locale } from 'svelte-i18n';
 
-export const handle: Handle = async ({ event, resolve }) =>
-  await resolve(event, {
-    transformPageChunk: ({ html }) => html.replace('<html lang="en">', `<html lang="${site.lang ?? 'en'}">`)
-  })
+// export const handle: Handle = async ({ event, resolve }) => {
+// 	const lang = event.request.headers.get('accept-language')?.split(',')[0];
+// 	if (lang) {
+// 		locale.set(lang);
+// 	}
+
+// 	return await resolve(event);
+// };

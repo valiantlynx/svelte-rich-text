@@ -1,41 +1,19 @@
-// svelte adapter
-import adapterAuto from '@sveltejs/adapter-auto'
-import adapterNode from '@sveltejs/adapter-node'
-import adapterStatic from '@sveltejs/adapter-static'
-// svelte preprocessor
-import { mdsvex } from 'mdsvex'
-import mdsvexConfig from './mdsvex.config.js'
-import { vitePreprocess } from '@sveltejs/kit/vite'
+import adapter from '@sveltejs/adapter-auto';
+import { vitePreprocess } from '@sveltejs/kit/vite';
 
-const adapter = {
-  auto: adapterAuto(),
-  node: adapterNode(),
-  static: adapterStatic({
-    pages: 'build',
-    assets: 'build',
-    fallback: undefined
-  })
-}
+/** @type {import('@sveltejs/kit').Config} */
+const config = {
+	// Consult https://kit.svelte.dev/docs/integrations#preprocessors
+	// for more information about preprocessors
+	preprocess: vitePreprocess({
+		postcss: true
+	}),
+	kit: {
+		// adapter-auto only supports some environments, see https://kit.svelte.dev/docs/adapter-auto for a list.
+		// If your environment is not supported or you settled on a specific environment, switch out the adapter.
+		// See https://kit.svelte.dev/docs/adapters for more information about adapters.
+		adapter: adapter()
+	}
+};
 
-/** @type {import("@svletejs/kit".Config)} */
-export default {
-  extensions: ['.svelte', ...mdsvexConfig.extensions],
-  preprocess: [mdsvex(mdsvexConfig), vitePreprocess()],
-  kit: {
-    adapter: 
-      process.env.ADAPTER
-        ? adapter[process.env.ADAPTER.toLowerCase()]
-        : Object.keys(process.env).some(key => ['VERCEL', 'CF_PAGES', 'NETLIFY', 'GITHUB_ACTION_REPOSITORY', 'SST'].includes(key))
-          ? adapter['auto']
-          : adapter['static'],
-    prerender: {
-      handleMissingId: 'warn'
-    },
-    csp: {
-      mode: 'auto',
-      directives: {
-        'style-src': ['self', 'unsafe-inline', 'https://giscus.app']
-      }
-    }
-  }
-}
+export default config;

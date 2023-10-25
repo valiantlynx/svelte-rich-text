@@ -1,30 +1,10 @@
-import type { Config } from 'tailwindcss'
-import typography from '@tailwindcss/typography'
-import daisyui from 'daisyui'
+// tailwind config is required for editor support
 
-import { theme } from './src/lib/config/general'
+import type { Config } from 'tailwindcss';
+import sharedConfig from 'tailwind-config/tailwind.config';
 
-export default {
-  content: ['./src/**/*.{html,md,js,svelte,ts}'],
-  theme: {
-    extend: {
-      typography: {
-        DEFAULT: {
-          css: {
-            'ul:has(li):has(input[type="checkbox"])': {
-              padding: 0
-            },
-            'ul > li:has(input[type="checkbox"])': {
-              listStyle: 'none'
-            },
-            'ul > li:has(input[type="checkbox"]) ul li': {
-              paddingLeft: 30
-            }
-          }
-        }
-      }
-    }
-  },
-  plugins: [typography, daisyui],
-  daisyui: { themes: theme.map(({ name }) => name) }
-} satisfies Config
+const config: Pick<Config, 'presets'> = {
+	presets: [sharedConfig]
+};
+
+export default config;
