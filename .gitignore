@@ -41,3 +41,4 @@ dist/
 # python
 __pycache__/
 tempCodeRunnerFile.py
+apps/svelte-blog-copy/
