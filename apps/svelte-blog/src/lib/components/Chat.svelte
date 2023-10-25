@@ -95,43 +95,45 @@
 		autoScroll();
 	}
 </script>
-
-<div class="container p-4 space-y-4 border-dashed border-2 border-primary w-full">
-	<h2 class="text-2xl font-bold mb-4">Join the Discussion</h2>
-
-	<main class="overflow-y-auto" on:scroll={watchScroll}>
-		{#each messages as message (message.id)}
-			<ChatMessage {message} sender={$authData.username} />
-		{/each}
-		<div class="dummy" bind:this={scrollBottom} />
-	</main>
-
-	{#if !canAutoScroll}
-		<div class="text-center justify-center flex">
-			<button on:click={autoScroll} class="btn btn-secondary">
-				{#if unreadMessages}
-					💬
+<div class="flex flex-col space-y-4 w-full">
+	<div class=" p-4 space-y-4 border-dashed border-2 border-primary sm:mx-20">
+		<h2 class="text-2xl font-bold mb-4">Join the Discussion</h2>
+	
+		<main class="overflow-y-auto" on:scroll={watchScroll}>
+			{#each messages as message (message.id)}
+				<ChatMessage {message} sender={$authData.username} />
+			{/each}
+			<div class="dummy" bind:this={scrollBottom} />
+		</main>
+	
+		{#if !canAutoScroll}
+			<div class="text-center justify-center flex">
+				<button on:click={autoScroll} class="btn btn-secondary">
+					{#if unreadMessages}
+						💬
+					{/if}
+					🡣
+				</button>
+			</div>
+		{/if}
+	
+		<div class="border-t border-primary pt-4">
+			<form on:submit|preventDefault={sendMessage} class="space-x-2 flex items-center">
+				<input
+					type="text"
+					placeholder={pb.authStore.isValid
+						? 'write your comment here'
+						: 'login to write a comment  ----------------->'}
+					bind:value={newMessage}
+					class="input input-bordered input-primary flex-grow"
+				/>
+				{#if pb.authStore.isValid}
+					<button type="submit" disabled={!newMessage} class="btn btn-primary"> Send </button>
+				{:else}
+					<a href="/login" type="submit" class="btn btn-primary">Login</a>
 				{/if}
-				🡣
-			</button>
+			</form>
 		</div>
-	{/if}
-
-	<div class="border-t border-primary pt-4">
-		<form on:submit|preventDefault={sendMessage} class="space-x-2 flex items-center">
-			<input
-				type="text"
-				placeholder={pb.authStore.isValid
-					? 'write your comment here'
-					: 'login to write a comment  ----------------->'}
-				bind:value={newMessage}
-				class="input input-bordered input-primary flex-grow"
-			/>
-			{#if pb.authStore.isValid}
-				<button type="submit" disabled={!newMessage} class="btn btn-primary"> Send </button>
-			{:else}
-				<a href="/login" type="submit" class="btn btn-primary">Login</a>
-			{/if}
-		</form>
 	</div>
 </div>
+
