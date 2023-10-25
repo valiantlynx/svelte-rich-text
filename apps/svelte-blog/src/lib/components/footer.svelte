@@ -2,7 +2,6 @@
 	import { site } from '$lib/config/site';
 	import Icon from '@iconify/svelte';
 </script>
-
 <footer class="footer footer-center p-10 bg-base-300 text-base-content rounded mt-auto">
 	<div class="grid grid-flow-col gap-4">
 		<a href="/about" class="link link-hover">About us</a>
