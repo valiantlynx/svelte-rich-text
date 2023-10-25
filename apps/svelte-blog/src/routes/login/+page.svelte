@@ -1,7 +1,5 @@
 <script>
 	import Login from '$lib/components/Login.svelte';
-	import { page } from '$app/stores';
-	export let form;
 </script>
 
 <svelte:head>
