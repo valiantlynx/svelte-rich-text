@@ -41,7 +41,11 @@ const pingGoogle = async () => {
   const imageUrls = genPosts().map(post => site.protocol + site.domain + post.image)
 
   // index the urls
+<<<<<<< HEAD
   // indexer()
+=======
+  indexer()
+>>>>>>> 6fd27d3a271e15ef994600dd978743c1f6389fd2
 }
 
 pingGoogle()
