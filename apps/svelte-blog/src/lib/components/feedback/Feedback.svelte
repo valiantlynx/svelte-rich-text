@@ -53,7 +53,7 @@
 	for="feedback"
 	class=" btn fixed m-1 right-0 top-2/4 -translate-y-1/2 w-10 h-60 bg-primary hover:bg-secondary text-primary-content z-10"
 >
-	<span class="mdi mdi-draw mdi-24px"></span>
+	<span class="mdi mdi-draw mdi-24px" />
 	<p class="-rotate-90 whitespace-nowrap mb-10 text-lg">Gi Tilbakemelding</p>
 </label>
 

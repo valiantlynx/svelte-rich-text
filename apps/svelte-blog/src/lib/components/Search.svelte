@@ -15,8 +15,6 @@
 	let selectedOption = 'Drivstoffpris';
 	let selectedSearchFunction = searchDrivstoffPriser; // Initialize with the default search function
 
-
-
 	async function searchDrivstoffPriser() {
 		if (searchTerm.trim() === '') {
 			searchResults = [];
@@ -271,7 +269,7 @@
 			<option value="Dagligvarer pris">Dagligvarer pris</option>
 			<option value="Digitalt kjøleskap">Digitalt kjøleskap</option>
 			<option value="Handlelista">Handlelista</option>
-			<option value="Middagsplanlegger" disabled >Middagsplanlegger</option>
+			<option value="Middagsplanlegger" disabled>Middagsplanlegger</option>
 			<option value="Bompengekalkulator">Bompengekalkulator</option>
 			<option value="Altlokalt">Altlokalt</option>
 		</select>

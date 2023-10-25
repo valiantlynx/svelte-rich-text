@@ -7,7 +7,6 @@
 	const avatar = pb.authStore.model?.avatar
 		? `${site.pocketbase}/api/files/_pb_users_auth_/${pb.authStore.model?.id}/${pb.authStore.model?.avatar}`
 		: `https://avatars.dicebear.com/api/adventurer-neutral/${pb.authStore.model?.username}.svg`;
-
 </script>
 
 <!-- profile-->

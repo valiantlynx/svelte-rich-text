@@ -1,7 +1,7 @@
 <script>
 	import { site } from '$lib/config/site';
 	import { JSDOM } from 'jsdom';
-import DOMPurify from 'dompurify';
+	import DOMPurify from 'dompurify';
 	/**
 	 * @type {{ expand: { sender: { username: any; avatar: any; id: any; }; }; created: string | number | Date; message: any; }}
 	 */
@@ -9,8 +9,7 @@ import DOMPurify from 'dompurify';
 	export let sender;
 
 	const window = new JSDOM('').window;
-const purify = DOMPurify(window);
-	
+	const purify = DOMPurify(window);
 
 	//console.log('message: ', message, 'sender: ', message.expand?.sender.username);
 
@@ -21,8 +20,8 @@ const purify = DOMPurify(window);
 
 	const ts = new Date(message.created);
 
-	  // Sanitize the message content using DOMPurify
-	  const sanitizedMessage = purify.sanitize(message.message);
+	// Sanitize the message content using DOMPurify
+	const sanitizedMessage = purify.sanitize(message.message);
 </script>
 
 <div class={`chat ${messageClass}`}>

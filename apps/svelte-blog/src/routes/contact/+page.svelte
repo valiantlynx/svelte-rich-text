@@ -31,9 +31,15 @@
 			<div class="container mx-auto xl:px-32">
 				<div class="grid items-center lg:grid-cols-2">
 					<div class="mb-12 md:mt-12 lg:mt-0 lg:mb-0">
-						<div class="relative z-[1] block rounded-lg glass px-6 py-12 md:px-12 lg:-mr-14 ">
-							<h2 class="mb-4 p-4 text-3xl font-bold bg-base-300 rounded-t-lg border-x-8 border-t-8  border-b-2 border-primary">Contact us</h2>
-							<form class="bg-base-300 rounded-b-lg border-x-8 border-b-8 border-t-2  border-primary">
+						<div class="relative z-[1] block rounded-lg glass px-6 py-12 md:px-12 lg:-mr-14">
+							<h2
+								class="mb-4 p-4 text-3xl font-bold bg-base-300 rounded-t-lg border-x-8 border-t-8 border-b-2 border-primary"
+							>
+								Contact us
+							</h2>
+							<form
+								class="bg-base-300 rounded-b-lg border-x-8 border-b-8 border-t-2 border-primary"
+							>
 								<div class="relative mb-6" data-te-input-wrapper-init>
 									<input
 										type="text"

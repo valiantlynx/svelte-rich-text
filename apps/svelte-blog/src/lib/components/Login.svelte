@@ -1,5 +1,4 @@
 <script>
-	
 	import { pb } from '$lib/utils/api';
 	import { page } from '$app/stores';
 	import { onMount } from 'svelte';
@@ -76,9 +75,7 @@
 						class="w-full input input-bordered input-primary {Error ? 'input-error' : ''}"
 					/>
 					<label class="label" for="password">
-						<span class="label-text-alt {Error ? 'text-error' : 'hidden'}"
-							>incorrect password</span
-						>
+						<span class="label-text-alt {Error ? 'text-error' : 'hidden'}">incorrect password</span>
 						<span class="label-text-alt {Error ? 'text-error' : 'hidden'}"
 							>we don't have an account with this username</span
 						>

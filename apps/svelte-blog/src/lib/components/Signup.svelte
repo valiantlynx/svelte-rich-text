@@ -16,20 +16,23 @@
 	onMount(async () => {
 		if ($page.form.success) {
 			window.location.href = '/login';
-		} 
+		}
 	});
-
 </script>
 
 <Toast />
 
 <div class="relative flex flex-col items-center justify-center h-full overflow-hidden m-4">
-	<div class="w-full p-6 bg-base-200 border-t-4 border-primary rounded-md shadow-md border-top lg:max-w-lg">
+	<div
+		class="w-full p-6 bg-base-200 border-t-4 border-primary rounded-md shadow-md border-top lg:max-w-lg"
+	>
 		<h1 class="text-3xl font-semibold text-center">AnimeVariant</h1>
 		<form class="space-y-4" method="POST" action="/signup?/signup">
 			<div>
 				<label class="label" for="username">
-					<span class="text-base label-text">Username <span class="text-accent"> (3-16 characters)</span></span>
+					<span class="text-base label-text"
+						>Username <span class="text-accent"> (3-16 characters)</span></span
+					>
 				</label>
 				<input
 					type="text"
@@ -48,7 +51,9 @@
 			</div>
 			<div>
 				<label class="label" for="password">
-					<span class="text-base label-text">Password <span class="text-accent"> (8-16 characters)</span></span>
+					<span class="text-base label-text"
+						>Password <span class="text-accent"> (8-16 characters)</span></span
+					>
 				</label>
 
 				<input
@@ -62,7 +67,9 @@
 			</div>
 			<div>
 				<label class="label" for="password">
-					<span class="text-base label-text">Confirm Password  <span class="text-accent"> (identical to password)</span></span>
+					<span class="text-base label-text"
+						>Confirm Password <span class="text-accent"> (identical to password)</span></span
+					>
 				</label>
 
 				<input
@@ -99,7 +106,9 @@
 
 			<h2 class=" {Error ? 'text-error' : 'hidden'}">{errorMessage} Please try again</h2>
 			<br />
-			<a href="/login" class=" link link-hover font-bold text-1xl underline">Already registered? Login (click here)</a>
+			<a href="/login" class=" link link-hover font-bold text-1xl underline"
+				>Already registered? Login (click here)</a
+			>
 
 			<div>
 				<button class="btn btn-block btn-primary" disabled={Error}>Sign up</button>

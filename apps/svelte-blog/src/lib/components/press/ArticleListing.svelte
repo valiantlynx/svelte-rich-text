@@ -2,7 +2,6 @@
 	import { onMount } from 'svelte';
 	import { pb, currentUser, getImageURL } from '$lib/utils/api'; // Adjust these imports accordingly
 
-
 	/**
 	 * Fetches and processes category data.
 	 * @returns {Promise<void>}
@@ -51,12 +50,10 @@
 			 * @property {Object.<string, unknown>} expand - Additional properties.
 			 */
 
-			
 			/** @type {CategoryRecord[]} */
 			/* eslint-disable @typescript-eslint/no-unused-vars */
 			let categorys = res;
 
-			
 			/** @type {Record<string, string>} */
 			/* eslint-disable @typescript-eslint/no-unused-vars */
 			let imageUrls = urls;

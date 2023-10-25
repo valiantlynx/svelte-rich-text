@@ -4,11 +4,11 @@
 	import { writable } from 'svelte/store';
 	import { getImageURL } from '$lib/utils/api';
 	import DOMPurify from 'dompurify';
-	
+
 	import { JSDOM } from 'jsdom';
 
 	const window = new JSDOM('').window;
-const purify = DOMPurify(window);
+	const purify = DOMPurify(window);
 
 	/**
 	 * @type {any}
@@ -22,10 +22,10 @@ const purify = DOMPurify(window);
 
 	// make the mediabank array reactive
 	$: sanitizedMediabank = $mediabank.map((media) => ({
-    ...media,
-    name: purify.sanitize(media.name),
-    details: purify.sanitize(media.details),
-  }));
+		...media,
+		name: purify.sanitize(media.name),
+		details: purify.sanitize(media.details)
+	}));
 </script>
 
 <div class="flex flex-wrap -m-2 mt-6">
@@ -40,7 +40,7 @@ const purify = DOMPurify(window);
 					<header class="p-4">
 						<h3 class="text-xl font-semibold">{media.name}</h3>
 						<p class="text-sm">{media.details}</p>
-					  </header>
+					</header>
 				</div>
 			</a>
 		</article>

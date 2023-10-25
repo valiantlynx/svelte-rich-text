@@ -9,167 +9,175 @@
 /* global */
 
 html {
-  @apply !bg-base-200 scroll-smooth	overflow-x-hidden overflow-y-scroll;
+	@apply !bg-base-200 scroll-smooth	overflow-x-hidden overflow-y-scroll;
 }
 
 ::selection {
-  @apply bg-primary/20;
+	@apply bg-primary/20;
 }
 
 /* .svete-manga-prose */
 
 .svete-manga-prose {
-  @apply !max-w-none;
+	@apply !max-w-none;
 }
 
 /* .svete-manga-prose heading */
 
 .svete-manga-prose > :is(h1, h2, h3, h4, h5) > a {
-  @apply no-underline font-bold;
+	@apply no-underline font-bold;
 }
 
 .svete-manga-prose > :is(h1, h2, h3, h4, h5) > a::after {
-  @apply pl-2 text-base-200 transition-all content-['#'];
+	@apply pl-2 text-base-200 transition-all content-['#'];
 }
 
 .svete-manga-prose > :is(h1, h2, h3, h4, h5):hover > a::after {
-  @apply text-primary;
+	@apply text-primary;
 }
 
 /* .svete-manga-prose table */
 
 .svete-manga-prose div > table > thead {
-  @apply border-0;
+	@apply border-0;
 }
 
 .svete-manga-prose div > table > thead > tr > th {
-  @apply !relative;
+	@apply !relative;
 }
 
 /* .svete-manga-prose a */
 
 .svete-manga-prose :is(p, li) > a {
-  @apply bg-[length:100%_0.2em] hover:bg-[length:100%_100%] bg-[position:0_88%] bg-gradient-to-t from-secondary/50 to-secondary/40 bg-no-repeat transition-all ease-in-out !no-underline;
+	@apply bg-[length:100%_0.2em] hover:bg-[length:100%_100%] bg-[position:0_88%] bg-gradient-to-t from-secondary/50 to-secondary/40 bg-no-repeat transition-all ease-in-out !no-underline;
 }
 
 /* .svete-manga-prose misc */
 
 .svete-manga-prose > p img {
-  @apply w-full;
+	@apply w-full;
 }
 
 .svete-manga-prose :is(p, li) > code {
-  @apply bg-base-200 px-2;
+	@apply bg-base-200 px-2;
 }
 
 .svete-manga-prose li > input {
-  @apply checkbox checkbox-xs me-2 -my-0.5;
+	@apply checkbox checkbox-xs me-2 -my-0.5;
 }
 
 .svete-manga-prose kbd {
-  @apply kbd;
+	@apply kbd;
 }
 
 .svete-manga-prose hr {
-  @apply border-none divider;
+	@apply border-none divider;
 }
 
 /* footer a */
 
 footer a {
-  @apply !no-underline hover:text-primary hover:!underline transition-all;
+	@apply !no-underline hover:text-primary hover:!underline transition-all;
 }
 
 .spoiler {
-  @apply blur-sm hover:blur-none active:blur-none transition-all select-all;
+	@apply blur-sm hover:blur-none active:blur-none transition-all select-all;
 }
 
 /* .prose pre */
 
 .prose pre {
-  @apply mockup-code !bg-neutral min-w-0;
+	@apply mockup-code !bg-neutral min-w-0;
 }
 
 .prose pre:not(.shiki) {
-  @apply bg-neutral text-neutral-content;
+	@apply bg-neutral text-neutral-content;
 }
 
 .prose pre:not(.shiki)::before {
-  @apply sticky -left-5 -ml-5;
+	@apply sticky -left-5 -ml-5;
 }
 
 /* .svete-manga-prose pre */
 
 @media (max-width: 768px) {
-  .svete-manga-prose > pre {
-    @apply -mx-8 rounded-none;
-  }
+	.svete-manga-prose > pre {
+		@apply -mx-8 rounded-none;
+	}
 }
 
 .svete-manga-prose > pre {
-  @apply pb-0;
+	@apply pb-0;
 }
 
 .svete-manga-prose > pre > div.code-container {
-  @apply pb-5 overflow-x-auto;
+	@apply pb-5 overflow-x-auto;
 }
 
 /* shiki */
 
 pre.shiki {
-  @apply px-0;
+	@apply px-0;
 }
 
 pre.shiki::before {
-  @apply sticky;
+	@apply sticky;
 }
 
 pre.shiki > div.code-title {
-  @apply absolute -mt-10 ml-20 pt-1.5 pl-1.5 opacity-50;
+	@apply absolute -mt-10 ml-20 pt-1.5 pl-1.5 opacity-50;
 }
 
 pre.shiki .language-id {
-  @apply hidden;
+	@apply hidden;
 }
 
 pre.shiki > .code-container {
-  @apply overflow-auto;
+	@apply overflow-auto;
 }
 
 :is(pre.shiki[text='true'], pre.shiki[svelte='true']) > div.code-container {
-  @apply mx-5;
+	@apply mx-5;
 }
 
-pre.shiki:not([text='true'], [svelte='true']) > .code-container > code > div.line > span:first-child {
-  @apply pl-5;
+pre.shiki:not([text='true'], [svelte='true'])
+	> .code-container
+	> code
+	> div.line
+	> span:first-child {
+	@apply pl-5;
 }
 
-pre.shiki:not([text='true'], [svelte='true']) > .code-container > code > div.line > span:last-child {
-  @apply pr-5;
+pre.shiki:not([text='true'], [svelte='true'])
+	> .code-container
+	> code
+	> div.line
+	> span:last-child {
+	@apply pr-5;
 }
 
 pre.shiki div.dim {
-  @apply opacity-50 transition-opacity;
+	@apply opacity-50 transition-opacity;
 }
 
 pre.shiki:hover div.dim {
-  @apply opacity-100;
+	@apply opacity-100;
 }
 
 pre.shiki div.highlight::before {
-  @apply bg-warning/20 absolute content-[''] w-full h-6;
+	@apply bg-warning/20 absolute content-[''] w-full h-6;
 }
 
 pre.twoslash data-lsp {
-  @apply border-b border-dashed border-transparent transition-all;
+	@apply border-b border-dashed border-transparent transition-all;
 }
 
 pre.twoslash:hover data-lsp {
-  @apply border-neutral-content/30;
+	@apply border-neutral-content/30;
 }
 
 pre.twoslash data-lsp:hover::before {
-  @apply content-[attr(lsp)] absolute rounded translate-y-5 bg-neutral-focus text-neutral-content font-mono whitespace-pre-wrap transition-all px-2 py-1 z-50;
+	@apply content-[attr(lsp)] absolute rounded translate-y-5 bg-neutral-focus text-neutral-content font-mono whitespace-pre-wrap transition-all px-2 py-1 z-50;
 }
 
 /* your code here */

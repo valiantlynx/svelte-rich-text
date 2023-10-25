@@ -1,6 +1,6 @@
 <script>
 	import { pb } from '$lib/utils/api';
-    import { page } from '$app/stores';
+	import { page } from '$app/stores';
 	export let provider;
 	export let logo;
 	export let active;
@@ -16,11 +16,11 @@
 	<div>
 		<div class="btn btn-block btn-primary" type="submit" disabled={active}>
 			<img src={logo} alt={`${provider} sign in`} class="w-10 h-10" />
-            {#if $page.url.pathname == '/login'}
-                Login with {provider}
-            {:else if $page.url.pathname == '/signup'}
-                Signup with {provider}
-            {/if}
+			{#if $page.url.pathname == '/login'}
+				Login with {provider}
+			{:else if $page.url.pathname == '/signup'}
+				Signup with {provider}
+			{/if}
 		</div>
 	</div>
 </button>

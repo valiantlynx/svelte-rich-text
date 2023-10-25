@@ -129,9 +129,7 @@
 				class="input input-bordered input-primary flex-grow"
 			/>
 			{#if pb.authStore.isValid}
-				<button type="submit" disabled={!newMessage} class="btn btn-primary">
-					Send
-				</button>
+				<button type="submit" disabled={!newMessage} class="btn btn-primary"> Send </button>
 			{:else}
 				<a href="/login" type="submit" class="btn btn-primary">Login</a>
 			{/if}

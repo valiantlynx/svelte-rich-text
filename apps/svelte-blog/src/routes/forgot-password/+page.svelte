@@ -1,6 +1,5 @@
 <script>
-	import ForgotPassword from "$lib/components/ForgotPassword.svelte";
-
+	import ForgotPassword from '$lib/components/ForgotPassword.svelte';
 </script>
 
 <svelte:head>
@@ -8,4 +7,3 @@
 </svelte:head>
 
 <ForgotPassword />
-

@@ -1,11 +1,9 @@
-
 <script>
 	import Toast from '$lib/components/Toast.svelte';
 	import { getFlash } from 'sveltekit-flash-message';
 	import { page } from '$app/stores';
 
 	const flash = getFlash(page);
-
 
 	let email = '';
 </script>
