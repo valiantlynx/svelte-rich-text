@@ -1,3 +1,0 @@
-[build]
-  command = "yarn build --filter=svelte-manga"
-  publish = "apps/svelte-manga/build"
