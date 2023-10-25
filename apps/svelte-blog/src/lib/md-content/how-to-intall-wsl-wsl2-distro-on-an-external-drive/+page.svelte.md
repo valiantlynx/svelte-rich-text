@@ -2,7 +2,14 @@
 title: How to Install WSL/WSL2 Distro on an External Drive
 created: 2023-04-29
 tags:
-  ['WSL', 'WSL2', 'External Drive', 'move wsl to another drive', 'install wsl on different drive', 'wsl move to another drive']
+  [
+    'WSL',
+    'WSL2',
+    'External Drive',
+    'move wsl to another drive',
+    'install wsl on different drive',
+    'wsl move to another drive'
+  ]
 image: '/how-to-intall-wsl-wsl2-distro-on-an-external-drive/image.png'
 alt: 'How to Install WSL/WSL2 Distro on an External Drive'
 summary: If you're running out of space on your computer's hard drive, you can install WSL/WSL2 distro on an external drive. This will allow you to free up space on your computer's hard drive while still being able to use WSL/WSL2.

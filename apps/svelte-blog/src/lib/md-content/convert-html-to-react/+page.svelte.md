@@ -69,25 +69,25 @@ Enzyme is a testing utility for React that makes it easier to test your componen
 To test our counter example, we can write a simple test using Jest and Enzyme. We will write a test that checks that the count is incremented when the increment button is clicked and decremented when the decrement button is clicked.
 
 ```javascript
-import React from 'react'
-import { shallow } from 'enzyme'
-import Counter from './Counter'
+import React from 'react';
+import { shallow } from 'enzyme';
+import Counter from './Counter';
 
 describe('Counter component', () => {
-  it('increments the count when the increment button is clicked', () => {
-    const wrapper = shallow(<Counter />)
-    const incrementButton = wrapper.find('button').at(0)
-    incrementButton.simulate('click')
-    expect(wrapper.find('h1').text()).toEqual('Count: 1')
-  })
+	it('increments the count when the increment button is clicked', () => {
+		const wrapper = shallow(<Counter />);
+		const incrementButton = wrapper.find('button').at(0);
+		incrementButton.simulate('click');
+		expect(wrapper.find('h1').text()).toEqual('Count: 1');
+	});
 
-  it('decrements the count when the decrement button is clicked', () => {
-    const wrapper = shallow(<Counter />)
-    const decrementButton = wrapper.find('button').at(1)
-    decrementButton.simulate('click')
-    expect(wrapper.find('h1').text()).toEqual('Count: -1')
-  })
-})
+	it('decrements the count when the decrement button is clicked', () => {
+		const wrapper = shallow(<Counter />);
+		const decrementButton = wrapper.find('button').at(1);
+		decrementButton.simulate('click');
+		expect(wrapper.find('h1').text()).toEqual('Count: -1');
+	});
+});
 ```
 
 Are you looking to bring your HTML web pages to life with the power of React? Look no further! In this comprehensive guide, we'll walk you through the process of converting HTML to React, step by step.

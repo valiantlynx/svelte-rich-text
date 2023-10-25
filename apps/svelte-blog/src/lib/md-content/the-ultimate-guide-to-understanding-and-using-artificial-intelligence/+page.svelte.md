@@ -1,7 +1,15 @@
 ---
 title: The Ultimate Guide to Understanding and Using Artificial Intelligence
 created: 2023-02-17
-tags: ['Artificial Intelligence', 'AI', 'Machine Learning', 'Deep Learning', 'Natural Language Processing', 'Ethics']
+tags:
+  [
+    'Artificial Intelligence',
+    'AI',
+    'Machine Learning',
+    'Deep Learning',
+    'Natural Language Processing',
+    'Ethics'
+  ]
 image: '/the-ultimate-guide-to-understanding-and-using-artificial-intelligence/image.png'
 alt: 'The Ultimate Guide to Understanding and Using Artificial Intelligence'
 summary: Artificial intelligence (AI) is one of the most exciting and rapidly growing fields of technology. It involves the development of algorithms and computer programs that can perform tasks that normally require human intelligence, such as recognizing speech, making decisions, and translating languages. With AI, computers can learn from data, identify patterns, and make predictions with a high degree of accuracy.

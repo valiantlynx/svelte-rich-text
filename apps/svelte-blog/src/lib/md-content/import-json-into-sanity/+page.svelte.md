@@ -46,16 +46,16 @@ Next, you need to define your schema in Sanity. This is what tells Sanity how yo
 
 ```javascript
 export default [
-  {
-    name: 'myCustomType',
-    type: 'document',
-    fields: [
-      { name: 'title', type: 'string' },
-      { name: 'description', type: 'text' },
-      { name: 'image', type: 'image' }
-    ]
-  }
-]
+	{
+		name: 'myCustomType',
+		type: 'document',
+		fields: [
+			{ name: 'title', type: 'string' },
+			{ name: 'description', type: 'text' },
+			{ name: 'image', type: 'image' }
+		]
+	}
+];
 ```
 
 ## Step 4: Importing the JSON Data

@@ -15,7 +15,6 @@
 <button on:click={oauth} class="w-full block hover:cursor-not-allowed" disabled={active}>
 	<div>
 		<div class="btn btn-block btn-primary" type="submit" disabled={active}>
-			<!-- svelte-ignore a11y-img-redundant-alt -->
 			<img src={logo} alt={`${provider} sign in`} class="w-10 h-10" />
             {#if $page.url.pathname == '/login'}
                 Login with {provider}
@@ -23,6 +22,5 @@
                 Signup with {provider}
             {/if}
 		</div>
-		<!-- svelte-ignore a11y-img-redundant-alt -->
 	</div>
 </button>

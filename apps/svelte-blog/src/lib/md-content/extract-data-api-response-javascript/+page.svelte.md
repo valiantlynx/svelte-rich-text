@@ -1,7 +1,8 @@
 ---
 title: How to Extract Data from an API Response in JavaScript
 created: 2023-02-14
-tags: ['JavaScript', 'API', 'Web Development', 'Frontend Development', 'how to extract data from api']
+tags:
+  ['JavaScript', 'API', 'Web Development', 'Frontend Development', 'how to extract data from api']
 image: '/extract-data-api-response-javascript/image.png'
 alt: 'How to Extract Data from an API Response in JavaScript'
 summary: In today's digital world, APIs have become a critical component for accessing and sharing data between different systems and applications. Whether you are building a web application, mobile app, or simply working with data, it's important to understand how to extract the data you need from an API response.
@@ -21,11 +22,11 @@ The `fetch()` function is a modern way to make an API call in JavaScript. The `f
 
 ```javascript
 fetch('https://api.example.com/data')
-  .then(response => response.json())
-  .then(data => {
-    // do something with the data
-    console.log(data)
-  })
+	.then((response) => response.json())
+	.then((data) => {
+		// do something with the data
+		console.log(data);
+	});
 ```
 
 ## Handling the Response with then()
@@ -38,13 +39,13 @@ The **JSON.parse()** method is used to parse a string of JSON data and convert i
 
 ```javascript
 fetch('https://api.example.com/data')
-  .then(response => response.json())
-  .then(data => {
-    // extract specific data
-    const name = data.name
-    const age = data.age
-    console.log(`Name: ${name}, Age: ${age}`)
-  })
+	.then((response) => response.json())
+	.then((data) => {
+		// extract specific data
+		const name = data.name;
+		const age = data.age;
+		console.log(`Name: ${name}, Age: ${age}`);
+	});
 ```
 
 In conclusion, extracting data from an API response in JavaScript is a relatively straightforward process using the fetch() function and the JSON.parse() method. Whether you are building a web application, mobile app, or simply working with data, understanding how to extract data from an API response is a critical skill for modern developers.

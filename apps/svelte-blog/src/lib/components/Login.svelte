@@ -15,15 +15,12 @@
 	 */
 	let errorMessage;
 
-	console.log('action data', $page);
-
 	onMount(async () => {
 		if (pb.authStore.isValid) {
 			// If the user is already logged in, redirect to the dashboard
 			window.location.href = '/dashboard';
 		} else {
 			// If the user is not logged in, set the returned action data to local storage
-			console.log('action data', $page.form.pocketbase_auth);
 			localStorage.setItem('pocketbase_auth', JSON.stringify($page.form.pocketbase_auth));
 			window.location.href = '/dashboard';
 		}

@@ -32,5 +32,9 @@
 		"typescript": "^5.2.2",
 		"vite": "^4.4.2"
 	},
-	"type": "module"
+	"type": "module",
+	"dependencies": {
+		"dompurify": "^3.0.6",
+		"jsdom": "^22.1.0"
+	}
 }

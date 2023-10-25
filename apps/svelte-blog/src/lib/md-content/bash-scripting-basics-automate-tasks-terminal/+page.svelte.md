@@ -1,7 +1,14 @@
 ---
 title: Bash Scripting Basics; How to Automate Tasks in the Terminal
 created: 2023-02-25
-tags: ['Bash scripting', 'Automation', 'Terminal', 'bash script for automation', 'bash scripting for automation']
+tags:
+  [
+    'Bash scripting',
+    'Automation',
+    'Terminal',
+    'bash script for automation',
+    'bash scripting for automation'
+  ]
 image: '/bash-scripting-basics-automate-tasks-terminal/image.png'
 alt: 'Bash Scripting Basics; How to Automate Tasks in the Terminal'
 summary: If you're a terminal user, you know how tedious it can be to manually execute the same commands repeatedly. But what if I told you there's a way to automate these tasks and free up your time for more important things? Welcome to the exciting world of bash scripting!

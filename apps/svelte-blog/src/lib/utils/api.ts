@@ -186,4 +186,3 @@ export const compressBlobImage = async (
 		image.src = URL.createObjectURL(file);
 	});
 };
-

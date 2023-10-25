@@ -106,25 +106,25 @@ This is an inline note. ^[You can type footnotes inline, so you don’t have to 
 ## Code
 
 ```ts twoslash title="examples/index.ts"
-for (let x in [0]) console.log(x)
+for (let x in [0]) console.log(x);
 ```
 
 ```ts twoslash {1-6}
 interface IdLabel {
-  id: number /* some fields */
+	id: number /* some fields */;
 }
 interface NameLabel {
-  name: string /* other fields */
+	name: string /* other fields */;
 }
-type NameOrId<T extends number | string> = T extends number ? IdLabel : NameLabel
+type NameOrId<T extends number | string> = T extends number ? IdLabel : NameLabel;
 // This comment should not be included
 
 // ---cut---
 function createLabel<T extends number | string>(idOrName: T): NameOrId<T> {
-  throw 'unimplemented'
+	throw 'unimplemented';
 }
 
-let a = createLabel('typescript')
+let a = createLabel('typescript');
 ```
 
 ## Misc

@@ -2,7 +2,6 @@
 import { redirect, setFlash } from 'sveltekit-flash-message/server';
 import { authPocketbase } from '$lib/utils/api';
 
-
 /** @type {import('./$types').Actions} */
 export const actions = {
 	login: async (event) => {
@@ -22,17 +21,15 @@ export const actions = {
 				model: res.record,
 				token: res.token
 			};
-			
 
 			const message = { type: 'success', message: 'Login successful', pocketbase_auth };
 			setFlash(message, event);
-			
+
 			return {
 				success: true,
 				status: 200,
 				pocketbase_auth: JSON.stringify(pocketbase_auth)
 			};
-			
 		} catch (err) {
 			if (err.response?.data.identity?.message) {
 				const message = {
@@ -57,6 +54,5 @@ export const actions = {
 				throw redirect(message, event);
 			}
 		}
-
 	}
 };

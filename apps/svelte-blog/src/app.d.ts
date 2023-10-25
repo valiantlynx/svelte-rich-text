@@ -8,7 +8,7 @@ declare global {
 		// interface Platform {}
 		interface PageData {
 			flash?: {
-				type: "success" | "error";
+				type: 'success' | 'error';
 				message: string;
 			};
 		}
