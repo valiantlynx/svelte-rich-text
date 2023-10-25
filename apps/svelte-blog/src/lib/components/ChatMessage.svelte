@@ -1,6 +1,4 @@
 <script>
-	import { _ } from 'svelte-i18n';
-
 	/**
 	 * @type {{ expand: { sender: { username: any; avatar: any; id: any; }; }; created: string | number | Date; message: any; }}
 	 */
@@ -30,8 +28,8 @@
 	</div>
 	<div class="chat-bubble">{@html message.message}</div>
 	{#if messageClass === 'chat-end'}
-		<div class="chat-footer opacity-50">{$_('page.chat.sent')}</div>
+		<div class="chat-footer opacity-50">comment sent</div>
 	{:else}
-		<div class="chat-footer opacity-50">{$_('page.chat.delivered')}</div>
+		<div class="chat-footer opacity-50">comment delivered</div>
 	{/if}
 </div>

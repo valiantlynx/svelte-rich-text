@@ -1,6 +1,5 @@
 /* eslint-disable no-console */
-/* eslint-disable @typescript-eslint/no-unused-vars */
-import { redirect } from 'sveltekit-flash-message/server';
+import { redirect, setFlash } from 'sveltekit-flash-message/server';
 import { authPocketbase } from '$lib/utils/api';
 
 
@@ -23,10 +22,17 @@ export const actions = {
 				model: res.record,
 				token: res.token
 			};
+			
 
 			const message = { type: 'success', message: 'Login successful', pocketbase_auth };
-
-			throw redirect(303, '/login', message, event);
+			setFlash(message, event);
+			
+			return {
+				success: true,
+				status: 200,
+				pocketbase_auth: JSON.stringify(pocketbase_auth)
+			};
+			
 		} catch (err) {
 			if (err.response?.data.identity?.message) {
 				const message = {

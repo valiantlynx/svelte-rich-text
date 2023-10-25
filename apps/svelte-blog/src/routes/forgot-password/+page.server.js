@@ -7,8 +7,6 @@ export const actions = {
         const data = await event.request.formData();
         const email = data.get("email");
 
-        console.log("email", email);
-
         try {
             // Authenticate the user and get the token from the server
             await pb.collection('users').requestPasswordReset(email);
@@ -18,9 +16,8 @@ export const actions = {
                 message: "Reset link sent",
             };
 
-            setFlash(303, "/forgot-password", message, event);
+            setFlash(message, event);
         } catch (err) {
-            console.log("err", err);
             if (err.response?.data.identity?.message) {
                 const message = {
                     type: "error",
@@ -32,7 +29,7 @@ export const actions = {
                 const message = {
                     type: "error",
                     err: err.response?.message,
-                    message: "wrong email",
+                    message: "something went wrong",
                 };
                 throw redirect(message, event);
             }

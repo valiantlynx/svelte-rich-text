@@ -6,12 +6,7 @@
 	const flash = getFlash(page);
 
 	onMount(() => {
-		if ($page.url.pathname == '/logout') {
-			localStorage.removeItem('pocketbase_auth');
-			window.location.href = '/';
-		} else if ($page.url.pathname == '/login' || $page.url.pathname == '/signup') {
-			localStorage.setItem('pocketbase_auth', JSON.stringify($flash.pocketbase_auth));
-		}
+		localStorage.setItem('pocketbase_auth', JSON.stringify($flash.pocketbase_auth));
 	});
 </script>
 

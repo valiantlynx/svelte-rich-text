@@ -1,6 +1,4 @@
 <script>
-	import { _ } from 'svelte-i18n';
-
 	import ChatMessage from './ChatMessage.svelte';
 	import { onMount, onDestroy } from 'svelte';
 	import { authData } from '$lib/utils/stores';
@@ -42,7 +40,7 @@
 
 	async function getInitialMessages() {
 		try {
-			const resultList = await pb.collection('chat').getList(1, 50, {
+			const resultList = await pb.collection('chat_valiantlynx').getList(1, 50, {
 				sort: 'created',
 				expand: 'sender'
 			});
@@ -78,7 +76,7 @@
 
 	onMount(async () => {
 		messages = await getInitialMessages();
-		unsubscribe = await pb.collection('chat').subscribe('*', handleRealtimeMessage);
+		unsubscribe = await pb.collection('chat_valiantlynx').subscribe('*', handleRealtimeMessage);
 	});
 
 	onDestroy(() => {
@@ -91,7 +89,7 @@
 			sender: pb.authStore.model?.id,
 			receiver: pb.authStore.model?.id
 		};
-		await pb.collection('chat').create(data);
+		await pb.collection('chat_valiantlynx').create(data);
 		newMessage = '';
 		canAutoScroll = true;
 		autoScroll();
@@ -99,7 +97,7 @@
 </script>
 
 <div class="container p-4 space-y-4 border-dashed border-2 border-primary">
-	<h2 class="text-2xl font-bold mb-4">{$_('page.chat.cta')}</h2>
+	<h2 class="text-2xl font-bold mb-4">Join the Discussion</h2>
 
 	<main class="overflow-y-auto max-h-[60vh]" on:scroll={watchScroll}>
 		{#each messages as message (message.id)}
@@ -124,18 +122,18 @@
 			<input
 				type="text"
 				placeholder={pb.authStore.isValid
-					? $_('page.chat.usage_guide')
-					: $_('page.chat.login_guide')}
+					? 'write your comment here'
+					: 'login to write a comment  ----------------->'}
 				bind:value={newMessage}
 				maxlength="100"
 				class="input input-bordered input-primary flex-grow"
 			/>
 			{#if pb.authStore.isValid}
 				<button type="submit" disabled={!newMessage} class="btn btn-primary">
-					{$_('page.chat.send')}
+					Send
 				</button>
 			{:else}
-				<a href="/login" type="submit" class="btn btn-primary"> {$_('page.chat.login')} </a>
+				<a href="/login" type="submit" class="btn btn-primary">Login</a>
 			{/if}
 		</form>
 	</div>
