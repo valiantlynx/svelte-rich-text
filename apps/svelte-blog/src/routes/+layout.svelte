@@ -1,7 +1,7 @@
 <script lang="ts">
-	import Footer from '$lib/components/Footer.svelte';
 	import Nav from '$lib/components/Nav.svelte';
 	import Feedback from '$lib/components/feedback/Feedback.svelte';
+	import Footer from '$lib/components/Footer.svelte';
 
 	import '../app.css';
 </script>
@@ -12,3 +12,4 @@
 <slot />
 <Feedback />
 <Footer />
+

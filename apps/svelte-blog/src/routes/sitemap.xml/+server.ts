@@ -3,7 +3,7 @@
 import type { RequestHandler } from './$types';
 import { site } from '$lib/config/site';
 import { genPosts } from '$lib/utils/posts';
-import { google } from 'googleapis';
+// import { google } from 'googleapis';
 
 const render = (): string =>
 	`<?xml version='1.0' encoding='utf-8'?>
@@ -59,7 +59,7 @@ const maxIndexingApiCalls = 5;
 let apiCalls = 0;
 let lastCallTime = Date.now();
 
-async function indexer() {
+async function indexer(google: any) {
 	const urls = genPosts().map((post) => site.protocol + site.domain + post.path);
 
 	console.log('google api- r', urls);

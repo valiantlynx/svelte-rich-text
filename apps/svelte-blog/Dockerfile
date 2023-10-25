@@ -11,7 +11,7 @@ RUN apk update
 WORKDIR /app
 RUN yarn global add turbo
 COPY . .
-RUN turbo prune minfuel-svelte --docker
+RUN turbo prune svelte-blog --docker
 
 # Add lockfile and package.json's of isolated subworkspace
 FROM base AS installer
@@ -38,7 +38,7 @@ COPY turbo.json turbo.json
 
 
 # You can adjust the memory limit based on your specific requirements.
-RUN NODE_OPTIONS="--max-old-space-size=8192" yarn turbo run build --filter=minfuel-svelte --concurrency 2
+RUN NODE_OPTIONS="--max-old-space-size=8192" yarn turbo run build --filter=svelte-blog --concurrency 2
 
 
 # Create a new stage for the runner
@@ -52,8 +52,8 @@ USER svelte
 
 
 # Copy the necessary files from the installer stage
-COPY --from=installer /app/apps/minfuel-svelte/package.json .
-COPY --from=installer /app/apps/minfuel-svelte/build /app/build
+COPY --from=installer /app/apps/svelte-blog/package.json .
+COPY --from=installer /app/apps/svelte-blog/build /app/build
 
 EXPOSE 3000
 

@@ -96,10 +96,10 @@
 	}
 </script>
 
-<div class="container p-4 space-y-4 border-dashed border-2 border-primary">
+<div class="container p-4 space-y-4 border-dashed border-2 border-primary w-full">
 	<h2 class="text-2xl font-bold mb-4">Join the Discussion</h2>
 
-	<main class="overflow-y-auto max-h-[60vh]" on:scroll={watchScroll}>
+	<main class="overflow-y-auto" on:scroll={watchScroll}>
 		{#each messages as message (message.id)}
 			<ChatMessage {message} sender={$authData.username} />
 		{/each}
@@ -125,7 +125,6 @@
 					? 'write your comment here'
 					: 'login to write a comment  ----------------->'}
 				bind:value={newMessage}
-				maxlength="100"
 				class="input input-bordered input-primary flex-grow"
 			/>
 			{#if pb.authStore.isValid}
