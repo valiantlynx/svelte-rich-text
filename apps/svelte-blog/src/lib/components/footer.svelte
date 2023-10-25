@@ -11,13 +11,13 @@
 	</div>
 	<div>
 		<div class="grid grid-flow-col gap-4">
-			<a href="https://www.facebook.com/animevariant/" class="link link-hover hover:link-primary"
+			<a href="https://www.facebook.com/valiantlynx/" class="link link-hover hover:link-primary"
 				><Icon icon="mdi:twitter" /></a
 			>
 			<a href="https://www.youtube.com/@valiantlynx/" class="link link-hover hover:link-primary"
 				><Icon icon="mdi:youtube" /></a
 			>
-			<a href="https://www.facebook.com/animevariant/" class="link link-hover hover:link-primary"
+			<a href="https://www.facebook.com/valiantlynx/" class="link link-hover hover:link-primary"
 				><Icon icon="mdi:facebook" /></a
 			>
 		</div>
