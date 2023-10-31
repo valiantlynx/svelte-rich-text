@@ -4,7 +4,7 @@
   "scripts": {
     "build": "turbo build",
     "dev": "turbo run dev --concurrency",
-    "python": "python -m venv venv && venv\\Scripts\\activate && turbo run python:pip && turbo run python",
+    "python": "turbo run python",
     "lint": "turbo lint",
     "clean": "turbo clean",
     "format": "turbo format",

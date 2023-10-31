@@ -1,0 +1,123 @@
+<hr />
+<hr />
+<p>SvelteKit and Three.js are powerful tools that can be combined to create impressive 3D graphics and interactive experiences right in your web applications. In this tutorial, we'll walk you through the process of integrating Three.js into your SvelteKit project and creating a simple 3D scene.</p>
+<h2>Prerequisites</h2>
+<p>Before we begin, make sure you have the following set up:</p>
+<ul>
+<li>Node.js and npm installed on your machine</li>
+<li>Basic understanding of SvelteKit and JavaScript</li>
+</ul>
+<h2>Setting Up the Project</h2>
+<p>First, let's create a new SvelteKit project and navigate to its root directory in the terminal:</p>
+<p><code>bash
+npx degit sveltejs/template my-threejs-project
+cd my-threejs-project</code></p>
+<p>Next, install the <code>three</code> package, use your preferred package manager:</p>
+<p><code>bash
+pnpm install three</code></p>
+<p>Types always help,but if not just remove remove the type definitions, and you should be good to go.
+so let's install the <code>@types/three</code> package as well:</p>
+<p><code>bash
+pnpm install -D @types/three</code></p>
+<h2>Creating a Basic 3D Scene</h2>
+<p>In your SvelteKit project, create a new Svelte component, let's call it <code>ThreeScene.svelte</code>:</p>
+<p>```svelte</p>
+<script lang="ts">
+    // Import required modules
+    import { browser } from '$app/environment';
+    import { onMount } from 'svelte';
+    import * as THREE from 'three';
+
+    // Declare a variable to hold the container element
+    let canvasContainer: any;
+
+    // Check if the code is running in the browser environment
+    if (browser) {
+        // Declare variables for Three.js components
+        let camera: THREE.PerspectiveCamera;
+        let scene: THREE.Scene;
+        let renderer: THREE.WebGLRenderer;
+        let cube: THREE.Mesh<THREE.BoxGeometry, THREE.MeshBasicMaterial>;
+
+        // Run this code when the component is mounted
+        onMount(() => {
+            // Create a Three.js scene, camera, and renderer
+            scene = new THREE.Scene();
+            camera = new THREE.PerspectiveCamera(75, 1, 0.1, 1000); // Aspect ratio set to 1 initially, the first parameter is the field of view, the second is the aspect ratio, the third is the near clipping plane, and the fourth is the far clipping plane
+            renderer = new THREE.WebGLRenderer();
+
+            // Calculate initial canvas size based on the container
+            const canvasWidth = canvasContainer.clientWidth;
+            const canvasHeight = canvasContainer.clientHeight;
+
+            // Set renderer size and add Tailwind classes to make it responsive
+            renderer.setSize(canvasWidth, canvasHeight);
+            renderer.domElement.classList.add('w-full', 'h-full');
+
+            // Append renderer's canvas to the container
+            canvasContainer.appendChild(renderer.domElement);
+
+            // Create a cube geometry and material, add it to the scene
+            const geometry = new THREE.BoxGeometry(1, 1, 1);
+            const material = new THREE.MeshBasicMaterial({ color: 0x66ccff }); // Blue color
+            cube = new THREE.Mesh(geometry, material);
+            scene.add(cube);
+
+            // Set camera position
+            camera.position.z = 5;
+
+            // Start the animation loop
+            animate();
+        });
+
+        // Function to render the scene
+        const render = () => {
+            renderer.clear();
+            renderer.render(scene, camera);
+        };
+
+        // Animation loop
+        const animate = () => {
+            requestAnimationFrame(animate);
+
+            // Rotate the cube
+            cube.rotation.x += 0.05;
+            cube.rotation.y += 0.05;
+
+            // Update the camera's aspect ratio and position
+            camera.aspect = canvasContainer.clientWidth / canvasContainer.clientHeight;
+            camera.updateProjectionMatrix();
+
+            // Render the scene
+            render();
+        };
+    }
+</script>
+
+<p><svelte:head>
+    <title>SvelteKit + Three.js</title>
+</svelte:head></p>
+<div class="flex flex-col items-center justify-center">
+    <h1 class="text-3xl font-bold mb-6 text-center">SvelteKit + Three.js</h1>
+    <p class="text-center">
+        This is a demo of how to use Three.js with SvelteKit. The cube below is rendered using Three.js.
+    </p>
+    <section bind:this={canvasContainer} class="w-36 h-36 flex justify-center items-center">
+        <!-- The canvas element will be appended here -->
+    </section>
+</div>
+<p>```</p>
+<h2>Running the Project</h2>
+<p>To run the project, use the following command:</p>
+<p><code>bash
+pnpm run dev</code></p>
+<p>You should see a cube rendered on the page:</p>
+<p><img alt="Three.js cube" src="SvelteKit-Three-js.png" /></p>
+<h2>Conclusion</h2>
+<p>In this tutorial, we explored how to integrate Three.js into a SvelteKit project to create a simple 3D scene. This is just the beginning – Three.js offers a wide range of possibilities for creating stunning 3D visuals and interactive experiences in your web applications.</p>
+<p>Now that you have a basic understanding of how to get started with Three.js in SvelteKit, feel free to experiment, explore the Three.js documentation, and take your 3D web development skills to the next level!</p>
+<p>For more advanced features and optimizations, make sure to dive deeper into both SvelteKit and Three.js documentation.</p>
+<p>Happy coding!</p>
+<p>vbnet
+Copy code</p>
+<p>You can replace the placeholders with actual images, more detailed explanations, and further styling to suit your blog's aesthetic.</p>

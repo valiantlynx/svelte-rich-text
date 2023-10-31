@@ -20,7 +20,7 @@
     },
     "format": {},
     "python": {
-      "dependsOn": ["^python:pip"]
+      "dependsOn": ["python:pip"]
     },
     "python:pip": {},
     "check-types": {},

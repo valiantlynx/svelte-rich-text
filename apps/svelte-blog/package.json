@@ -30,13 +30,11 @@
 		"tsconfig": "*",
 		"tslib": "^2.4.1",
 		"typescript": "^5.2.2",
-		"vite": "^4.4.2",
-		"markdown_handler": "*"
+		"vite": "^4.4.2"
 	},
 	"type": "module",
 	"dependencies": {
 		"dompurify": "^3.0.6",
-		"jsdom": "^22.1.0",
-		"marked": "^9.1.4"
+		"jsdom": "^22.1.0"
 	}
 }

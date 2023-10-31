@@ -1,0 +1,48 @@
+<hr />
+<hr />
+<h2>Paragraphs</h2>
+<p>If you've installed Kali Linux on your laptop but don't have an Ethernet port, connecting to the internet can be a challenge. Fortunately, there are a few workarounds you can use to get connected, as we explored in this conversation. In this blog post, we will explain two methods to connect to the internet without Ethernet.</p>
+<p>First, let's look at setting up USB tethering with a smartphone. Here are the steps:</p>
+<ol>
+<li>Connect your phone to your laptop via USB.</li>
+<li>Enable tethering on your phone.</li>
+<li>Configure your network settings on Kali Linux to use the phone as a network interface.</li>
+</ol>
+<p>To check the available network interfaces, you can run the following command:</p>
+<p><code>bash
+ip link show</code></p>
+<p>If you have successfully connected your phone via USB tethering, you should see "usb0" among the network interfaces.</p>
+<p>For wireless connectivity, you can try bringing up the wireless adapter by running the following command:</p>
+<p>```bash</p>
+<p>sudo ip link set wlan0 up
+```</p>
+<p>Once the adapter is up, you can check if it can detect and connect to available Wi-Fi networks:</p>
+<p>```bash</p>
+<p>sudo iwlist wlan0 scan
+```</p>
+<p>If you can see your network in the scan results, you can try connecting to it using the following command:</p>
+<p>```bash</p>
+<p>nmcli device wifi connect <your_SSID> password <your_wifi_password>
+```</p>
+<p>If you don't have nmcli installed, you can try rerunning the command above even if it fails. Alternatively, you can install Network Manager by running:</p>
+<p>```bash</p>
+<p>sudo apt-get update &amp;&amp; sudo apt-get install network-manager
+```</p>
+<p>In some cases, the internet might be blocked by hardware, such as a button or switch. If the previous commands fail, try clicking the airplane mode button once or check for any other buttons or switches on your network device that might block the internet. If the command sudo ip link set wlan0 up fails with an error like "RTNETLINK answers: Operation not possible due to RF-kill," it indicates that the internet might be blocked by hardware.</p>
+<p>Once you are connected to the Wi-Fi network, you should be able to access the internet and install any necessary updates or packages.</p>
+<p>If you were previously connected to the internet and want to move to a different network, you can edit the network configuration file by running:</p>
+<p>```bash</p>
+<p>sudo nano /etc/network/interfaces
+```</p>
+<p>Add the following lines to the file:</p>
+<p><code>auto &lt;interface&gt;
+iface &lt;interface&gt; inet dhcp
+wpa-ssid &lt;ESSID&gt;
+wpa-psk &lt;password&gt;</code></p>
+<p>Replace <code>&lt;interface&gt;</code> with the name of your wireless interface (e.g., wlan0), <code>&lt;ESSID&gt;</code> with the ESSID of the network you want to connect to, and <code>&lt;password&gt;</code> with the password of the network.</p>
+<p>Save the file and exit the editor.</p>
+<p>Finally, restart the networking service to apply the changes:</p>
+<p>```bash</p>
+<p>sudo systemctl restart networking
+```</p>
+<p>By following these steps, you should be able to connect to the internet on Kali Linux without Ethernet.</p>
