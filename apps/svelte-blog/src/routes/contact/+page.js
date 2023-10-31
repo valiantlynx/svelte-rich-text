@@ -7,6 +7,5 @@ export async function load() {
 	const data = {
 		company
 	};
-
 	return data;
 }
