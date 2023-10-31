@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "license": "MIT",
   "scripts": {
-    "python": "python -u markdown_handler.py",
+    "python": "python -u test.py",
     "python:pip": "pip install -r requirements.txt"
   }
 }

@@ -30,7 +30,8 @@
 		"tsconfig": "*",
 		"tslib": "^2.4.1",
 		"typescript": "^5.2.2",
-		"vite": "^4.4.2"
+		"vite": "^4.4.2",
+		"markdown_handler": "*"
 	},
 	"type": "module",
 	"dependencies": {

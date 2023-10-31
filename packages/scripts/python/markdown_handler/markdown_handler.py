@@ -1,49 +1,32 @@
 import markdown
-import html2text
-from bs4 import BeautifulSoup
+import re
 
-def markdown_to_rich_text(md_text):
-    # Convert Markdown to HTML
-    html_text = markdown.markdown(md_text)
+class MarkdownToHTMLConverter:
+    def __init__(self):
+        pass
 
-    # Convert HTML to plain text using html2text
-    plain_text = html2text.html2text(html_text)
+    def extract_metadata(self, md_text):
+        metadata = {}
+        # Regular expression to match metadata in the format "key: value" or "key: [value1, value2]"
+        metadata_pattern = re.compile(r'^(\w+):\s+(.*)$', re.MULTILINE)
+        metadata_matches = metadata_pattern.findall(md_text)
 
-    # Create a rich text representation
-    rich_text = []
+        for key, value in metadata_matches:
+            # Check if the value is in a list format, e.g., ['value1', 'value2']
+            if value.startswith("[") and value.endswith("]"):
+                metadata[key] = [item.strip() for item in value[1:-1].split(",")]
+            else:
+                metadata[key] = value.strip()
 
-    # Split the plain text into lines
-    lines = plain_text.split('\n')
+        # Remove the metadata lines from the original text
+        md_text = re.sub(metadata_pattern, "", md_text)
+        
+        return metadata, md_text
 
-    for line in lines:
-        if line.strip():
-            rich_text.append({
-                'text': line.strip(),
-                'bold': False,
-                'italic': False,
-                'underline': False,
-                'color': None,
-                'size': None,
-            })
+    def markdown_to_html(self, md_text):
+        metadata, md_text = self.extract_metadata(md_text)
 
-    # Optionally, you can parse the HTML for more formatting details
-    soup = BeautifulSoup(html_text, 'html.parser')
-    # Add code to extract more formatting information from the HTML if needed
+        # Convert Markdown to HTML
+        html_text = markdown.markdown(md_text)
 
-    return rich_text
-
-# Example usage
-md_text = """
-# Heading
-This is *italic* and **bold** text.
-
-- List item 1
-- List item 2
-
-[Link](https://www.example.com)
-"""
-
-rich_text = markdown_to_rich_text(md_text)
-
-for item in rich_text:
-    print(item)
+        return metadata, html_text
