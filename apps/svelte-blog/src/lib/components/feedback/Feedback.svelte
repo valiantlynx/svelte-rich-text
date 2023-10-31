@@ -33,12 +33,12 @@
 		});
 		if (response.ok) {
 			isFeedbackVisible = true; // Hide the feedback form after submission.
-			resultMessage = 'Takk for tilbakemeldingen din, vi setter pris på det.';
+			resultMessage = 'Thank you for your feedback, we appreciate it.';
 		} else if (response.status === 201) {
-			resultMessage = 'Takk for tilbakemeldingen din, vi setter pris på det.';
+			resultMessage = 'Thank you for your feedback, we appreciate it.';
 		} else {
-			resultMessage = 'Å nei, noe gikk galt :(.' + response.status;
-			console.error('Klarte ikke å sende tilbakemelding:', response.status);
+			resultMessage = 'Oh no, something went wrong :(.' + response.status;
+			console.error('We were unable to send your feedback', response.status);
 		}
 		setTimeout(() => {
 			selectedEmotion = undefined;
@@ -51,10 +51,10 @@
 <!-- The button to open modal -->
 <label
 	for="feedback"
-	class=" btn fixed m-1 right-0 top-2/4 -translate-y-1/2 w-10 h-60 bg-primary hover:bg-secondary text-primary-content z-10"
+	class=" btn fixed m-1 right-0 top-2/4 -translate-y-1/2 w-10 h-40 bg-primary hover:bg-secondary text-primary-content z-10"
 >
 	<span class="mdi mdi-draw mdi-24px" />
-	<p class="-rotate-90 whitespace-nowrap mb-10 text-lg">Gi Tilbakemelding</p>
+	<p class="-rotate-90 whitespace-nowrap mb-10 text-lg">Feedback</p>
 </label>
 
 <!-- Put this part before </body> tag -->
@@ -63,7 +63,7 @@
 	<div
 		class="modal-box max-w-md py-8 px-6 m-auto dropdown-content z-[1] p-2 shadow bg-base-100 rounded-box sm:h-1/4 sm:w-1/4"
 	>
-		<h5 class="mb-6 text-center font-bold">Var dette nyttig nyttig!</h5>
+		<h5 class="mb-6 text-center font-bold">Was this useful?</h5>
 		{#if resultMessage}
 			<p class="text-center">{resultMessage}</p>
 		{:else}
@@ -91,15 +91,14 @@
 					<div class="mt-6">
 						<div class="w-full">
 							<label for="note" class="block my-1 text-left text-xs"
-								>Er det noe som kan forbedres! Ikke fungerer som det skal, eller noe du virkelig
-								liker.</label
+								>Is there something that doesn't work, can be done better or you really like?</label
 							>
 							<!--p class="text-sm">*Hjelp oss med å lage en bedre minedrivstoffportal?...</p-->
 							<!-- ... existing form content ... -->
 							<textarea
 								bind:value={note}
 								id="note"
-								placeholder="skriv her"
+								placeholder="write here..."
 								aria-label="Feedback input"
 								autocapitalize="off"
 								autocomplete="off"
