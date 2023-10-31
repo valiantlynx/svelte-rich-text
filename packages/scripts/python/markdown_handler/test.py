@@ -43,9 +43,9 @@ for dirpath, dirnames, filenames in os.walk(input_dir):
         # Convert the combined Markdown content to HTML
         metadata, html_text = converter.markdown_to_html(md_text)
 
-        # Write the generated HTML content to the output HTML file
-        with open(html_file, "w", encoding="utf-8") as html_file:
-            html_file.write(html_text)
+        # # Write the generated HTML content to the output HTML file
+        # with open(html_file, "w", encoding="utf-8") as html_file:
+        #     html_file.write(html_text)
 
         print(f"Generated HTML file: {html_file}")
         print(f"Metadata: {metadata}")
