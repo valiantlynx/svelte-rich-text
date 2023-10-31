@@ -1,11 +1,13 @@
+/* eslint-disable no-console */
 import type { PageLoad } from './$types';
 
-export const load: PageLoad = async ({ fetch, params }) => {
-  const slug = params['blog']; // retrieve the "slug" param
+export const load: PageLoad = async (event) => {
+  const slug = event.params['blog'];
+  const post = await event.fetch(`/md-content/${slug}/+page.svelte.md`);
+  const markdown = await post.text();
 
-  console.log('slug', slug);
 
-  return {
-    slug,
-  };
+    return {
+        markdown
+    };
 };

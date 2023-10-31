@@ -3,7 +3,8 @@
   "version": "0.0.0",
   "scripts": {
     "build": "turbo build",
-    "dev": "turbo run dev --concurrency 11",
+    "dev": "turbo run dev --concurrency",
+    "python": "python -m venv venv && venv\\Scripts\\activate && turbo run python:pip && turbo run python",
     "lint": "turbo lint",
     "clean": "turbo clean",
     "format": "turbo format",
@@ -18,7 +19,8 @@
   },
   "workspaces": [
     "apps/*",
-    "packages/*"
+    "packages/*",
+    "packages/scripts/python/*"
   ],
   "packageManager": "yarn@1.22.19",
   "usePackagemanager": "yarn@1.22.19 or pnpm@8.6.10 or npm@8.19.4",

@@ -1,0 +1,9 @@
+{
+  "name": "markdown_handler",
+  "version": "1.0.0",
+  "license": "MIT",
+  "scripts": {
+    "python": "python -u markdown_handler.py",
+    "python:pip": "pip install -r requirements.txt"
+  }
+}

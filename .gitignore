@@ -42,3 +42,9 @@ dist/
 __pycache__/
 tempCodeRunnerFile.py
 apps/svelte-blog-copy/
+
+# python
+__pycache__/
+tempCodeRunnerFile.py
+venv/
+.vent/

@@ -13,7 +13,7 @@ export const getImageURL = (collectionId: string, recordId: string, fileName: st
 };
 
 export const authPocketbase = async (user: string, password: string) => {
-	const res = await pb.collection('users').authWithPassword(user, password);
+	const res = await pb.collection('users_valiantlynx').authWithPassword(user, password);
 	authData.set(pb.authStore.model);
 	if (!pb.authStore.isValid) {
 		throw { status: pb.authStore.isValid, message: pb.authStore.token };
@@ -35,11 +35,11 @@ export const logoutPocketbase = async () => {
 };
 
 export const createPocketbaseUser = async (data: any) => {
-	const res = await pb.collection('users').create(data);
+	const res = await pb.collection('users_valiantlynx').create(data);
 	authData.set(res);
 
 	// (optional) send an email verification request
-	await pb.collection('users').requestVerification(data.email);
+	await pb.collection('users_valiantlynx').requestVerification(data.email);
 
 	// login the user
 	await authPocketbase(data.username, data.password);
@@ -65,7 +65,7 @@ export const authPocketbaseAdmin = async (user: string, password: string) => {
 // refresh the login data
 export const refreshAuthPocketbase = async () => {
 	// Update authData store
-	const user = await pb.collection('users').authRefresh({
+	const user = await pb.collection('users_valiantlynx').authRefresh({
 		refreshToken: pb.authStore.token
 	});
 	authData.set(user);
