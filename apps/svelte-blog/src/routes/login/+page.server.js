@@ -5,6 +5,7 @@ import { authPocketbase } from '$lib/utils/api';
 /** @type {import('./$types').Actions} */
 export const actions = {
 	login: async (event) => {
+		console.log('login', event);
 		const data = await event.request.formData();
 
 		const username = data.get('username');
@@ -16,6 +17,14 @@ export const actions = {
 
 			// get their IP address
 			// console.log('event', event.getClientAddress());
+
+			if (!res.token) {
+				const message = {
+					type: 'error',
+					message: 'wrong username or password'
+				};
+				throw redirect(message, event);
+			}
 
 			const pocketbase_auth = {
 				model: res.record,

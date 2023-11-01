@@ -15,6 +15,7 @@
 	let errorMessage;
 
 	onMount(async () => {
+		console.log('mounted', $page);
 		if (pb.authStore.isValid) {
 			// If the user is already logged in, redirect to the dashboard
 			window.location.href = '/dashboard';

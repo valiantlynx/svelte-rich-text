@@ -18,7 +18,7 @@ export const actions = {
 		};
 
 		try {
-			await pb.collection('users').create(pbData);
+			await pb.collection('users_valiantlynx').create(pbData);
 			const message = {
 				type: 'success',
 				message: 'User Created successfully. please, proceed to the login page'
