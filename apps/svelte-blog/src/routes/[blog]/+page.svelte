@@ -13,6 +13,6 @@
 			class="w-full h-auto rounded-lg mb-4"
 		/>
 		<p class="prose mb-4">{@html $page.data.blog?.content}</p>
-		<p class="text-sm text-gray-600">Tags: {$page.data.blog?.tags}</p>
+		<p class="text-sm text-secondary">Tags: {$page.data.blog?.tags}</p>
 	</div>
 </div>
