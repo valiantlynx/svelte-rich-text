@@ -5,7 +5,6 @@
 	import Input from '$lib/components/Input.svelte';
 	import { page } from '$app/stores';
 
-	export let form;
 	let emailModalOpen;
 	let usernameModalOpen;
 	let loading;

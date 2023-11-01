@@ -42,17 +42,27 @@
 			<li aria-current={$page.url.pathname === '/' ? 'page' : undefined}>
 				<a href="/">Home</a>
 			</li>
+			<li aria-current={$page.url.pathname === '/pricing' ? 'page' : undefined}>
+				<a class="justify-between" href="/pricing"> pricing </a>
+			</li>
 			<li aria-current={$page.url.pathname === '/dashboard' ? 'page' : undefined}>
 				<a class="justify-between" href="/dashboard">
 					Dashboard
 					<span class="badge">New</span>
 				</a>
 			</li>
-			<form action="/logout" method="POST">
-				<button type="submit" class="w-full text-start">
-					<li>Logout</li>
-				</button>
-			</form>
+			<li>
+				<form
+					action="/logout"
+					method="POST"
+					class="bg-primary text-primary-content rounded-box p-1 flex items-center mt-3"
+				>
+					<button type="submit" class="w-full flex items-center">
+						<p class="text-start mr-auto font-bold">Logout</p>
+						<i class="fa fa-sign-out-alt justify-end" />
+					</button>
+				</form>
+			</li>
 		</ul>
 	</div>
 {/if}
