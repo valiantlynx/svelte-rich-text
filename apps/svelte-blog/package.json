@@ -34,7 +34,9 @@
 	},
 	"type": "module",
 	"dependencies": {
+		"@splidejs/svelte-splide": "^0.2.9",
 		"dompurify": "^3.0.6",
-		"jsdom": "^22.1.0"
+		"jsdom": "^22.1.0",
+		"marked": "^9.1.4"
 	}
 }

@@ -1,6 +1,10 @@
 <script>
 	import { page } from '$app/stores';
+  import { marked } from 'marked';
   const blog = $page.data.blog;
+
+    const renderer = new marked.Renderer();
+    $: pageContent = marked(blog?.content, { renderer });
 </script>
 
 <div class="p-4 md:p-8 lg:p-12 flex justify-center">
@@ -14,7 +18,15 @@
 			class="w-full h-auto rounded-lg mb-4"
 		/>
 
-      {@html blog?.content}
+    <p class="text-sm text-accent">By: {blog?.author}</p>
+
+    <p class="text-sm text-accent">Published: {blog?.created}</p>
+
+    <p class="text-sm text-accent">Updated: {blog?.updated}</p>
+
+    <div class="mt-4 progress-primary">
+    {@html pageContent}
+    </div>
 
 		<p class="text-sm text-secondary">Tags: {blog?.tags}</p>
 	</div>

@@ -8,7 +8,7 @@ export const load: PageLoad = async () => {
   const blogs = await pb.collection('blogs').getList(1, 20);
 
   for (const item of blogs.items) {
-    item.image = getImageURL(item.collectionId, item.id, item.image);
+    item.image = getImageURL(item.collectionId, item.id, item.image, 'thumb=200x100');
   }
 
   return {

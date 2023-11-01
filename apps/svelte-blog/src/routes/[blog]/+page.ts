@@ -7,7 +7,7 @@ export const prerender = true;
 export const load: PageLoad = async (event) => {
   const slug = event.params['blog'];
   const blog = await pb.collection('blogs').getFirstListItem(`slug="${slug}"`, {});
-  blog.image = getImageURL(blog.collectionId, blog.id, blog.image);
+  blog.image = getImageURL(blog.collectionId, blog.id, blog.image, 'thumb=200x200');
 
   return {
     blog
