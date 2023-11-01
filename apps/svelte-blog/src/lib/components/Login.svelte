@@ -1,10 +1,9 @@
 <script>
-	import Toast from '$lib/components/Toast.svelte';
 	import Oauth2 from '$lib/components/oauth/Oauth2.svelte';
 	import { page } from '$app/stores';
 </script>
 
-<Toast />
+
 
 {#if $page.data.user}
 	<div class="relative flex flex-col items-center justify-center h-screen overflow-hidden">

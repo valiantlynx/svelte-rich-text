@@ -8,7 +8,9 @@ export const load = loadFlash(async (event) => {
 		};
 	}
 
-	return  {
+	
+	const data = { 
 		user: undefined
-	}
+	 };
+	return data;
 });

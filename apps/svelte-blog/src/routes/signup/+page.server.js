@@ -20,16 +20,8 @@ export const actions = {
 		try {
 			await event.locals.pb.collection('users_valiantlynx').create(pbData);
 			await event.locals.pb.collection('users_valiantlynx').requestVerification(pbData.email);
-
-			const message = {
-				type: 'success',
-				message: 'User Created successfully. please, proceed to the login page'
-			};
-			throw redirect(303, '/login', message, event);
 		} catch (err) {
-			console.error(err);
-			console.error(err.data);
-			if (err.data.data.username?.code) {
+			if (err.data?.data?.username?.code) {
 				if (!pbData.username) {
 					const message = {
 						type: 'error',
@@ -37,6 +29,7 @@ export const actions = {
 					};
 
 					setFlash(message, event);
+					return;
 				}
 
 				const message = {
@@ -45,7 +38,8 @@ export const actions = {
 				};
 
 				setFlash(message, event);
-			} else if (err.data.data.password?.code) {
+				return;
+			} else if (err.data?.data?.password?.code) {
 				if (!pbData.password) {
 					const message = {
 						type: 'error',
@@ -53,21 +47,24 @@ export const actions = {
 					};
 
 					setFlash(message, event);
+					return;
 				}
 				const message = {
 					type: 'error',
 					message: 'Your password must be at least 8 characters'
 				};
 				setFlash(message, event);
-			} else if (err.data.data.passwordConfirm?.code) {
+				return;
+			} else if (err.data?.data?.passwordConfirm?.code) {
 				if (!pbData.passwordConfirm) {
 					const message = {
 						type: 'error',
-						err: err.response?.data.passwordConfirm?.message,
+						err: err.response?.data?.passwordConfirm?.message,
 						message: 'Your passwordConfirm cannot be blank'
 					};
 
 					setFlash(message, event);
+					return;
 				}
 				const message = {
 					type: 'error',
@@ -75,27 +72,31 @@ export const actions = {
 				};
 
 				setFlash(message, event);
+				return;
 			} else if (pbData.passwordConfirm !== pbData.password) {
 				const message = {
 					type: 'error',
 					message: 'Your passwordConfirm does not match your password'
 				};
 				setFlash(message, event);
-			} else if (err.data.data.email?.code) {
+				return;
+			} else if (err.data?.data?.email?.code) {
 				if (!pbData.email) {
 					const message = {
 						type: 'error',
 						message: 'Your email cannot be blank'
 					};
 					setFlash(message, event);
+					return;
 				}
 
 				const message = {
 					type: 'error',
-					message: err.data.data.email?.message
+					message: err.data?.data?.email?.message
 				};
 
 				setFlash(message, event);
+				return;
 			} else {
 				const message = {
 					type: 'error',
@@ -104,7 +105,15 @@ export const actions = {
 						'something went wrong with your signup. please try again or contact support through the feedback button'
 				};
 				setFlash(message, event);
+				return;
 			}
 		}
+
+		const message = {
+			type: 'success',
+			message: 'User Created successfully. please, proceed to the login page'
+		};
+		throw redirect('/login', message, event);
+		return;
 	}
 };

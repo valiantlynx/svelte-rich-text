@@ -15,13 +15,7 @@ export const actions = {
 			// get their IP address
 			// console.log('event', event.getClientAddress());
 
-			if (!event.locals.pb?.authStore?.model?.token) {
-				const message = {
-					type: 'error',
-					message: 'wrong username or password'
-				};
-				setFlash(message, event);
-			} else if (!event.locals.pb?.authStore?.model?.verified) {
+			if (!event.locals.pb?.authStore?.model?.verified) {
 				event.locals.pb.authStore.clear();
 				const message = {
 					type: 'error',
@@ -29,34 +23,36 @@ export const actions = {
 				};
 				setFlash(message, event);
 			}
-
-			const message = { type: 'success', message: 'Login successful' };
-
-			throw redirect(303, '/dashboard', message, event);
 		} catch (err) {
-			console.error("err", err);
-			if (err.response?.data.identity?.message) {
+			console.error('err.data', err.data);
+			if (err.data?.data?.identity?.message) {
 				const message = {
 					type: 'error',
-					err: err.response?.data.identity?.message,
+					err: err.data?.data?.identity?.message,
 					message: 'Your username cannot be blank'
 				};
 				setFlash(message, event);
-			} else if (err.response?.data.password?.message) {
+				return;
+			} else if (err.data?.data?.password?.message) {
 				const message = {
 					type: 'error',
-					err: err.response?.data.password?.message,
+					err: err.data?.data?.password?.message,
 					message: 'Your password cannot be blank'
 				};
 				setFlash(message, event);
+				return;
 			} else {
 				const message = {
 					type: 'error',
-					err: err.response?.message,
+					err: err.data?.message,
 					message: 'wrong username or password'
 				};
 				setFlash(message, event);
+				return;
 			}
 		}
+
+		const message = { type: 'success', message: 'Login successful' };
+		throw redirect('/dashboard', message, event);
 	}
 };

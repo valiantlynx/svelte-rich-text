@@ -1,7 +1,10 @@
 <script>
 	import { getFlash } from 'sveltekit-flash-message';
 	import { page } from '$app/stores';
+
 	const flash = getFlash(page);
+
+	console.log('dsfsdfd: ', $flash);
 </script>
 
 {#if $flash}

@@ -1,5 +1,6 @@
 <script>
 	import Login from '$lib/components/Login.svelte';
+	import Toast from '$lib/components/Toast.svelte';
 </script>
 
 <svelte:head>
@@ -7,4 +8,5 @@
 	<meta name="description" content="login to this app" />
 </svelte:head>
 
+<Toast />
 <Login />

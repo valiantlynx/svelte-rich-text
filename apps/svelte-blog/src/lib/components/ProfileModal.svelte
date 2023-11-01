@@ -1,5 +1,4 @@
 <script>
-	import { logoutPocketbase } from '$lib/utils/api';
 	import { page } from '$app/stores';
 	import { site } from '$lib/config/site';
 
@@ -45,11 +44,14 @@
 					<span class="badge">New</span>
 				</a>
 			</li>
-			<li>
-				<button class="signout-button bg-error opacity-80" on:click={logoutPocketbase}
-					>Sign Out</button
-				>
-			</li>
+			<form action="/logout" method="POST">
+				<button type="submit" class="w-full text-start">
+					<li>
+						Logout
+					</li>
+					
+				</button>
+			</form>
 		</ul>
 	</div>
 {/if}
