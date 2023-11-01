@@ -20,7 +20,7 @@
 				<div class="flex items-center justify-between mt-4">
 					<div class="flex items-center">
 						<img src={blog.expand?.author ? `https://animevariant.fly.dev/api/files/${blog.expand?.author?.collectionId}/${blog.expand?.author?.id}/${blog.expand?.author?.avatar}?thumb=100x100`: 'https://animevariant.com/logo.png'} alt={blog.expand?.author?.username} class="w-8 h-8 rounded-full object-cover">
-						<a href="#" class="ml-2 text-sm hover:underline">{blog.expand?.author?.username ? blog.expand?.author?.username : 'anonymous'}</a>
+						<a href="/" class="ml-2 text-sm hover:underline">{blog.expand?.author?.username ? blog.expand?.author?.username : 'anonymous'}</a>
 					</div>
 					<div class="flex items-center">
 						<a href={`/${blog.slug}`} class="block font-bold hover:cursor-pointer hover:underline hover:text-secondary">Read more</a>

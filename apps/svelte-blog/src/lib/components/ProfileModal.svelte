@@ -1,23 +1,25 @@
 <script>
-	import { authData } from '$lib/utils/stores';
-	import { logoutPocketbase, pb } from '$lib/utils/api';
+	import { logoutPocketbase } from '$lib/utils/api';
 	import { page } from '$app/stores';
 	import { site } from '$lib/config/site';
 
-	const avatar = pb.authStore.model?.avatar
-		? `${site.pocketbase}/api/files/_pb_users_auth_/${pb.authStore.model?.id}/${pb.authStore.model?.avatar}`
-		: `https://avatars.dicebear.com/api/adventurer-neutral/${pb.authStore.model?.username}.svg`;
+	const avatar = $page.data.user?.avatar
+		? `${site.pocketbase}/api/files/_pb_users_auth_/${$page.data.user?.id}/${$page.data.user?.avatar}`
+		: `https://avatars.dicebear.com/api/adventurer-neutral/${$page.data.user?.username}.svg`;
 </script>
 
 <!-- profile-->
-{#if pb.authStore.isValid}
+{#if !$page.data.user}
+	<a href="/login" class="btn btn-primary">login</a>
+	<a href="/signup" class="btn btn-primary">signup</a>
+{:else}
 	<div class="dropdown dropdown-end">
 		<!-- svelte-ignore a11y-no-noninteractive-tabindex -->
 		<label tabindex="0" for="profile button" class="btn btn-primary btn-circle avatar">
 			<div class="w-10 rounded-full">
 				<img
 					src={avatar}
-					alt={`${$authData.username} profile picture on ${site.title}, ${
+					alt={`${$page.data.user.username} profile picture on ${site.title}, ${
 						site.protocol + site.domain
 					}`}
 				/>
@@ -50,6 +52,4 @@
 			</li>
 		</ul>
 	</div>
-{:else}
-	<a href="/login" class="btn btn-primary">login</a>
 {/if}

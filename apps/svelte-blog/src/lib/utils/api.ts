@@ -186,3 +186,15 @@ export const compressBlobImage = async (
 		image.src = URL.createObjectURL(file);
 	});
 };
+
+export const serializeNonPOJOs = (obj: any) => {
+
+	// // if the object is not a POJO, then serialize it
+	// if (obj && typeof obj === 'object' && obj.constructor !== Object) {
+	// 	return JSON.stringify(obj);
+	// }
+
+	// return obj;
+
+	return structuredClone(obj);
+}
