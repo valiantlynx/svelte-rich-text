@@ -1,6 +1,7 @@
 <script>
 	import SideBarIcon from './SideBarIcon.svelte';
 	import { logoutPocketbase } from '$lib/utils/api';
+	import { page } from '$app/stores';
 </script>
 
 <div
@@ -9,6 +10,9 @@
 	<a href="/"><SideBarIcon tooltip="Home" icon="bx:bx-home" /></a>
 	<a href="/dashboard/profile"> <SideBarIcon tooltip="Profile" icon="iconoir:profile-circle" /></a>
 	<a href="/dashboard/settings"><SideBarIcon tooltip="Settings" icon="bx:bx-cog" /></a>
+	{#if $page.data.user?.role.includes('admin')}
+		<a href="/dashboard/admin"><SideBarIcon tooltip="Admin" icon="bx:bx-shield" /></a>
+	{/if}
 	<a href="/dashboard/manager"
 		><SideBarIcon tooltip="Upload" icon="material-symbols:bookmark-manager" /></a
 	>

@@ -8,7 +8,7 @@ export const actions = {
 
 		try {
 			// Authenticate the user and get the token from the server
-			await event.locals.pb.collection('users').requestPasswordReset(email);
+			await event.locals.pb.collection('users_valiantlynx').requestPasswordReset(email);
 
 			const message = {
 				type: 'success',
@@ -16,6 +16,7 @@ export const actions = {
 			};
 
 			setFlash(message, event);
+			return;
 		} catch (err) {
 			if (err.response?.data.identity?.message) {
 				const message = {

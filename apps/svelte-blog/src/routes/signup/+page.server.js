@@ -113,7 +113,7 @@ export const actions = {
 			type: 'success',
 			message: 'User Created successfully. please, proceed to the login page'
 		};
+		
 		throw redirect('/login', message, event);
-		return;
 	}
 };

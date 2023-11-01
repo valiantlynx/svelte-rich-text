@@ -37,7 +37,6 @@
   let thumbs;
   onMount(() => {
     if (main && thumbs) {
-      console.log({ main, thumbs });
       main.sync(thumbs.splide);
     }
   });
@@ -49,7 +48,7 @@
       bind:this={main} 
       options={ mainOptions }
     >
-      {#each blogs as blog}
+      {#each blogs.items as blog}
         <SplideSlide>
           <div class="blog-hero">
             <img src={blog?.image} alt={blog?.alt} />
@@ -72,7 +71,7 @@
       bind:this={thumbs} 
       options={ thumbsOptions }
     >
-      {#each blogs as blog}
+      {#each blogs.items as blog}
         <SplideSlide>
           <img src={blog?.image} alt={blog?.alt}/>
         </SplideSlide>

@@ -1,12 +1,10 @@
 <script>
 	import { page } from '$app/stores';
 	const blogs = $page.data.blogs;
-	console.log(blogs[0].expand?.author?.avatar);
-
 </script>
 
 <div class="flex flex-wrap -m-4 p-10">
-	{#each blogs as blog (blog.id)}
+	{#each blogs.items as blog (blog.id)}
 		<div class="w-full md:w-1/2 lg:w-1/3 xl:w-1/4 p-4">
 			<!-- Blog Card Component -->
 			<div class="bg-primary border rounded-lg p-4 shadow-md hover:shadow-lg text-primary-content">
