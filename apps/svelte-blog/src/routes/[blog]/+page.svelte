@@ -1,41 +1,18 @@
-<!-- MarkdownConverter.svelte -->
-
 <script>
-  import { onMount } from "svelte";
-  import { exec } from "child_process";
-
-  export let markdown;
-  let metadata = {};
-  let htmlContent = "";
-
-  function convertMarkdownToHTML() {
-    console.log("Converting markdown to HTML");
-    const pythonProcess = exec("python -c 'import markdown_handler.markdown_handler as mdh; c = mdh.MarkdownToHTMLConverter(); metadata, htmlContent = c.markdown_to_html(\"" + markdown + "\"); print(metadata, htmlContent)'", (error, stdout, stderr) => {
-      if (error) {
-        console.error(`Error: ${error.message}`);
-        return;
-      }
-      // Parse the stdout to extract metadata and HTML content
-      [metadata, htmlContent] = stdout.trim().split(" ", 1);
-    });
-
-    pythonProcess.on("close", (code) => {
-      console.log(`child process exited with code ${code}`);
-    });
-  }
-
-  onMount(() => {
-    // Fetch initial content or perform any other setup
-  });
+	import { page } from '$app/stores';
 </script>
 
-<main>
-  <textarea bind:value={markdown} rows="10" cols="50"></textarea>
-  <button on:click={convertMarkdownToHTML} class="">Convert Markdown</button>
-  <div>
-    <h2>Metadata:</h2>
-    <pre>{JSON.stringify(metadata, null, 2)}</pre>
-    <h2>HTML Content:</h2>
-    {@html htmlContent}
-  </div>
-</main>
+<div class="p-4 md:p-8 lg:p-12 flex justify-center">
+	<div class="w-3/4">
+		<h1 class="text-2xl md:text-3xl lg:text-4xl font-bold mb-4">
+			{$page.data.blog?.title}
+		</h1>
+		<img
+			src={$page.data.blog?.image}
+			alt={$page.data.blog?.title}
+			class="w-full h-auto rounded-lg mb-4"
+		/>
+		<p class="prose mb-4">{@html $page.data.blog?.content}</p>
+		<p class="text-sm text-gray-600">Tags: {$page.data.blog?.tags}</p>
+	</div>
+</div>

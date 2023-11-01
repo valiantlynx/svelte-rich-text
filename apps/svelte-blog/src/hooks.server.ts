@@ -1,12 +1,17 @@
-// hooks.server.ts
-// import type { Handle } from '@sveltejs/kit';
-// import { locale } from 'svelte-i18n';
+import PocketBase from 'pocketbase';
+import { site } from '$lib/config/site';
 
-// export const handle: Handle = async ({ event, resolve }) => {
-// 	const lang = event.request.headers.get('accept-language')?.split(',')[0];
-// 	if (lang) {
-// 		locale.set(lang);
-// 	}
 
-// 	return await resolve(event);
-// };
+/** @type {import('@sveltejs/kit').Handle} */ 
+export async function handle({ event, resolve }) {
+   
+    await pocketbase({ event, resolve });
+    const response = await resolve(event);
+    return response;
+}
+
+export async function pocketbase({ event, resolve }) {
+    event.locals.pb = new PocketBase(site.pocketbase);
+    const response = await resolve(event);
+    return response;
+}
