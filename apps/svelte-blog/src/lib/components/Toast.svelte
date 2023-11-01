@@ -1,13 +1,7 @@
 <script>
 	import { getFlash } from 'sveltekit-flash-message';
 	import { page } from '$app/stores';
-	import { onMount } from 'svelte';
-
 	const flash = getFlash(page);
-
-	onMount(() => {
-		localStorage.setItem('pocketbase_auth', JSON.stringify($flash.pocketbase_auth));
-	});
 </script>
 
 {#if $flash}

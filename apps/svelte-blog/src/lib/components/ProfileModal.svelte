@@ -4,14 +4,14 @@
 	import { site } from '$lib/config/site';
 
 	const avatar = $page.data.user?.avatar
-		? `${site.pocketbase}/api/files/_pb_users_auth_/${$page.data.user?.id}/${$page.data.user?.avatar}`
-		: `https://avatars.dicebear.com/api/adventurer-neutral/${$page.data.user?.username}.svg`;
+		? `${site.pocketbase}/api/files/${$page.data.user?.collectionId}/${$page.data.user?.id}/${$page.data.user?.avatar}`
+		: `https://api.dicebear.com/7.x/adventurer-neutral/svg?seed=${$page.data.user?.username}`;
 </script>
 
 <!-- profile-->
 {#if !$page.data.user}
 	<a href="/login" class="btn btn-primary">login</a>
-	<a href="/signup" class="btn btn-primary">signup</a>
+	<a href="/signup" class="btn btn-secondary">signup</a>
 {:else}
 	<div class="dropdown dropdown-end">
 		<!-- svelte-ignore a11y-no-noninteractive-tabindex -->

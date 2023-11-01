@@ -4,6 +4,9 @@
 	import Footer from '$lib/components/Footer.svelte';
 
 	import '../app.css';
+	export let data;
+
+	console.log( 'data: ', data );
 </script>
 
 <svelte:head />

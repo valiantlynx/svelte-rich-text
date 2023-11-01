@@ -12,12 +12,6 @@
 	 * @type {any}
 	 */
 	let errorMessage = $page.form == null ? '' : $page.form.message;
-
-	onMount(async () => {
-		if ($page.form.success) {
-			window.location.href = '/login';
-		}
-	});
 </script>
 
 <Toast />

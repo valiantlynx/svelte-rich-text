@@ -1,7 +1,7 @@
 <script>
 	import ChatMessage from './ChatMessage.svelte';
 	import { onMount, onDestroy } from 'svelte';
-	import { authData } from '$lib/utils/stores';
+	import { page } from '$app/stores';
 	import { pb } from '$lib/utils/api';
 
 	let newMessage = '';
@@ -58,11 +58,12 @@
 	async function handleRealtimeMessage({ action, record }) {
 		try {
 			if (action === 'create') {
-				const sender = await pb.collection('users').getOne(record.sender);
+				const sender = await pb.collection('users_valiantlynx').getOne(record.sender);
+
 				record.expand = { sender };
 				messages = [...messages, record];
 
-				if ($authData.id !== record.receiver) {
+				if ($page.data.user.id !== record.receiver) {
 					unreadMessages = true;
 				}
 			}
@@ -86,8 +87,8 @@
 	async function sendMessage() {
 		const data = {
 			message: newMessage,
-			sender: pb.authStore.model?.id,
-			receiver: pb.authStore.model?.id
+			sender: $page.data.user?.id,
+			receiver: $page.data.user?.id
 		};
 		await pb.collection('chat_valiantlynx').create(data);
 		newMessage = '';
@@ -101,7 +102,7 @@
 	
 		<main class="overflow-y-auto" on:scroll={watchScroll}>
 			{#each messages as message (message.id)}
-				<ChatMessage {message} sender={$authData.username} />
+				<ChatMessage {message} sender={$page.data.user.username} />
 			{/each}
 			<div class="dummy" bind:this={scrollBottom} />
 		</main>
@@ -121,13 +122,13 @@
 			<form on:submit|preventDefault={sendMessage} class="space-x-2 flex items-center">
 				<input
 					type="text"
-					placeholder={pb.authStore.isValid
+					placeholder={$page.data.user
 						? 'write your comment here'
 						: 'login to write a comment  ----------------->'}
 					bind:value={newMessage}
 					class="input input-bordered input-primary flex-grow"
 				/>
-				{#if pb.authStore.isValid}
+				{#if $page.data.user}
 					<button type="submit" disabled={!newMessage} class="btn btn-primary"> Send </button>
 				{:else}
 					<a href="/login" type="submit" class="btn btn-primary">Login</a>

@@ -1,35 +1,12 @@
 <script>
-	import { pb } from '$lib/utils/api';
-	import { page } from '$app/stores';
-	import { onMount } from 'svelte';
 	import Toast from '$lib/components/Toast.svelte';
 	import Oauth2 from '$lib/components/oauth/Oauth2.svelte';
-
-	/**
-	 * @type {boolean}
-	 */
-	let Error;
-	/**
-	 * @type {any}
-	 */
-	let errorMessage;
-
-	onMount(async () => {
-		console.log('mounted', $page);
-		if (pb.authStore.isValid) {
-			// If the user is already logged in, redirect to the dashboard
-			window.location.href = '/dashboard';
-		} else {
-			// If the user is not logged in, set the returned action data to local storage
-			localStorage.setItem('pocketbase_auth', JSON.stringify($page.form.pocketbase_auth));
-			window.location.href = '/dashboard';
-		}
-	});
+	import { page } from '$app/stores';
 </script>
 
 <Toast />
 
-{#if pb.authStore.isValid}
+{#if $page.data.user}
 	<div class="relative flex flex-col items-center justify-center h-screen overflow-hidden">
 		<div class="w-full p-6 border-t-4 rounded-md shadow-md border-top lg:max-w-lg">
 			<h1 class="text-3xl font-semibold text-center">you are already logged in</h1>
@@ -55,7 +32,6 @@
 						name="username"
 						type="text"
 						placeholder="Username (3-16 characters)"
-						on:input={() => (Error = false)}
 						minlength="3"
 						class="w-full input input-bordered input-primary"
 					/>
@@ -72,17 +48,9 @@
 						placeholder="Enter Password (8-16 characters)"
 						minlength="8"
 						type="password"
-						on:input={() => (Error = false)}
-						class="w-full input input-bordered input-primary {Error ? 'input-error' : ''}"
+						class="w-full input input-bordered input-primary"
 					/>
-					<label class="label" for="password">
-						<span class="label-text-alt {Error ? 'text-error' : 'hidden'}">incorrect password</span>
-						<span class="label-text-alt {Error ? 'text-error' : 'hidden'}"
-							>we don't have an account with this username</span
-						>
-					</label>
 				</div>
-				<h2 class=" {Error ? 'text-error' : 'hidden'}">{errorMessage}</h2>
 				<br />
 				<div class="flex flex-row justify-between">
 					<a href="/signup" class=" justify-start link-primary link-hover my-2"
@@ -93,7 +61,7 @@
 					>
 				</div>
 				<div>
-					<button class="btn btn-block" disabled={Error}>Login</button>
+					<button class="btn btn-block">Login</button>
 				</div>
 			</form>
 

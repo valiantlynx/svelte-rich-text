@@ -1,4 +1,4 @@
-import { redirect, setFlash } from 'sveltekit-flash-message/server';
+import { redirect } from 'sveltekit-flash-message/server';
 
 /** @type {import('./$types').Actions} */
 export const actions = {
@@ -15,47 +15,40 @@ export const actions = {
 			// get their IP address
 			// console.log('event', event.getClientAddress());
 
-			if (!event.locals.pb?.authStore?.model?.token) {
+			if (!event.locals.user.token) {
 				const message = {
 					type: 'error',
 					message: 'wrong username or password'
 				};
-				setFlash(message, event);
-			} else if (!event.locals.pb?.authStore?.model?.verified) {
-				event.locals.pb.authStore.clear();
-				const message = {
-					type: 'error',
-					message: 'please, verify your email address then login'
-				};
-				setFlash(message, event);
+				throw redirect(message, event);
 			}
 
-			const message = { type: 'success', message: 'Login successful' };
+
+			const message = { type: 'success', message: 'Login successful'};
 
 			throw redirect(303, '/dashboard', message, event);
 		} catch (err) {
-			console.error("err", err);
 			if (err.response?.data.identity?.message) {
 				const message = {
 					type: 'error',
 					err: err.response?.data.identity?.message,
 					message: 'Your username cannot be blank'
 				};
-				setFlash(message, event);
+				throw redirect(message, event);
 			} else if (err.response?.data.password?.message) {
 				const message = {
 					type: 'error',
 					err: err.response?.data.password?.message,
 					message: 'Your password cannot be blank'
 				};
-				setFlash(message, event);
+				throw redirect(message, event);
 			} else {
 				const message = {
 					type: 'error',
 					err: err.response?.message,
 					message: 'wrong username or password'
 				};
-				setFlash(message, event);
+				throw redirect(message, event);
 			}
 		}
 	}

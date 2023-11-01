@@ -1,19 +1,13 @@
 <script>
 	import Login from '$lib/components/Login.svelte';
-	import { pb } from '$lib/utils/api';
-	import { authData } from '$lib/utils/stores';
-	import { onMount } from 'svelte';
+	import { page } from '$app/stores';
 	import SideBar from '$lib/components/SideBar.svelte';
 	import Toast from '$lib/components/Toast.svelte';
-
-	onMount(() => {
-		pb.authStore.isValid ? authData.set(pb.authStore.model) : null;
-	});
 </script>
 
 <Toast />
 
-{#if pb.authStore.isValid}
+{#if $page.data.user}
 	<div class="flex">
 		<SideBar />
 		<slot />

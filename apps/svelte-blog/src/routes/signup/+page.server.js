@@ -1,5 +1,4 @@
-import { pb } from '$lib/utils/api';
-import { setFlash } from 'sveltekit-flash-message/server';
+import { redirect, setFlash } from 'sveltekit-flash-message/server';
 
 /** @type {import('./$types').Actions} */
 export const actions = {
@@ -8,6 +7,7 @@ export const actions = {
 		const username = data.get('username');
 		const password = data.get('password');
 		const email = data.get('email');
+		
 
 		const pbData = {
 			username,
@@ -18,13 +18,14 @@ export const actions = {
 		};
 
 		try {
-			await pb.collection('users_valiantlynx').create(pbData);
+			await event.locals.pb.collection('users_valiantlynx').create(pbData);
+			await event.locals.pb.collection('users_valiantlynx').requestVerification(pbData.email);
+
 			const message = {
 				type: 'success',
 				message: 'User Created successfully. please, proceed to the login page'
 			};
-			setFlash(message, event);
-			return { success: true, message: message };
+			throw redirect(303, '/login', message, event);
 		} catch (err) {
 			console.error(err);
 			console.error(err.data);
@@ -36,7 +37,6 @@ export const actions = {
 					};
 
 					setFlash(message, event);
-					return { success: false, message: message };
 				}
 
 				const message = {
@@ -45,7 +45,6 @@ export const actions = {
 				};
 
 				setFlash(message, event);
-				return { success: false, message: message };
 			} else if (err.data.data.password?.code) {
 				if (!pbData.password) {
 					const message = {
@@ -54,14 +53,12 @@ export const actions = {
 					};
 
 					setFlash(message, event);
-					return { success: false, message: message };
 				}
 				const message = {
 					type: 'error',
 					message: 'Your password must be at least 8 characters'
 				};
 				setFlash(message, event);
-				return { success: false, message: message };
 			} else if (err.data.data.passwordConfirm?.code) {
 				if (!pbData.passwordConfirm) {
 					const message = {
@@ -71,7 +68,6 @@ export const actions = {
 					};
 
 					setFlash(message, event);
-					return { success: false, message: message };
 				}
 				const message = {
 					type: 'error',
@@ -79,14 +75,12 @@ export const actions = {
 				};
 
 				setFlash(message, event);
-				return { success: false, message: message };
 			} else if (pbData.passwordConfirm !== pbData.password) {
 				const message = {
 					type: 'error',
 					message: 'Your passwordConfirm does not match your password'
 				};
 				setFlash(message, event);
-				return { success: false, message: message };
 			} else if (err.data.data.email?.code) {
 				if (!pbData.email) {
 					const message = {
@@ -94,7 +88,6 @@ export const actions = {
 						message: 'Your email cannot be blank'
 					};
 					setFlash(message, event);
-					return { success: false, message: message };
 				}
 
 				const message = {
@@ -103,7 +96,6 @@ export const actions = {
 				};
 
 				setFlash(message, event);
-				return { success: false, message: message };
 			} else {
 				const message = {
 					type: 'error',
@@ -112,7 +104,6 @@ export const actions = {
 						'something went wrong with your signup. please try again or contact support through the feedback button'
 				};
 				setFlash(message, event);
-				return { success: false, message: message };
 			}
 		}
 	}
