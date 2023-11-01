@@ -51,7 +51,7 @@
 	};
 </script>
 
-<div class="flex flex-col w-full h-full space-y-12 ml-5">
+<div class="flex flex-col sm:w-1/2 h-full space-y-12 ml-5">
 	<div class="w-full">
 		<h3 class="text-2xl font-medium">Change Email</h3>
 		<div class="divider" />
@@ -115,4 +115,33 @@
 			</div>
 		</form>
 	</div>
+</div>
+<div class="flex flex-col sm:w-1/2 h-full space-y-12 ml-5">
+	<!-- Permissions Display -->
+	<div class="w-full md:w-1/2">
+		<div class="bg-base-300 text-base-content p-6 rounded-lg shadow-md">
+		  <h2 class="text-2xl font-medium mb-4">Roles and Permissions</h2>
+		  <ul class="list-inside list-disc">
+			{#each $page.data?.user?.role as role}
+			  <div class="badge badge-primary m-3 font-bold p-3">
+				{role}
+			  </div>
+
+			{/each}
+		  </ul>
+		</div>
+	  </div>
+	
+	  <!-- Upgrade Section -->
+	  <div class="w-full md:w-1/2">
+		<div class="bg-base-300 text-base-content p-6 rounded-lg shadow-md">
+		  <h2 class="text-2xl font-medium mb-4">Upgrade Your Role</h2>
+		  <p class="mb-4">
+			Enhance your experience by upgrading to a higher role. Unlock additional features and privileges.
+		  </p>
+		  <a href="/pricing" class="btn btn-primary w-full" alt="pricing page">
+			Upgrade Now
+		  </a>
+		</div>
+	  </div>
 </div>
