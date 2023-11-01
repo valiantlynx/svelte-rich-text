@@ -21,7 +21,7 @@
     <p class="text-sm text-accent">Updated: {blog?.updated}</p>
 
     <div class="mt-4 progress-primary html-content">
-    {@html clean}
+    {@html blog?.content}
     </div>
 
 		<p class="text-sm text-secondary">Tags: {blog?.tags}</p>

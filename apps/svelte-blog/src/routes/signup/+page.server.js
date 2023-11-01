@@ -14,7 +14,10 @@ export const actions = {
 			email,
 			emailVisibility: true,
 			password,
-			passwordConfirm: password
+			passwordConfirm: password,
+			role: [
+				'user'
+			]
 		};
 
 		try {
@@ -113,7 +116,7 @@ export const actions = {
 			type: 'success',
 			message: 'User Created successfully. please, proceed to the login page'
 		};
-		
+
 		throw redirect('/login', message, event);
 	}
 };
