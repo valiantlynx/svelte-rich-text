@@ -13,8 +13,9 @@
 	{#if $page.data.user?.role.includes('admin')}
 		<a href="/dashboard/admin"><SideBarIcon tooltip="Admin" icon="bx:bx-shield" /></a>
 	{/if}
-	<a href="/dashboard/manager"
-		><SideBarIcon tooltip="Upload" icon="material-symbols:bookmark-manager" /></a
-	>
+	{#if $page.data.user?.role.includes('editor')}
+		<a href="/dashboard/manager"><SideBarIcon tooltip="Manage" icon="material-symbols:bookmark-manager" /></a>
+	{/if}
+
 	<button on:click={logoutPocketbase}><SideBarIcon tooltip="Logout" icon="bx:bx-log-out" /></button>
 </div>

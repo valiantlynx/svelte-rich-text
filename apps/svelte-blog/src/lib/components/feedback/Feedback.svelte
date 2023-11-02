@@ -49,19 +49,17 @@
 </script>
 
 <!-- The button to open modal -->
-<label
-	for="feedback"
-	class=" btn fixed m-1 right-0 top-2/4 -translate-y-1/2 w-10 h-40 bg-primary hover:bg-secondary text-primary-content z-10"
->
-	<span class="mdi mdi-draw mdi-24px" />
-	<p class="-rotate-90 whitespace-nowrap mb-10 text-lg">Feedback</p>
+<label for="feedback" class="fixed right-1 top-1/2 -translate-y-1/2 w-10 h-44 bg-primary hover:bg-secondary text-primary-content z-10 flex flex-col items-center justify-center rounded-md cursor-pointe justify-centerr">
+	<i class="fa fa-comment-alt fa justify-end mb-10" />
+	<p class="-rotate-90 whitespace-nowrap mb-10 text-lg font-bold justify-start">Feedback</p>
+
 </label>
 
 <!-- Put this part before </body> tag -->
 <input type="checkbox" id="feedback" class="modal-toggle" />
 <div class="modal">
 	<div
-		class="modal-box max-w-md py-8 px-6 m-auto dropdown-content z-[1] p-2 shadow bg-base-100 rounded-box sm:h-1/4 sm:w-1/4"
+		class="modal-box max-w-md max-h-md py-8 px-6 m-auto dropdown-content z-[1] p-2 shadow bg-base-100 rounded-box sm:h-1/4 sm:w-1/4 h-2"
 	>
 		<h5 class="mb-6 text-center font-bold">Was this useful?</h5>
 		{#if resultMessage}
