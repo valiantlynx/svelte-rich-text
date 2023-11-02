@@ -20,7 +20,7 @@
 
     <p class="text-sm text-accent">Updated: {blog?.updated}</p>
 
-    <div class="mt-4 progress-primary html-content">
+    <div class="mt-4 progress-primary">
     {@html blog?.content}
     </div>
 
