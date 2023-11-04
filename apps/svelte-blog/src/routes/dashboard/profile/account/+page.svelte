@@ -106,7 +106,7 @@
 			<Input id="oldPassword" label="Old Password" type="password" required />
 			<Input id="password" label="New Password" type="password" required />
 			<Input id="passwordConfirm" label="Confirm New Password" type="password" required />
-			<a href="/reset-password" class="text-primary hover:cursor-point hover:underline">
+			<a href="/forgot-password" class="text-primary hover:cursor-point hover:underline">
 				I forgot my password</a
 			>
 			<div class="w-full max-w-lg pt-3">

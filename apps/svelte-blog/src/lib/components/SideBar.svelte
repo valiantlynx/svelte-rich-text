@@ -1,6 +1,5 @@
 <script>
 	import SideBarIcon from './SideBarIcon.svelte';
-	import { logoutPocketbase } from '$lib/utils/api';
 	import { page } from '$app/stores';
 </script>
 
@@ -12,10 +11,19 @@
 	<a href="/dashboard/settings"><SideBarIcon tooltip="Settings" icon="bx:bx-cog" /></a>
 	{#if $page.data.user?.role.includes('admin')}
 		<a href="/dashboard/admin"><SideBarIcon tooltip="Admin" icon="bx:bx-shield" /></a>
+		<a href="/dashboard/manager"
+			><SideBarIcon tooltip="Manage" icon="material-symbols:bookmark-manager" /></a
+		>
 	{/if}
 	{#if $page.data.user?.role.includes('editor')}
-		<a href="/dashboard/manager"><SideBarIcon tooltip="Manage" icon="material-symbols:bookmark-manager" /></a>
+		<a href="/dashboard/manager"
+			><SideBarIcon tooltip="Manage" icon="material-symbols:bookmark-manager" /></a
+		>
 	{/if}
 
-	<button on:click={logoutPocketbase}><SideBarIcon tooltip="Logout" icon="bx:bx-log-out" /></button>
+	<form action="/logout" method="POST">
+		<button type="submit">
+			<SideBarIcon tooltip="Logout" icon="bx:bx-log-out" />
+		</button>
+	</form>
 </div>

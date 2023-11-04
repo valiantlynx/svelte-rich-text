@@ -9,13 +9,13 @@
 <div>
 	<div class="navbar bg-base-300 max-w-full sm:hidden">
 		<div class="flex-1">
-			<a class="btn btn-ghost normal-case text-xl" href="/">AnimeVariant</a>
+			<a class="btn btn-ghost normal-case text-xl" href="/">Valiantlynx</a>
 			<ThemeChanger />
 		</div>
 		<ProfileModal />
 	</div>
 	<!-- Show search bar only on pages other than search -->
-	{#if $page.url.pathname !== '/manga/search'}
+	{#if $page.url.pathname !== '/search'}
 		<div class="navbar bg-base-300 flex flex-col sm:hidden">
 			<div class="flex-none sm:flex sm:gap-2">
 				<Search type="small" />
@@ -32,7 +32,7 @@
 	</div>
 	<div class="flex-none gap-2">
 		<!-- Show search bar only on pages other than search -->
-		{#if $page.url.pathname !== '/manga/search'}
+		{#if $page.url.pathname !== '/search'}
 			<Search type="small" />
 		{/if}
 		<ProfileModal />
