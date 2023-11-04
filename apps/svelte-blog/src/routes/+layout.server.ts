@@ -1,7 +1,5 @@
-import { loadFlash } from 'sveltekit-flash-message/server';
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-export const load = loadFlash(async (event) => {
+export const load = async (event) => {
 	if (event.locals.user) {
 		return {
 			user: event.locals.user
@@ -13,4 +11,4 @@ export const load = loadFlash(async (event) => {
 		user: undefined
 	 };
 	return data;
-});
+};

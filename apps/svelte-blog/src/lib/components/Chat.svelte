@@ -102,7 +102,7 @@
 	
 		<main class="overflow-y-auto" on:scroll={watchScroll}>
 			{#each messages as message (message.id)}
-				<ChatMessage {message} sender={$page.data.user.username} />
+				<ChatMessage {message} sender={$page.data.user?.username} />
 			{/each}
 			<div class="dummy" bind:this={scrollBottom} />
 		</main>

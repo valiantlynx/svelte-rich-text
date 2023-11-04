@@ -8,13 +8,7 @@ declare global {
 			user?: any;
 		}
 		// interface Platform {}
-		interface PageData {
-			flash?: {
-				type: 'success' | 'error';
-				message: string;
-				err?: any;
-			};
-		}
+		// interface PageData {}
 	}
 }
 
