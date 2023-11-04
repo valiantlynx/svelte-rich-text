@@ -3,7 +3,7 @@
 	import Feedback from '$lib/components/feedback/Feedback.svelte';
 	import Footer from '$lib/components/Footer.svelte';
 
-	import '../app.css';
+	import '../app.postcss';
 </script>
 
 <svelte:head />

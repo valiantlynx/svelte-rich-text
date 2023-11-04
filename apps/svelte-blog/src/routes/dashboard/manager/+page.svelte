@@ -1,10 +1,19 @@
 <script>
+	import MyProjectItem from '$lib/components/MyProjectItem.svelte';
+	export let data;
+	console.log(data);
 </script>
 
-<svelte:head>
-	<title>manager</title>
-</svelte:head>
-
-<div class="flex">
-	<h5>a manager page for the updator to mke sure pris garanti is correct, camera 😕 #114</h5>
+<h2 class="text-3xl font-bold">My Projects</h2>
+<div class="w-full mt-4 flex flex-col items-center">
+	{#if data.projects.length === 0}
+		<p class="text-center text-3xl">☹️</p>
+		<p class="text-center text-3xl">Looks like you don't have any projects.</p>
+		<a href="/projects/new" class="btn btn-primary max-w-md mt-4">Add One</a>
+	{:else}
+		{#each data.projects as project}
+			<MyProjectItem {project} />
+			<div class="divider mt-0 mb-2" />
+		{/each}
+	{/if}
 </div>
