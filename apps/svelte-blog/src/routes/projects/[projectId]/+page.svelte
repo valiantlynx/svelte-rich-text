@@ -1,5 +1,5 @@
 <script>
-	import { getImageURL } from '$lib/utils';
+	import { getImageURL } from '$lib/utils/api';
 	export let data;
 </script>
 

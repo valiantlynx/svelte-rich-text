@@ -1,7 +1,7 @@
 <script>
 	import { enhance } from '$app/forms';
-	import { Modal } from '$lib/components';
-	import { getImageURL } from '$lib/utils';
+	import Modal from '$lib/components/Modal.svelte';
+	import { getImageURL } from '$lib/utils/api';
 	export let project;
 
 	let modalOpen;

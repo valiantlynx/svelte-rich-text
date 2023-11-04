@@ -1,8 +1,7 @@
 <script>
 	import { enhance } from '$app/forms';
-	import { Icon, Trash } from 'svelte-hero-icons';
-	import { Input } from '$lib/components';
-	import { getImageURL } from '$lib/utils';
+	import Input from '$lib/components/Input.svelte';
+	import { getImageURL } from '$lib/utils/api';
 	export let data;
 </script>
 
@@ -37,7 +36,7 @@
 					<label for="thumbnail" class="avatar w-20 hover:cursor-pointer">
 						<label for="thumbnail" class="absolute -top-1.5 -right-1.5 hover:cursor-pointer">
 							<button formaction="?/deleteThumbnail" class="btn btn-error btn-sm btn-circle">
-								<Icon src={Trash} class="w-5 h-5 text-white" />
+								<i class="fas fa-trash"></i>
 							</button>
 						</label>
 						<div class="w-20 rounded">

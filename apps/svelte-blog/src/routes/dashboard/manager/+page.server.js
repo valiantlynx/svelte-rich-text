@@ -1,13 +1,13 @@
 /* eslint-disable no-console */
 import { error, redirect } from '@sveltejs/kit';
-import { serializeNonPOJOs } from '$lib/utils';
+import { serializeNonPOJOs } from '$lib/utils/api';
 
 export const load = ({ locals }) => {
 	if (!locals.pb.authStore.isValid) {
 		throw redirect(303, '/login');
 	}
 
-	if (!locals.user.role.includes('admin' || 'business')) {
+	if (!locals.user.role.includes('admin' && 'user')) {
 		throw redirect(303, '/pricing');
 	}
 

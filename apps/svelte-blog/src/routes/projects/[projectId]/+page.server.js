@@ -1,4 +1,4 @@
-import { serializeNonPOJOs } from '$lib/utils';
+import { serializeNonPOJOs } from '$lib/utils/api';
 import { error } from '@sveltejs/kit';
 
 export const load = ({ locals, params }) => {
