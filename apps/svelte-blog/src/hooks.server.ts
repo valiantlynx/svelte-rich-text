@@ -8,10 +8,15 @@ export const handle = async ({ event, resolve }) => {
 	event.locals.pb = new PocketBase(site.pocketbase);
 	event.locals.pb.authStore.loadFromCookie(event.request.headers.get('cookie') || '');
 
-	if (event.locals.pb.authStore.isValid) {
-		event.locals.user = serializeNonPOJOs(event.locals.pb.authStore.model);
-	} else {
+	try {
+		if (event.locals.pb.authStore.isValid) {
+			await event.locals.pb.collection('users_valiantlynx').authRefresh();
+			event.locals.user = serializeNonPOJOs(event.locals.pb.authStore.model);
+		}
+	} catch (_) {
+		await event.locals.pb.authStore.clear();
 		event.locals.user = undefined;
+
 	}
 
 	const response = await resolve(event);

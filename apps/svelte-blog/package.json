@@ -32,8 +32,8 @@
 		"tsconfig": "*",
 		"tslib": "^2.4.1",
 		"typescript": "^5.2.2",
-		"vite": "^4.4.2"
+		"vite": "^4.4.2",
+		"svelte-french-toast": "^1.2.0"
 	},
-	"type": "module",
-	"dependencies": {}
+	"type": "module"
 }
