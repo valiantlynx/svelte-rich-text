@@ -7,8 +7,8 @@
 	<div class="bg-primary border rounded-lg p-4 shadow-md hover:shadow-lg text-primary-content">
 		<img
 			src={project.thumbnail
-				? getImageURL(project.collectionId, project.id, project.thumbnail, '80x80')
-				: `https://via.placeholder.com/80/4506CB/FFFFFF/?text=${project.name}`}
+				? getImageURL(project.collectionId, project.id, project.thumbnail)
+				: `https://via.placeholder.com/500/4506CB/FFFFFF/?text=${project.name}`}
 			alt="project thumbnail"
 			class="w-full h-48 object-cover rounded-lg"
 		/>

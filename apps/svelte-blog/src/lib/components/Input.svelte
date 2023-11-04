@@ -17,8 +17,8 @@
 	</label>
 	<input
 		class={type === 'file'
-			? 'file-input file-input-bordered w-full max-w-lg'
-			: 'input input-bordered w-full max-w-lg'}
+			? 'file-input file-input-bordered file-input-primary w-full max-w-lg'
+			: 'input input-bordered input-primary w-full max-w-lg'}
 		{type}
 		{placeholder}
 		{required}

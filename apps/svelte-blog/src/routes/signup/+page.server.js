@@ -1,4 +1,4 @@
-import { redirect, setFlash } from 'sveltekit-flash-message/server';
+import { error, invalid, redirect } from "@sveltejs/kit";
 
 /** @type {import('./$types').Actions} */
 export const actions = {
@@ -7,14 +7,14 @@ export const actions = {
 		const username = data.get('username');
 		const password = data.get('password');
 		const email = data.get('email');
-		
+		const passwordConfirm = data.get('passwordConfirm');
 
 		const pbData = {
 			username,
 			email,
 			emailVisibility: true,
 			password,
-			passwordConfirm: password,
+			passwordConfirm: passwordConfirm,
 			role: [
 				'user'
 			]
@@ -26,97 +26,30 @@ export const actions = {
 		} catch (err) {
 			if (err.data?.data?.username?.code) {
 				if (!pbData.username) {
-					const message = {
-						type: 'error',
-						message: 'Your username cannot be blank'
-					};
-
-					setFlash(message, event);
-					return;
+					throw error(err.status, `Your username ${err.data?.data?.username?.message}`);
 				}
-
-				const message = {
-					type: 'error',
-					message: 'Username already exist'
-				};
-
-				setFlash(message, event);
-				return;
+				throw error(err.status, `Username already exist: ${err.data?.data?.username?.message}`);
 			} else if (err.data?.data?.password?.code) {
 				if (!pbData.password) {
-					const message = {
-						type: 'error',
-						message: 'Your password cannot be blank'
-					};
-
-					setFlash(message, event);
-					return;
+					throw error(err.status, `Your password cannot be blank ${err.data?.data?.password?.message}`);
 				}
-				const message = {
-					type: 'error',
-					message: 'Your password must be at least 8 characters'
-				};
-				setFlash(message, event);
-				return;
+				throw error(err.status, `Your password must be at least 8 characters: ${err.data?.data?.password?.message}`);
 			} else if (err.data?.data?.passwordConfirm?.code) {
 				if (!pbData.passwordConfirm) {
-					const message = {
-						type: 'error',
-						err: err.response?.data?.passwordConfirm?.message,
-						message: 'Your passwordConfirm cannot be blank'
-					};
-
-					setFlash(message, event);
-					return;
+					throw error(err.status, `Your passwordConfirm ${err.data?.data?.passwordConfirm?.message}`);
 				}
-				const message = {
-					type: 'error',
-					message: 'Your passwordConfirm must be at least 8 characters'
-				};
-
-				setFlash(message, event);
-				return;
+				throw error(err.status, `Your passwordConfirm and password ${err.data?.data?.passwordConfirm?.message}`);
 			} else if (pbData.passwordConfirm !== pbData.password) {
-				const message = {
-					type: 'error',
-					message: 'Your passwordConfirm does not match your password'
-				};
-				setFlash(message, event);
-				return;
+				throw error(err.status, `Your passwordConfirm ${err.data?.data?.passwordConfirm?.message}`);
 			} else if (err.data?.data?.email?.code) {
 				if (!pbData.email) {
-					const message = {
-						type: 'error',
-						message: 'Your email cannot be blank'
-					};
-					setFlash(message, event);
-					return;
+					throw error(err.status, `Your email ${err.data?.data?.email?.message}`);
 				}
-
-				const message = {
-					type: 'error',
-					message: err.data?.data?.email?.message
-				};
-
-				setFlash(message, event);
-				return;
+				throw error(err.status, `Your email ${err.data?.data?.email?.message}`);
 			} else {
-				const message = {
-					type: 'error',
-					err: err.response?.message,
-					message:
-						'something went wrong with your signup. please try again or contact support through the feedback button'
-				};
-				setFlash(message, event);
-				return;
+				throw error(err.status, `something went wrong with your signup. please try again or contact support through the feedback button ${err.response?.message}`);
 			}
 		}
-
-		const message = {
-			type: 'success',
-			message: 'User Created successfully. please, proceed to the login page'
-		};
-
-		throw redirect('/login', message, event);
+		throw redirect(303, '/login',);
 	}
 };

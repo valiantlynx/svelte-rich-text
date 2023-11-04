@@ -1,9 +1,9 @@
 <script>
 	import { enhance } from '$app/forms';
 	import Input from '$lib/components/Input.svelte';
-	import toast from 'svelte-french-toast';
 	import Oauth2 from '$lib/components/oauth/Oauth2.svelte';
 	import { page } from '$app/stores';
+	import toast from 'svelte-french-toast';
 	let loading = false;
 
 	
@@ -24,7 +24,6 @@
 				default:
 					await update();
 			}
-			console.log("page", $page);
 			loading = false;
 		};
 	};
