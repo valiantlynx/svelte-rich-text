@@ -8,12 +8,12 @@ export const pb = new PocketBase(site.pocketbase);
 
 export const currentUser = writable(pb.authStore.model);
 
-export const getImageURL = (collectionId: string, recordId: string, fileName: string) => {
-	return `${site.pocketbase}/api/files/${collectionId}/${recordId}/${fileName}`;
+export const getImageURL = (collectionId: string, recordId: string, fileName: string, thumb: string) => {
+	return `${site.pocketbase}/api/files/${collectionId}/${recordId}/${fileName}?${thumb}`;
 };
 
 export const authPocketbase = async (user: string, password: string) => {
-	const res = await pb.collection('users').authWithPassword(user, password);
+	const res = await pb.collection('users_valiantlynx').authWithPassword(user, password);
 	authData.set(pb.authStore.model);
 	if (!pb.authStore.isValid) {
 		throw { status: pb.authStore.isValid, message: pb.authStore.token };
@@ -35,11 +35,11 @@ export const logoutPocketbase = async () => {
 };
 
 export const createPocketbaseUser = async (data: any) => {
-	const res = await pb.collection('users').create(data);
+	const res = await pb.collection('users_valiantlynx').create(data);
 	authData.set(res);
 
 	// (optional) send an email verification request
-	await pb.collection('users').requestVerification(data.email);
+	await pb.collection('users_valiantlynx').requestVerification(data.email);
 
 	// login the user
 	await authPocketbase(data.username, data.password);
@@ -65,7 +65,7 @@ export const authPocketbaseAdmin = async (user: string, password: string) => {
 // refresh the login data
 export const refreshAuthPocketbase = async () => {
 	// Update authData store
-	const user = await pb.collection('users').authRefresh({
+	const user = await pb.collection('users_valiantlynx').authRefresh({
 		refreshToken: pb.authStore.token
 	});
 	authData.set(user);
@@ -98,91 +98,14 @@ export const patchPocketbase1only = async (collection: string, id: string, data:
 	return response;
 };
 
-export const getImage = async (url: string, width: number, height: number) => {
-	const response = await fetch(url, {
-		method: 'GET',
-		headers: {
-			'Content-Type': 'image/jpeg',
-			'Access-Control-Allow-Origin': 'https://ww6.manganelo.tv'
-		}
-	});
+export const serializeNonPOJOs = (obj: any) => {
 
-	if (response.ok) {
-		const originalImageBlob = await response.blob();
+	// // if the object is not a POJO, then serialize it
+	// if (obj && typeof obj === 'object' && obj.constructor !== Object) {
+	// 	return JSON.stringify(obj);
+	// }
 
-		const compressedImageBlob = await compressFileImage(originalImageBlob, width, height, 1); // 1 = 100% quality (no compression) - change as needed, e.g 0 = 0% quality (full compression)
+	// return obj;
 
-		return URL.createObjectURL(compressedImageBlob);
-	}
-
-	throw new Error('Failed to fetch image');
-};
-
-export const compressFileImage = async (
-	file: any,
-	width: number,
-	height: number,
-	quality: number
-): Promise<File> => {
-	return new Promise<File>((resolve) => {
-		const reader = new FileReader();
-
-		reader.onload = async (event: any) => {
-			const image = new Image();
-			image.src = event.target.result as string;
-
-			image.onload = () => {
-				const canvas = document.createElement('canvas');
-				canvas.width = width;
-				canvas.height = height;
-
-				const ctx: any = canvas.getContext('2d');
-				ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
-
-				// Convert canvas to Blob and create a new File object
-				canvas.toBlob(
-					(blob: any) => {
-						const compressedFile = new File([blob], file.name, {
-							type: file.type,
-							lastModified: Date.now()
-						});
-						resolve(compressedFile);
-					},
-					file.type,
-					quality
-				); // Use the provided quality parameter
-			};
-		};
-
-		reader.readAsDataURL(file);
-	});
-};
-export const compressBlobImage = async (
-	file: Blob,
-	width: number,
-	height: number,
-	quality: number
-): Promise<Blob> => {
-	return new Promise<Blob>((resolve) => {
-		const image = new Image();
-
-		image.onload = () => {
-			const canvas = document.createElement('canvas');
-			canvas.width = width;
-			canvas.height = height;
-
-			const ctx: any = canvas.getContext('2d');
-			ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
-
-			canvas.toBlob(
-				(blob: any) => {
-					resolve(blob);
-				},
-				'image/jpeg',
-				quality
-			);
-		};
-
-		image.src = URL.createObjectURL(file);
-	});
-};
+	return structuredClone(obj);
+}

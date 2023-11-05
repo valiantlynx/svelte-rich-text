@@ -11,7 +11,7 @@
 
 	function send() {
 		// Send the data to the server
-		postPocketbase('contact', contactData);
+		postPocketbase('contact_valiantlynx', contactData);
 
 		// Clear the form fields
 		contactData.name = '';
@@ -107,7 +107,7 @@
 						<div class="relative h-[700px] rounded-lg shadow-lg">
 							<iframe
 								title="map"
-								src="https://maps.google.com/maps?q=horten&t=&z=13&ie=UTF8&iwloc=&output=embed"
+								src="https://maps.google.com/maps?q=oslo&t=&z=13&ie=UTF8&iwloc=&output=embed"
 								class="absolute left-0 top-0 h-full w-full rounded-lg"
 								frameborder="0"
 								allowfullscreen

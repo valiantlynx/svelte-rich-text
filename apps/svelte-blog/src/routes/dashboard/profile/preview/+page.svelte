@@ -1,17 +1,16 @@
 <script>
 	import Chat from '$lib/components/Chat.svelte';
-	import { authData } from '$lib/utils/stores';
-	import { pb } from '$lib/utils/api';
+	import { page } from '$app/stores';
 	import { site } from '$lib/config/site';
 
-	const avatar = pb.authStore.model?.avatar
-		? `${site.pocketbase}/api/files/_pb_users_auth_/${pb.authStore.model?.id}/${pb.authStore.model?.avatar}`
-		: `https://avatars.dicebear.com/api/adventurer-neutral/${pb.authStore.model?.username}.svg`;
+	const avatar = $page.data.user?.avatar
+		? `${site.pocketbase}/api/files/${$page.data.user?.collectionId}/${$page.data.user?.id}/${$page.data.user?.avatar}`
+		: `https://api.dicebear.com/7.x/adventurer-neutral/svg?seed=${$page.data.user?.username}`;
 </script>
 
 <div class=" w-full">
 	<main
-		class="profile-page"
+		class="profile-page mb-10"
 		style="background-image: url(https://images.unsplash.com/photo-1499336315816-097655dcfbda?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2710&q=80);"
 	>
 		<section class="relative block h-400-px">
@@ -38,28 +37,20 @@
 					<div class="px-6 py-4">
 						<div class="flex items-center justify-between">
 							<img alt="Profile Avatar" src={avatar} class="rounded-full h-20 w-20 object-cover" />
-							<button class="btn btn-outline btn-accent">Like</button>
+							<a class="btn btn-outline btn-accent font-bold" href="/dashboard/profile/edit">Edit</a>
 						</div>
 						<div class="text-center mt-6">
 							<h3 class="text-2xl font-semibold text-blueGray-700">
-								{$authData.username}
+								{$page.data.user.username}
 							</h3>
 							<div class="text-sm text-blueGray-400 mt-2">
 								<i class="fas fa-map-marker-alt mr-2 text-lg text-blueGray-400" />
-								{$authData.address}
+								{$page.data.user.address}
 							</div>
 							<div class="text-sm text-blueGray-600 mt-1">
 								<i class="fas fa-briefcase mr-2 text-lg text-blueGray-400" />
-								{$authData.title}
+								{$page.data.user.title}
 							</div>
-						</div>
-						<div class="mt-6 text-center">
-							<p class="text-lg leading-relaxed text-blueGray-700">
-								{$authData.about}
-							</p>
-							<a href="#pablo" on:click={(e) => e.preventDefault()} class="text-red-500 font-bold"
-								>Show more</a
-							>
 						</div>
 					</div>
 				</div>

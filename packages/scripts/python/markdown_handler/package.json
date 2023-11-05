@@ -1,0 +1,9 @@
+{
+  "name": "markdown_handler",
+  "version": "1.0.0",
+  "license": "MIT",
+  "scripts": {
+    "python": "venv\\Scripts\\python -u test.py",
+    "python:pip": "python -m venv venv && venv\\Scripts\\pip install -r requirements.txt"
+  }
+}

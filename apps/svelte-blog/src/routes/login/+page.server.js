@@ -1,58 +1,34 @@
-/* eslint-disable no-console */
-import { redirect, setFlash } from 'sveltekit-flash-message/server';
-import { authPocketbase } from '$lib/utils/api';
+import { error, redirect } from "@sveltejs/kit";
+
+export const load = ({ locals }) => {
+	if (locals.pb.authStore.isValid) {
+		throw redirect(303, '/dashboard/profile/preview');
+	}
+};
 
 /** @type {import('./$types').Actions} */
 export const actions = {
 	login: async (event) => {
 		const data = await event.request.formData();
-
-		const username = data.get('username');
+		const email = data.get('email');
 		const password = data.get('password');
-
 		try {
 			// Authenticate the user and get the token from the server
-			const res = await authPocketbase(username, password);
-
+			await event.locals.pb
+				.collection("users_valiantlynx")
+				.authWithPassword(email, password);
 			// get their IP address
 			// console.log('event', event.getClientAddress());
 
-			const pocketbase_auth = {
-				model: res.record,
-				token: res.token
-			};
-
-			const message = { type: 'success', message: 'Login successful', pocketbase_auth };
-			setFlash(message, event);
-
-			return {
-				success: true,
-				status: 200,
-				pocketbase_auth: JSON.stringify(pocketbase_auth)
-			};
 		} catch (err) {
-			if (err.response?.data.identity?.message) {
-				const message = {
-					type: 'error',
-					err: err.response?.data.identity?.message,
-					message: 'Your username cannot be blank'
-				};
-				throw redirect(message, event);
-			} else if (err.response?.data.password?.message) {
-				const message = {
-					type: 'error',
-					err: err.response?.data.password?.message,
-					message: 'Your password cannot be blank'
-				};
-				throw redirect(message, event);
+			if (err.data?.data?.identity?.message) {
+				throw error(err.status, `Your email ${err.data?.data?.identity?.message}`);
+			} else if (err.data?.data?.password?.message) {
+				throw error(err.status, `Your password ${err.data?.data?.password?.message}`);
 			} else {
-				const message = {
-					type: 'error',
-					err: err.response?.message,
-					message: 'wrong username or password'
-				};
-				throw redirect(message, event);
+				throw error(err.status, err.message);
 			}
 		}
+		throw redirect(303, '/dashboard',);
 	}
 };

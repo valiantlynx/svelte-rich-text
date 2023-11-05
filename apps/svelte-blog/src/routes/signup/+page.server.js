@@ -1,5 +1,5 @@
-import { pb } from '$lib/utils/api';
-import { setFlash } from 'sveltekit-flash-message/server';
+/* eslint-disable no-console */
+import { error, redirect } from '@sveltejs/kit';
 
 /** @type {import('./$types').Actions} */
 export const actions = {
@@ -8,112 +8,91 @@ export const actions = {
 		const username = data.get('username');
 		const password = data.get('password');
 		const email = data.get('email');
+		const passwordConfirm = data.get('passwordConfirm');
 
 		const pbData = {
 			username,
 			email,
 			emailVisibility: true,
 			password,
-			passwordConfirm: password
+			passwordConfirm: passwordConfirm,
+			role: ['user']
 		};
 
 		try {
-			await pb.collection('users').create(pbData);
-			const message = {
-				type: 'success',
-				message: 'User Created successfully. please, proceed to the login page'
-			};
-			setFlash(message, event);
-			return { success: true, message: message };
+			await event.locals.pb.collection('users_valiantlynx').create(pbData);
+			await event.locals.pb.collection('users_valiantlynx').requestVerification(pbData.email);
 		} catch (err) {
-			console.error(err);
-			console.error(err.data);
-			if (err.data.data.username?.code) {
+			if (err.data?.data?.username?.code) {
 				if (!pbData.username) {
-					const message = {
-						type: 'error',
-						message: 'Your username cannot be blank'
-					};
-
-					setFlash(message, event);
-					return { success: false, message: message };
+					throw error(err.status, `Your username ${err.data?.data?.username?.message}`);
 				}
-
-				const message = {
-					type: 'error',
-					message: 'Username already exist'
-				};
-
-				setFlash(message, event);
-				return { success: false, message: message };
-			} else if (err.data.data.password?.code) {
+				throw error(err.status, `Username already exist: ${err.data?.data?.username?.message}`);
+			} else if (err.data?.data?.password?.code) {
 				if (!pbData.password) {
-					const message = {
-						type: 'error',
-						message: 'Your password cannot be blank'
-					};
-
-					setFlash(message, event);
-					return { success: false, message: message };
+					throw error(
+						err.status,
+						`Your password cannot be blank ${err.data?.data?.password?.message}`
+					);
 				}
-				const message = {
-					type: 'error',
-					message: 'Your password must be at least 8 characters'
-				};
-				setFlash(message, event);
-				return { success: false, message: message };
-			} else if (err.data.data.passwordConfirm?.code) {
+				throw error(
+					err.status,
+					`Your password must be at least 8 characters: ${err.data?.data?.password?.message}`
+				);
+			} else if (err.data?.data?.passwordConfirm?.code) {
 				if (!pbData.passwordConfirm) {
-					const message = {
-						type: 'error',
-						err: err.response?.data.passwordConfirm?.message,
-						message: 'Your passwordConfirm cannot be blank'
-					};
-
-					setFlash(message, event);
-					return { success: false, message: message };
+					throw error(
+						err.status,
+						`Your passwordConfirm ${err.data?.data?.passwordConfirm?.message}`
+					);
 				}
-				const message = {
-					type: 'error',
-					message: 'Your passwordConfirm must be at least 8 characters'
-				};
-
-				setFlash(message, event);
-				return { success: false, message: message };
+				throw error(
+					err.status,
+					`Your passwordConfirm and password ${err.data?.data?.passwordConfirm?.message}`
+				);
 			} else if (pbData.passwordConfirm !== pbData.password) {
-				const message = {
-					type: 'error',
-					message: 'Your passwordConfirm does not match your password'
-				};
-				setFlash(message, event);
-				return { success: false, message: message };
-			} else if (err.data.data.email?.code) {
+				throw error(err.status, `Your passwordConfirm ${err.data?.data?.passwordConfirm?.message}`);
+			} else if (err.data?.data?.email?.code) {
 				if (!pbData.email) {
-					const message = {
-						type: 'error',
-						message: 'Your email cannot be blank'
-					};
-					setFlash(message, event);
-					return { success: false, message: message };
+					throw error(err.status, `Your email ${err.data?.data?.email?.message}`);
 				}
-
-				const message = {
-					type: 'error',
-					message: err.data.data.email?.message
-				};
-
-				setFlash(message, event);
-				return { success: false, message: message };
+				throw error(err.status, `Your email ${err.data?.data?.email?.message}`);
 			} else {
-				const message = {
-					type: 'error',
-					err: err.response?.message,
-					message:
-						'something went wrong with your signup. please try again or contact support through the feedback button'
-				};
-				setFlash(message, event);
-				return { success: false, message: message };
+				throw error(
+					err.status,
+					`something went wrong with your signup. please try again or contact support through the feedback button ${err.response?.message}`
+				);
 			}
 		}
+		throw redirect(303, '/login');
+	},
+	OAuth2: async (event) => {
+		const authMethods = await event.locals.pb?.collection('users_valiantlynx').listAuthMethods();
+		console.log('authMethods-------', authMethods);
+		if (!authMethods) {
+			return {
+				authProviderRedirect: '',
+				authProviderState: ''
+			};
+		}
+		const redirectURL = `${event.url.origin}/oauth`;
+		const googleAuthProvider = authMethods.authProviders[0];
+		const authProviderRedirect = `${googleAuthProvider.authUrl}${redirectURL}`;
+		const state = googleAuthProvider.state;
+		const verifier = googleAuthProvider.codeVerifier;
+
+		console.log('before cookies.set in +page.server.js --------', event.cookies.getAll());
+		// Set secure cookies
+		event.cookies.set('state', state, {
+			secure: true, // Set the "secure" attribute to true
+			sameSite: 'Strict' // Set the "SameSite" attribute for cross-site request protection
+		});
+		event.cookies.set('verifier', verifier, {
+			secure: true, // Set the "secure" attribute to true
+			sameSite: 'Strict' // Set the "SameSite" attribute for cross-site request protection
+		});
+
+		console.log('after cookies.set in +page.server.js--------', event.cookies.getAll());
+		throw redirect(302, authProviderRedirect);
 	}
 };

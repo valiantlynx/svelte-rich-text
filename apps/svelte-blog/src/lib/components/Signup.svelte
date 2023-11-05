@@ -1,117 +1,64 @@
 <script>
+import { enhance } from '$app/forms';
+	import Input from '$lib/components/Input.svelte';
+	import Oauth2 from '$lib/components/oauth/Oauth2.svelte';
 	import { page } from '$app/stores';
-	import { onMount } from 'svelte';
-	import Toast from './Toast.svelte';
-	import Oauth2 from './oauth/Oauth2.svelte';
+	import toast from 'svelte-french-toast';
+	let loading = false;
 
-	/**
-	 * @type {boolean}
-	 */
-	let Error;
-	/**
-	 * @type {any}
-	 */
-	let errorMessage = $page.form == null ? '' : $page.form.message;
-
-	onMount(async () => {
-		if ($page.form.success) {
-			window.location.href = '/login';
-		}
-	});
+	
+	const submitSignup = () => {
+		loading = true;
+		return async ({ result, update }) => {
+			switch (result.type) {
+				case 'success':
+					toast.success('Successfully registered');
+					await update();
+					break;
+				case 'invalid':
+					toast.error('Invalid credentials');
+					await update();
+					break;
+				case 'error':
+					toast.error(result.error.message);
+					break;
+				default:
+					await update();
+			}
+			loading = false;
+		};
+	};
 </script>
-
-<Toast />
 
 <div class="relative flex flex-col items-center justify-center h-full overflow-hidden m-4">
 	<div
 		class="w-full p-6 bg-base-200 border-t-4 border-primary rounded-md shadow-md border-top lg:max-w-lg"
 	>
-		<h1 class="text-3xl font-semibold text-center">AnimeVariant</h1>
-		<form class="space-y-4" method="POST" action="/signup?/signup">
-			<div>
-				<label class="label" for="username">
-					<span class="text-base label-text"
-						>Username <span class="text-accent"> (3-16 characters)</span></span
-					>
-				</label>
-				<input
-					type="text"
-					name="username"
-					placeholder="Username (3-16 characters)"
-					on:input={() => (Error = false)}
-					minlength="3"
-					maxlength="16"
-					class="input input-bordered input-primary w-full{Error ? 'input-error' : ''}"
-				/>
-				<label class="label" for="password">
-					<span class="label-text-alt {Error ? 'text-error' : 'hidden'}"
-						>We might already have a user registered with this username</span
-					>
-				</label>
-			</div>
-			<div>
-				<label class="label" for="password">
-					<span class="text-base label-text"
-						>Password <span class="text-accent"> (8-16 characters)</span></span
-					>
-				</label>
-
-				<input
-					type="password"
-					name="password"
-					placeholder="Enter Password (8-16 characters)"
-					on:input={() => (Error = false)}
-					minlength="8"
-					class="input input-bordered w-full input-primary"
-				/>
-			</div>
-			<div>
-				<label class="label" for="password">
-					<span class="text-base label-text"
-						>Confirm Password <span class="text-accent"> (identical to password)</span></span
-					>
-				</label>
-
-				<input
-					type="password"
-					name="passwordConfirm"
-					placeholder="Enter Password Again  (identical to password)"
-					on:input={() => (Error = false)}
-					minlength="8"
-					class="input input-bordered w-full input-primary {Error ? 'input-error' : ''}"
-				/>
-				<label class="label" for="password">
-					<span class="label-text-alt {Error ? 'text-error' : 'hidden'}"
-						>Is this your confirm password identical to your password?
-					</span>
-				</label>
-			</div>
-			<div>
-				<label class="label" for="email">
-					<span class="text-base label-text">Email</span>
-				</label>
-				<input
-					on:input={() => (Error = false)}
-					type="email"
-					name="email"
-					placeholder="info@site.com (valid email)"
-					class="input input-bordered w-full input-primary {Error ? 'input-error' : ''}"
-				/>
-				<label class="label" for="password">
-					<span class="label-text-alt {Error ? 'text-error' : 'hidden'}"
-						>We might already have a user registered with this email</span
-					>
-				</label>
-			</div>
-
-			<h2 class=" {Error ? 'text-error' : 'hidden'}">{errorMessage} Please try again</h2>
+		<h1 class="text-3xl font-semibold text-center">Valiantlynx | Signup</h1>
+		<form action="?/signup" method="POST" class="flex flex-col items-center space-y-2 w-full pt-4" use:enhance={submitSignup}>
+			<Input id="name" label="Name" value={$page.form?.data?.name} errors={$page.form?.errors?.name} disabled={loading} />
+			<Input
+				type="email"
+				id="email"
+				label="Email"
+				value={$page.form?.data?.email}
+				errors={$page.form?.errors?.email}
+				disabled={loading}
+			/>
+			<Input type="password" id="password" label="Password" errors={$page.form?.errors?.password} disabled={loading} />
+			<Input
+				type="password"
+				id="passwordConfirm"
+				label="Confirm Password"
+				errors={$page.form?.errors?.passwordConfirm}
+				disabled={loading}
+			/>
 			<br />
 			<a href="/login" class=" link link-hover font-bold text-1xl underline"
 				>Already registered? Login (click here)</a
 			>
-
-			<div>
-				<button class="btn btn-block btn-primary" disabled={Error}>Sign up</button>
+			<div class="w-full max-w-lg pt-2">
+				<button type="submit" class="btn btn-primary w-full" disabled={loading}>Register</button>
 			</div>
 		</form>
 		<center class="text-center my-4"> or </center>

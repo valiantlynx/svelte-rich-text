@@ -1,5 +1,4 @@
-import { redirect, setFlash } from 'sveltekit-flash-message/server';
-import { pb } from '$lib/utils/api';
+import { error } from '@sveltejs/kit';
 
 /** @type {import('./$types').Actions} */
 export const actions = {
@@ -9,29 +8,12 @@ export const actions = {
 
 		try {
 			// Authenticate the user and get the token from the server
-			await pb.collection('users').requestPasswordReset(email);
-
-			const message = {
-				type: 'success',
-				message: 'Reset link sent'
-			};
-
-			setFlash(message, event);
+			await event.locals.pb.collection('users_valiantlynx').requestPasswordReset(email);
 		} catch (err) {
-			if (err.response?.data.identity?.message) {
-				const message = {
-					type: 'error',
-					err: err.response?.data.identity?.message,
-					message: 'Your email cannot be blank'
-				};
-				throw redirect(message, event);
+			if (err.response?.data.email?.message) {
+				throw error(err.status, `Your email ${err.response?.data.email?.message}`);
 			} else {
-				const message = {
-					type: 'error',
-					err: err.response?.message,
-					message: 'something went wrong'
-				};
-				throw redirect(message, event);
+				throw error(err.status, err.response?.message,);
 			}
 		}
 	}
