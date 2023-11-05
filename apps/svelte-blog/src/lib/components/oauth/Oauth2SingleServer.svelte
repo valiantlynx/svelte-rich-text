@@ -31,7 +31,7 @@
 	};
 </script>
 
-<form method="POST" action="?/OAuth2" use:enhance={submitOauth}>
+<form method="POST" action="?/oauth2{provider}" use:enhance={submitOauth}>
 	<div>
 		<button class="btn btn-block btn-primary" type="submit" disabled={!active}>
 			<img src={logo} alt={`${provider} sign in`} class="w-10 h-10"/>
