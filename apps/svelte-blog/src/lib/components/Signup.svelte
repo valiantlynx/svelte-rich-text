@@ -12,6 +12,7 @@ import { enhance } from '$app/forms';
 		return async ({ result, update }) => {
 			switch (result.type) {
 				case 'success':
+					toast.success('Successfully registered');
 					await update();
 					break;
 				case 'invalid':

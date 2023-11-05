@@ -1,4 +1,5 @@
-import { error, invalid, redirect } from "@sveltejs/kit";
+/* eslint-disable no-console */
+import { error, redirect } from '@sveltejs/kit';
 
 /** @type {import('./$types').Actions} */
 export const actions = {
@@ -15,9 +16,7 @@ export const actions = {
 			emailVisibility: true,
 			password,
 			passwordConfirm: passwordConfirm,
-			role: [
-				'user'
-			]
+			role: ['user']
 		};
 
 		try {
@@ -31,14 +30,26 @@ export const actions = {
 				throw error(err.status, `Username already exist: ${err.data?.data?.username?.message}`);
 			} else if (err.data?.data?.password?.code) {
 				if (!pbData.password) {
-					throw error(err.status, `Your password cannot be blank ${err.data?.data?.password?.message}`);
+					throw error(
+						err.status,
+						`Your password cannot be blank ${err.data?.data?.password?.message}`
+					);
 				}
-				throw error(err.status, `Your password must be at least 8 characters: ${err.data?.data?.password?.message}`);
+				throw error(
+					err.status,
+					`Your password must be at least 8 characters: ${err.data?.data?.password?.message}`
+				);
 			} else if (err.data?.data?.passwordConfirm?.code) {
 				if (!pbData.passwordConfirm) {
-					throw error(err.status, `Your passwordConfirm ${err.data?.data?.passwordConfirm?.message}`);
+					throw error(
+						err.status,
+						`Your passwordConfirm ${err.data?.data?.passwordConfirm?.message}`
+					);
 				}
-				throw error(err.status, `Your passwordConfirm and password ${err.data?.data?.passwordConfirm?.message}`);
+				throw error(
+					err.status,
+					`Your passwordConfirm and password ${err.data?.data?.passwordConfirm?.message}`
+				);
 			} else if (pbData.passwordConfirm !== pbData.password) {
 				throw error(err.status, `Your passwordConfirm ${err.data?.data?.passwordConfirm?.message}`);
 			} else if (err.data?.data?.email?.code) {
@@ -47,9 +58,41 @@ export const actions = {
 				}
 				throw error(err.status, `Your email ${err.data?.data?.email?.message}`);
 			} else {
-				throw error(err.status, `something went wrong with your signup. please try again or contact support through the feedback button ${err.response?.message}`);
+				throw error(
+					err.status,
+					`something went wrong with your signup. please try again or contact support through the feedback button ${err.response?.message}`
+				);
 			}
 		}
-		throw redirect(303, '/login',);
+		throw redirect(303, '/login');
+	},
+	OAuth2: async (event) => {
+		const authMethods = await event.locals.pb?.collection('users_valiantlynx').listAuthMethods();
+		console.log('authMethods-------', authMethods);
+		if (!authMethods) {
+			return {
+				authProviderRedirect: '',
+				authProviderState: ''
+			};
+		}
+		const redirectURL = `${event.url.origin}/oauth`;
+		const googleAuthProvider = authMethods.authProviders[0];
+		const authProviderRedirect = `${googleAuthProvider.authUrl}${redirectURL}`;
+		const state = googleAuthProvider.state;
+		const verifier = googleAuthProvider.codeVerifier;
+
+		console.log('before cookies.set in +page.server.js --------', event.cookies.getAll());
+		// Set secure cookies
+		event.cookies.set('state', state, {
+			secure: true, // Set the "secure" attribute to true
+			sameSite: 'Strict' // Set the "SameSite" attribute for cross-site request protection
+		});
+		event.cookies.set('verifier', verifier, {
+			secure: true, // Set the "secure" attribute to true
+			sameSite: 'Strict' // Set the "SameSite" attribute for cross-site request protection
+		});
+
+		console.log('after cookies.set in +page.server.js--------', event.cookies.getAll());
+		throw redirect(302, authProviderRedirect);
 	}
 };
