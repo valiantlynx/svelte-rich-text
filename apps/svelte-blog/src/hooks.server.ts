@@ -22,12 +22,3 @@ export const handle = async ({ event, resolve }) => {
 	response.headers.set('set-cookie', event.locals.pb.authStore.exportToCookie({ secure: false }));
 	return response;
 };
-
-/** @type {import('@sveltejs/kit').HandleFetch} */
-export async function handleFetch({ event, request, fetch }) {
-	if (request.url.startsWith(event.url.origin)) {
-		request.headers.set('cookie', event.request.headers.get('cookie'));
-	}
-
-	return fetch(request);
-}
