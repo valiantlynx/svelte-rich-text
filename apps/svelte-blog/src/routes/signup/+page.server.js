@@ -75,7 +75,7 @@ export const actions = {
 				authProviderState: ''
 			};
 		}
-		const redirectURL = `${event.url.origin}/oauth`;
+		const redirectURL = `${event.url.origin}/api/oauth`;
 		const googleAuthProvider = authMethods.authProviders[0];
 		const authProviderRedirect = `${googleAuthProvider.authUrl}${redirectURL}`;
 		const state = googleAuthProvider.state;

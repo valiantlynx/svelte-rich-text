@@ -4,7 +4,7 @@ import { error, redirect } from '@sveltejs/kit';
 
 export const GET = async (event) => {
     console.log("in +server.js",event.cookies.getAll());
-    const redirectURL = `${event.url.origin}/oauth`;
+    const redirectURL = `${event.url.origin}/api/oauth`;
 
     const expectedState = event.cookies.get('state');
     const expectedVerifier = event.cookies.get('verifier');
