@@ -25,7 +25,16 @@ export const actions = {
 			await locals.pb.collection('projects_valiantlynx').create(formData);
 		} catch (err) {
 			console.error('Error: ', err);
-			throw error(err.status, err.message);
+			console.error('err.data: ', err.data);
+			if (err.data?.data?.name?.message) {
+				throw error(err.status, `project name cannot be empty: ${err.data?.data?.name?.message}`);
+			} else if (err.data?.data?.tagline?.message) {
+				throw error(err.status, `project tagline cannot be empty: ${err.data?.data?.tagline?.message}`);
+			} else if (err.data?.data?.url?.message) {
+				throw error(err.status, `project url cannot be empty: ${err.data?.data?.url?.message}`);
+			} else {
+				throw error(err.status, err.message);
+			}
 		}
 
 		throw redirect(303, '/dashboard/manager');

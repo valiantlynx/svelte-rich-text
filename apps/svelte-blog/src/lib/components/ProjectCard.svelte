@@ -21,7 +21,7 @@
 			</a>
 		</h2>
 		<p class="text-sm mt-2 text-warning">{project.tagline}</p>
-		<p class="text-sm mt-2">{project.description}</p>
+		<p class="text-sm mt-2 truncate ">{project.description}</p>
 		<div class="flex items-center justify-between mt-4">
 			<div class="flex items-center">
 				<img

@@ -18,8 +18,6 @@ export const load = ({ locals }) => {
 					filter: `user = "${userId}"`
 				})
 			);
-			console.log('projects: ', projects);
-			
 			return projects;
 		} catch (err) {
 			console.error('Error: ', err);

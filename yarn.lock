@@ -4548,11 +4548,6 @@ svelte@^4.0.0, svelte@^4.0.5:
     magic-string "^0.30.0"
     periscopic "^3.1.0"
 
-sveltekit-flash-message@^2.2.1:
-  version "2.2.1"
-  resolved "https://registry.npmjs.org/sveltekit-flash-message/-/sveltekit-flash-message-2.2.1.tgz"
-  integrity sha512-KnVuC7Q07crRTwgm/N5CQEebNbzPWoMrtlKXRMq608T+/by8kETXmyTUnuZ5wsnfJEwhWQyXsXBOY2a6NzCPQQ==
-
 synckit@0.8.5:
   version "0.8.5"
   resolved "https://registry.npmjs.org/synckit/-/synckit-0.8.5.tgz"

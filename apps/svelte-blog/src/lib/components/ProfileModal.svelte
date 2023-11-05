@@ -12,14 +12,8 @@
 	<a href="/login" class="btn btn-primary">login</a>
 	<a href="/signup" class="btn btn-secondary">signup</a>
 {:else}
-	<a href="/dashboard/manager" class="btn btn-secondary">
-		<i class="fa fa-plus fa-2x" />
-		create blog
-	</a>
-	<div class="dropdown dropdown-end mr-4">
-		<a href="/projects/new" class="btn btn-primary btn-outline"><i class="fa fa-project-diagram" />
-			Add Project</a>
-	</div>
+	
+
 	<div class="dropdown dropdown-end">
 		<!-- svelte-ignore a11y-no-noninteractive-tabindex -->
 		<label tabindex="0" for="profile button" class="btn btn-primary btn-circle avatar">

@@ -1,4 +1,4 @@
-/* eslint-disable no-console */
+
 import { error } from '@sveltejs/kit';
 import { serializeNonPOJOs } from '$lib/utils/api';
 
