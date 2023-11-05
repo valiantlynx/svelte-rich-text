@@ -51,7 +51,7 @@
 			</li>
 			<li>
 				<form
-					action="/logout"
+					action="/api/logout"
 					method="POST"
 					class="bg-primary text-primary-content rounded-box p-1 flex items-center mt-3"
 				>

@@ -21,7 +21,7 @@
 		>
 	{/if}
 
-	<form action="/logout" method="POST" class="absolute bottom-1/4 w-full">
+	<form action="/api/logout" method="POST" class="absolute bottom-1/4 w-full">
 		<button type="submit" class="w-full">
 			<SideBarIcon tooltip="Logout" icon="bx:bx-log-out" />
 		</button>
