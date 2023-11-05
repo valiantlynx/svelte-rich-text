@@ -25,7 +25,7 @@ export const handle = async ({ event, resolve }) => {
 
 /** @type {import('@sveltejs/kit').HandleFetch} */
 export async function handleFetch({ event, request, fetch }) {
-	if (request.url.startsWith(event.url.href)) {
+	if (request.url.startsWith(event.url.origin)) {
 		request.headers.set('cookie', event.request.headers.get('cookie'));
 	}
 
