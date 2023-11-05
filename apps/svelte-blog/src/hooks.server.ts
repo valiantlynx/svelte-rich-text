@@ -2,7 +2,6 @@ import PocketBase from 'pocketbase';
 import { site } from '$lib/config/site';
 import { serializeNonPOJOs } from '$lib/utils/api';
 
-
 /** @type {import('@sveltejs/kit').Handle} */ 
 export const handle = async ({ event, resolve }) => {
 	event.locals.pb = new PocketBase(site.pocketbase);
@@ -23,3 +22,12 @@ export const handle = async ({ event, resolve }) => {
 	response.headers.set('set-cookie', event.locals.pb.authStore.exportToCookie({ secure: false }));
 	return response;
 };
+
+/** @type {import('@sveltejs/kit').HandleFetch} */
+export async function handleFetch({ event, request, fetch }) {
+	if (request.url.startsWith(event.url.href)) {
+		request.headers.set('cookie', event.request.headers.get('cookie'));
+	}
+
+	return fetch(request);
+}

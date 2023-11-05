@@ -66,33 +66,27 @@ export const actions = {
 		}
 		throw redirect(303, '/login');
 	},
-	OAuth2: async (event) => {
-		const authMethods = await event.locals.pb?.collection('users_valiantlynx').listAuthMethods();
-		console.log('authMethods-------', authMethods);
-		if (!authMethods) {
-			return {
-				authProviderRedirect: '',
-				authProviderState: ''
-			};
-		}
-		const redirectURL = `${event.url.origin}/api/oauth`;
-		const googleAuthProvider = authMethods.authProviders[0];
-		const authProviderRedirect = `${googleAuthProvider.authUrl}${redirectURL}`;
-		const state = googleAuthProvider.state;
-		const verifier = googleAuthProvider.codeVerifier;
+	oauth2google: async ({ cookies, url, locals }) => {
+        const authMethods = await locals.pb?.collection('users_valiantlynx').listAuthMethods(); // generates a state and a verifier
+        if (!authMethods) {
+            return {
+                authProviders: ''
+            };
+        }
+    
+        const redirectUrl = `${url.origin}/api/oauth/google`;
+        const googleAuthProvider = authMethods.authProviders.find((provider) => provider.name === 'google');
+        const authProviderRedirect = `${googleAuthProvider?.authUrl}${redirectUrl}`;
+        console.log('googleAuthProvider', googleAuthProvider);
+        // Save the state and verifier in a cookie
+        const state = googleAuthProvider.state;
+        const verifier = googleAuthProvider.codeVerifier;
 
-		console.log('before cookies.set in +page.server.js --------', event.cookies.getAll());
-		// Set secure cookies
-		event.cookies.set('state', state, {
-			secure: true, // Set the "secure" attribute to true
-			sameSite: 'Strict' // Set the "SameSite" attribute for cross-site request protection
-		});
-		event.cookies.set('verifier', verifier, {
-			secure: true, // Set the "secure" attribute to true
-			sameSite: 'Strict' // Set the "SameSite" attribute for cross-site request protection
-		});
+		console.log('state', state);
+		console.log('verifier', verifier);
 
-		console.log('after cookies.set in +page.server.js--------', event.cookies.getAll());
-		throw redirect(302, authProviderRedirect);
-	}
+        cookies.set('googleAuthState', state);
+        cookies.set('googleAuthVerifier', verifier);
+        throw redirect(302, authProviderRedirect);
+    }
 };
