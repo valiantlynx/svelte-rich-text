@@ -6,6 +6,8 @@ declare global {
 		interface Locals {
 			pb: any;
 			user?: any;
+			state?: string;
+			verifier?: string;
 		}
 		// interface Platform {}
 		// interface PageData {}

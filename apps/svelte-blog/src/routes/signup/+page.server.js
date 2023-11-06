@@ -1,5 +1,6 @@
 /* eslint-disable no-console */
 import { error, redirect } from '@sveltejs/kit';
+import { state, verifier } from '$lib/utils/stores';
 
 
 /** @type {import('./$types').Actions} */
@@ -77,18 +78,11 @@ export const actions = {
     
         const redirectUrl = `${event.url.origin}/api/oauth/google`;
         const googleAuthProvider = authMethods.authProviders.find((provider) => provider.name === 'google');
-        const authProviderRedirect = `${googleAuthProvider?.authUrl}${redirectUrl}`;
-        console.log('googleAuthProvider', event);
+        const authProviderRedirect = `${googleAuthProvider?.authUrl}${redirectUrl}&googleAuthState=${googleAuthProvider?.state}`;
         // Save the state and verifier in a cookie
-        const state = googleAuthProvider.state;
-        const verifier = googleAuthProvider.codeVerifier;
+		state.set(googleAuthProvider.state);
+		verifier.set(googleAuthProvider.codeVerifier);
 
-		console.log('state', state);
-		console.log('verifier', verifier);
-
-        event.cookies.set('googleAuthState', state);
-        event.cookies.set('googleAuthVerifier', verifier);
-		
         throw redirect(302, authProviderRedirect);
     }
 };
