@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import { error, redirect } from '@sveltejs/kit';
 import { state, verifier } from '$lib/utils/stores';
 

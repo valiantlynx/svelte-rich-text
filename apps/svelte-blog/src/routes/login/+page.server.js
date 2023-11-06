@@ -1,4 +1,5 @@
 import { error, redirect } from "@sveltejs/kit";
+import { state, verifier } from '$lib/utils/stores';
 
 export const load = ({ locals }) => {
 	if (locals.pb.authStore.isValid) {
@@ -30,5 +31,22 @@ export const actions = {
 			}
 		}
 		throw redirect(303, '/dashboard',);
-	}
+	},
+	oauth2google: async (event) => {
+        const authMethods = await event.locals.pb?.collection('users_valiantlynx').listAuthMethods(); // generates a state and a verifier
+        if (!authMethods) {
+            return {
+                authProviders: ''
+            };
+        }
+    
+        const redirectUrl = `${event.url.origin}/api/oauth/google`;
+        const googleAuthProvider = authMethods.authProviders.find((provider) => provider.name === 'google');
+        const authProviderRedirect = `${googleAuthProvider?.authUrl}${redirectUrl}&googleAuthState=${googleAuthProvider?.state}`;
+        // Save the state and verifier in a cookie
+		state.set(googleAuthProvider.state);
+		verifier.set(googleAuthProvider.codeVerifier);
+
+        throw redirect(302, authProviderRedirect);
+    }
 };
