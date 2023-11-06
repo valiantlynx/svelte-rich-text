@@ -14,14 +14,8 @@ export const GET = async ({ locals, url }) => {
 		expectedVerifier = value; //! everytime the listAuthMethods is called, the verifier changes. so we cant get the verifier pocketbase function hook. cause it will be different from the one we saved in the cookie from the action hook
 	});
 
-	console.log('expectedState', expectedState);
-	console.log('expectedVerifier', expectedVerifier);
-
 	const gState = url.searchParams.get('state');
 	const code = url.searchParams.get('code');
-
-	console.log('state', gState);
-	console.log('code', code);
 
 	const authMethods = await locals.pb?.collection('users_valiantlynx').listAuthMethods(); //generates a state and a NEW verifier
 	if (!authMethods?.authProviders) {
@@ -52,5 +46,5 @@ export const GET = async ({ locals, url }) => {
 	}
 
 	// redirect the response to the home page
-	throw redirect(302, '/');
+	throw redirect(302, '/login');
 };
