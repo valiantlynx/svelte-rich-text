@@ -2,12 +2,12 @@ export const API_BASE_URL = 'https://api.texbab.com';
 
 export const theme = [
 	{
-		name: 'halloween',
-		text: '🎃 Halloween'
-	},
-	{
 		name: 'dracula',
 		text: '🧛 Dracula'
+	},
+	{
+		name: 'halloween',
+		text: '🎃 Halloween'
 	},
 	{
 		name: 'cyberpunk',
