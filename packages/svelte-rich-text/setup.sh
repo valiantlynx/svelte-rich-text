@@ -1,5 +1,5 @@
 docker build --no-cache -t svelte-rich-text .
-docker run --name svelte-rich-text -d -p 5173:5173 -v $(pwd):/code svelte-rich-text:latest 
+docker run --name svelte-rich-text -d -p 3000:3000 -v $(pwd):/code svelte-rich-text:latest 
 docker exec svelte-rich-text /bin/bash
 
 # make a brach on the main repo named the same as the monorepo
