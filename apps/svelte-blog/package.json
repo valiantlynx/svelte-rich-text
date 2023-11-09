@@ -23,6 +23,7 @@
 		"autoprefixer": "^10.4.16",
 		"eslint-config-custom": "*",
 		"marked": "^9.1.4",
+		"pocketbase": "^0.19.0",
 		"prettier": "^2.8.0",
 		"prettier-plugin-svelte": "^3.0.3",
 		"svelte": "^4.0.5",
@@ -33,7 +34,7 @@
 		"tslib": "^2.4.1",
 		"typescript": "^5.2.2",
 		"vite": "^4.4.2",
-		"pocketbase": "^0.19.0"
+		"@valiantlynx/general-config": "^0.0.2"
 	},
 	"type": "module"
 }
