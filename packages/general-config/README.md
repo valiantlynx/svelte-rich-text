@@ -11,7 +11,6 @@ e.g. themes, colors, fonts, etc.
 - [] colors
 - [] images
 - [] social media
-- [] analytics
 
 
 # usage of changeset
