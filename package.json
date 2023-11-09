@@ -1,6 +1,9 @@
 {
 	"name": "@valiantlynx/svelte-rich-text",
 	"version": "0.0.1",
+	"publishConfig": {
+		"access": "public"
+	},
 	"description": "Rich text editor as a svelte component",
 	"maintainers": [
 		"valiantlynx <valiantlynxz@gmail.com> (https://www.valiantlynx.com/)"
@@ -20,7 +23,7 @@
 	"license": "MIT",
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/valiantlynx/svelte-rich-text"
+		"url": "git+https://github.com/valiantlynx/svelte-rich-text.git"
 	},
 	"scripts": {
 		"dev": "vite --host",
