@@ -10,8 +10,9 @@
     "format": "turbo format",
     "preview": "turbo preview",
     "changeset": "changeset",
-  "publish:packages": "changeset publish",
-  "version:packages": "changeset version"
+    "publish:packages": "changeset publish",
+    "version:packages": "changeset version",
+    "release": "yarn build && yarn version:packages && yarn publish:packages"
   },
   "devDependencies": {
     "eslint": "^8.48.0",
