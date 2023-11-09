@@ -4,7 +4,6 @@ import daisyui from 'daisyui';
 import { general } from '@valiantlynx/general-config';
 
 const { theme } = general;
-console.log("theme", theme);
 
 const config: Config = {
 	mode: 'jit',
@@ -13,7 +12,9 @@ const config: Config = {
 	daisyui: { 
 		themes: theme.map(({ name }: any) => name),
 		styled: true, 
-		base: true
+		darkTheme: "forest",
+		utils: true,
+		logs: false
 
 	 }
 };
