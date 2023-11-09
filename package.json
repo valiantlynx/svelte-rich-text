@@ -12,7 +12,7 @@
     "changeset": "changeset",
     "publish:packages": "changeset publish",
     "version:packages": "changeset version",
-    "release": "yarn build && yarn version:packages && yarn publish:packages"
+    "release": "yarn version:packages && yarn publish:packages"
   },
   "devDependencies": {
     "eslint": "^8.48.0",
