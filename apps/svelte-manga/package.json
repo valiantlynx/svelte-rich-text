@@ -43,7 +43,7 @@
 		"three": "^0.155.0",
 		"tsconfig": "*",
 		"tslib": "^2.4.1",
-		"typescript": "^5.0.0",
+		"typescript": "^5.2.2",
 		"vite": "^4.3.6"
 	},
 	"type": "module"
