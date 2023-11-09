@@ -33,3 +33,6 @@ jobs:
         uses: changesets/action@v1
         with:
           publish: yarn build --filter=general-config
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
