@@ -1,17 +1,20 @@
 ---
-name: general config CI 
+name: general config CI - publish
 
-run-name: ${{ github.actor }} is building general-config 🚀
+run-name: ${{ github.actor }} is publishing general config
+
 
 on:
   push:
     branches:
-      - '**'
+      - 'main'
     paths:
       - 'packages/general-config/**'
       - 'packages/tsconfig/ts-library.json'
       - 'packages/tailwind-config/**'
   workflow_dispatch:
+
+concurrency: ${{ github.workflow }}-${{ github.ref }}
 
 jobs:
   build:
@@ -24,7 +27,9 @@ jobs:
             node-version: 16
             registry-url: https://npm.pkg.github.com/
       - run: yarn
-      - run: yarn lint --filter=general-config
-      - run: yarn build --filter=general-config
-        env:
-            NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
+
+      - name: Create pull request or publish
+        id: changesets
+        uses: changesets/action@v1
+        with:
+          publish: yarn build --filter=general-config
