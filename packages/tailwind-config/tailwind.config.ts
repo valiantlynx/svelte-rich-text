@@ -1,7 +1,7 @@
 import type { Config } from "tailwindcss";
 
 import daisyui from 'daisyui';
-import { general } from 'general-config';
+import { general } from '@valiantlynx/general-config';
 
 const { theme } = general;
 console.log("theme", theme);
