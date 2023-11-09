@@ -12,20 +12,20 @@ The **Altron Rich Text Svelte Component** is a powerful and versatile rich text 
 To get started with the Altron Rich Text Svelte Component, you can install it via your package manager of choice:
 
 ```bash
-npm install altron-rich-text
+npm install @valiantlynx/svelte-rich-text
 # or
-yarn add altron-rich-text
+yarn add @valiantlynx/svelte-rich-text
 # or 
-pnpm i altron-rich-text
+pnpm i @valiantlynx/svelte-rich-text
 ```
 
 ## Basic Usage
 
-To use the Altron Rich Text editor, import the `AltronRichText` component and include it in your Svelte application.
+To use the valiantlynx Rich Text editor, import the `AltronRichText` component and include it in your Svelte application.
 
 ```svelte
 <script>
-  import { AltronRichText } from 'altron-rich-text';
+  import { AltronRichText } from '@valiantlynx/svelte-rich-text';
 </script>
 
 <AltronRichText />
@@ -125,7 +125,7 @@ The Altron Rich Text editor includes a `viewMode` prop, which, when set to `true
 
 ```svelte
 <script>
-  import { AltronRichText } from 'altron-rich-text';
+  import { AltronRichText } from '@valiantlynx/svelte-rich-text';
 </script>
 
 <AltronRichText viewMode={true} />
@@ -137,7 +137,7 @@ The package provides a function to retrieve the `dataBlock` at any given moment.
 
 ```ts
 <script>
-  import { AltronRichText, getData } from 'altron-rich-text';
+  import { AltronRichText, getData } from '@valiantlynx/svelte-rich-text';
 </script>
 
 <AltronRichText viewMode={true} />
