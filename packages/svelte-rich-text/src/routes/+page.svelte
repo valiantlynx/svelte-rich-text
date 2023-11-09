@@ -1,6 +1,6 @@
 <script>
 	import Main from '$lib/components/core/main.svelte';
-	import { AltronRichText, getData } from '$lib/index';
+	import { ValiantRichText, getData } from '$lib/index';
 </script>
 
 <div>
