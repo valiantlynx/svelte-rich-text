@@ -1,6 +1,9 @@
 {
 	"name": "@valiantlynx/svelte-rich-text",
 	"version": "0.0.1",
+	"publishConfig": {
+		"access": "public"
+	},
 	"description": "Rich text editor as a svelte component",
 	"maintainers": [
 		"valiantlynx <valiantlynxz@gmail.com> (https://www.valiantlynx.com/)"
@@ -20,7 +23,7 @@
 	"license": "MIT",
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/valiantlynx/svelte-rich-text"
+		"url": "git+https://github.com/valiantlynx/svelte-rich-text.git"
 	},
 	"scripts": {
 		"dev": "vite --host",
@@ -61,12 +64,12 @@
 		"eslint-plugin-svelte": "^2.30.0",
 		"postcss-load-config": "^4.0.1",
 		"prettier": "^2.8.0",
-		"prettier-plugin-svelte": "^2.10.1",
+		"prettier-plugin-svelte": "^3.0.3",
 		"publint": "^0.1.9",
 		"svelte": "^4.0.5",
 		"svelte-check": "^3.4.3",
 		"tslib": "^2.4.1",
-		"typescript": "^5.0.0",
+		"typescript": "^5.2.2",
 		"vite": "^4.4.2",
 		"vitest": "^0.34.0"
 	},
@@ -81,7 +84,7 @@
 		}
 	},
 	"dependencies": {
-		"altron-rich-text": "^0.0.4",
+		
 		"short-uuid": "^4.2.2",
 		"svelte-highlight": "^7.4.1",
 		"svelte-select": "^5.7.0"
