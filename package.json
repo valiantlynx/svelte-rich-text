@@ -12,7 +12,7 @@
     "changeset": "changeset",
     "publish:packages": "changeset publish",
     "version:packages": "changeset version",
-    "release": "yarn build && yarn version:packages && yarn publish:packages"
+    "release": "yarn version:packages && yarn publish:packages"
   },
   "devDependencies": {
     "eslint": "^8.48.0",
@@ -29,7 +29,7 @@
   "packageManager": "yarn@1.22.19",
   "usePackagemanager": "yarn@1.22.19 or pnpm@8.6.10 or npm@8.19.4",
   "engines": {
-    "node": ">=14.0.0",
+    "node": ">=18.0.0",
     "npm": ">=7.0.0"
   },
   "dependencies": {

@@ -1,6 +1,7 @@
 {
   "name": "markdown_handler",
   "version": "1.0.0",
+  "private": true,
   "license": "MIT",
   "scripts": {
     "python": "venv\\Scripts\\python -u test.py",
