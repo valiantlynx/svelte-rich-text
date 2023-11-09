@@ -1,8 +1,7 @@
 ---
-name: general config CI - publish
+# This workflow will release the packages with Changesets
 
-run-name: ${{ github.actor }} is publishing general config
-
+name: 🚀 general config CI - publish
 
 on:
   push:
@@ -13,25 +12,52 @@ on:
       - 'packages/tsconfig/ts-library.json'
       - 'packages/tailwind-config/**'
   workflow_dispatch:
-
 concurrency: ${{ github.workflow }}-${{ github.ref }}
 
-jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
-        with:
-            node-version: 16
-            registry-url: https://npm.pkg.github.com/
-      - run: yarn
+env:
+  GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+  NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
-      - name: Create pull request or publish
+jobs:
+  release:
+    name: 🚀 Release
+    strategy:
+      matrix:
+        os: [ubuntu-latest]
+        node-version: [lts/*]
+        pnpm-version: [latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - name: ⬇️ Checkout
+        id: checkout
+        uses: actions/checkout@v2.3.3
+        with:
+          token: ${{ env.GITHUB_TOKEN }}
+          fetch-depth: 0
+
+      - name: 🟢 Setup node
+        id: setup-node
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: 🧩 Install Dependencies
+        id: install-dependencies
+        run: yarn
+
+      - name: 🏗️ Build
+        id: build-the-mono-repo
+        run: |
+          yarn build
+
+      - name: 📣 Create Release Pull Request or Publish to npm
         id: changesets
         uses: changesets/action@v1
         with:
-          publish: yarn build --filter=@valiantlynx/general-config
+          title: "chore(release): version packages 🦋"
+          publish: yarn publish:packages
+          version: yarn version:packages
+          commit: "chore(release): version packages 🦋 [skip ci]"
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ env.GITHUB_TOKEN }}
+          NPM_TOKEN: ${{ env.NPM_TOKEN }}
