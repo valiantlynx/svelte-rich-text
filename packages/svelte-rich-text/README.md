@@ -1,15 +1,15 @@
 
-# Altron Rich Text Svelte Component
+# Valiant Rich Text Svelte Component
 
 ![altronLogo](./static/altronGreen.jpg)
 
 ## Introduction
 
-The **Altron Rich Text Svelte Component** is a powerful and versatile rich text editor for Svelte applications. It allows users to create, edit, and manage structured text content by adding various blocks with associated data. This component is designed to be highly customizable, responsive on mobile devices, and supportive of both editing and viewing modes.
+The **Valiant Rich Text Svelte Component** is a powerful and versatile rich text editor for Svelte applications. It allows users to create, edit, and manage structured text content by adding various blocks with associated data. This component is designed to be highly customizable, responsive on mobile devices, and supportive of both editing and viewing modes.
 
 ## Installation
 
-To get started with the Altron Rich Text Svelte Component, you can install it via your package manager of choice:
+To get started with the Valiant Rich Text Svelte Component, you can install it via your package manager of choice:
 
 ```bash
 npm install @valiantlynx/svelte-rich-text
@@ -21,14 +21,14 @@ pnpm i @valiantlynx/svelte-rich-text
 
 ## Basic Usage
 
-To use the valiantlynx Rich Text editor, import the `AltronRichText` component and include it in your Svelte application.
+To use the valiantlynx Rich Text editor, import the `ValiantRichText` component and include it in your Svelte application.
 
 ```svelte
 <script>
-  import { AltronRichText } from '@valiantlynx/svelte-rich-text';
+  import { ValiantRichText } from '@valiantlynx/svelte-rich-text';
 </script>
 
-<AltronRichText />
+<ValiantRichText />
 ```
 
 ## Data Structure
@@ -56,7 +56,7 @@ type dataBlock =
 
 ### Block States
 
-Each block in the Altron Rich Text editor can exist in one of three states: 
+Each block in the Valiant Rich Text editor can exist in one of three states: 
 
 1. **View State:** In this state, the block displays its information based on its type and associated data. 
 2. **Focus State:** When a user clicks on a block, it switches to the focus state. In this state, the block is wrapped with a wrapper that provides options for deleting the block and reordering it (moving it up or down). 
@@ -86,7 +86,7 @@ You can customize various aspects of the rich text editor:
 
 - **Custom Code Block Languages:** Define the list of languages users can use for code blocks with the `codeBlockLanguages` prop. By default, it includes JavaScript, Java, C, CSS, TypeScript, Python, and C#.
 
-- **Custom spacing:** By default **altron** separate blocks with 10px gap and have **margin-block** set to 30px you can change that using **blocksGap** and **marginBlock** props .
+- **Custom spacing:** By default **valiant** separate blocks with 10px gap and have **margin-block** set to 30px you can change that using **blocksGap** and **marginBlock** props .
 
 - **Custom Components:** You can replace the default view components for various block types with your custom components. For example:
     - `customImage` for image blocks
@@ -121,14 +121,14 @@ ViewQuote;
 
 ## View Mode
 
-The Altron Rich Text editor includes a `viewMode` prop, which, when set to `true`, allows you to use the editor in a read-only mode. In this mode, you can display existing content without enabling editing.
+The Valiant Rich Text editor includes a `viewMode` prop, which, when set to `true`, allows you to use the editor in a read-only mode. In this mode, you can display existing content without enabling editing.
 
 ```svelte
 <script>
-  import { AltronRichText } from '@valiantlynx/svelte-rich-text';
+  import { ValiantRichText } from '@valiantlynx/svelte-rich-text';
 </script>
 
-<AltronRichText viewMode={true} />
+<ValiantRichText viewMode={true} />
 ```
 
 ## The getData Function
@@ -137,10 +137,10 @@ The package provides a function to retrieve the `dataBlock` at any given moment.
 
 ```ts
 <script>
-  import { AltronRichText, getData } from '@valiantlynx/svelte-rich-text';
+  import { ValiantRichText, getData } from '@valiantlynx/svelte-rich-text';
 </script>
 
-<AltronRichText viewMode={true} />
+<ValiantRichText viewMode={true} />
 <Button on:click={()=>{
   const data = getData(); // returns dataBlock[] type
   saveData(data);
@@ -153,7 +153,7 @@ The package uses `svelte-highlight` with `autoHighlight` functionality for code 
 
 ## Props
 
-Here are all AltronRichText props and their default values:
+Here are all ValiantRichText props and their default values:
 
 ```ts
 export let initialData: dataBlock[] = [];
