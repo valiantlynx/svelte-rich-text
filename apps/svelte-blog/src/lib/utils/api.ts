@@ -4,6 +4,7 @@ import { goto } from '$app/navigation';
 import { site } from '$lib/config/site';
 import { writable } from 'svelte/store';
 
+
 export const pb = new PocketBase(site.pocketbase);
 
 export const currentUser = writable(pb.authStore.model);
