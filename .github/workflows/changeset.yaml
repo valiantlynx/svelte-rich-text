@@ -7,10 +7,6 @@ on:
   push:
     branches:
       - 'main'
-    paths:
-      - 'packages/general-config/**'
-      - 'packages/tsconfig/ts-library.json'
-      - 'packages/tailwind-config/**'
   workflow_dispatch:
 concurrency: ${{ github.workflow }}-${{ github.ref }}
 
