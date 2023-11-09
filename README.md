@@ -78,8 +78,15 @@ This Turborepo includes optional remote caching. In the Dockerfiles of the apps,
 You can test this behavior using a command like:
 `docker build -f apps/svelte-manga/Dockerfile . --build
 
+### adding new projects with their own git history
 ```sh
 git subtree add --prefix=packages/general-config https://github.com/valiantlynx/general-config.git valiantlynx-turborepo --squash
 git subtree pull --prefix=packages/general-config https://github.com/valiantlynx/general-config.git valiantlynx-turborepo --squash
 git subtree push --prefix=packages/general-config https://github.com/valiantlynx/general-config.git valiantlynx-turborepo
+
+```
+
+### publishing packages 
+```sh
+yarn publish:packages // this will publish all packages that are not private
 ```
