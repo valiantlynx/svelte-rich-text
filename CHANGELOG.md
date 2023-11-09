@@ -1,5 +1,11 @@
 # @valiantlynx/svelte-rich-text
 
+## 0.0.2
+
+### Patch Changes
+
+- 46c3fb7: Renamed dome of the stuff and changed the images for the default start
+
 ## 0.0.4
 
 ### Patch Changes
