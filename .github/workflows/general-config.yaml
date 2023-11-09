@@ -24,7 +24,7 @@ jobs:
             node-version: 16
             registry-url: https://npm.pkg.github.com/
       - run: yarn
-      - run: yarn lint --filter=general-config
-      - run: yarn build --filter=general-config
+      - run: yarn lint --filter=@valiantlynx/general-config
+      - run: yarn build --filter=@valiantlynx/general-config
         env:
             NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
