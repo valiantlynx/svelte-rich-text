@@ -14,49 +14,28 @@ on:
   workflow_dispatch:
 concurrency: ${{ github.workflow }}-${{ github.ref }}
 
-env:
-  NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-
 jobs:
   release:
-    name: 🚀 Release
-    strategy:
-      matrix:
-        os: [ubuntu-latest]
-        node-version: [lts/*]
-        pnpm-version: [latest]
-    runs-on: ${{ matrix.os }}
+    name: Release
+    runs-on: ubuntu-latest
     steps:
-      - name: ⬇️ Checkout
-        id: checkout
-        uses: actions/checkout@v2.3.3
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          fetch-depth: 0
+      - name: Checkout Repo
+        uses: actions/checkout@v3
 
-      - name: 🟢 Setup node
-        id: setup-node
-        uses: actions/setup-node@v2
+      - name: Setup Node.js 16.x
+        uses: actions/setup-node@v3
         with:
-          node-version: ${{ matrix.node-version }}
+          node-version: 16.x
 
-      - name: 🧩 Install Dependencies
-        id: install-dependencies
+      - name: Install Dependencies
         run: yarn
 
-      - name: 🏗️ Build
-        id: build-the-mono-repo
-        run: |
-          yarn build
-
-      - name: 📣 Create Release Pull Request or Publish to npm
+      - name: Create Release Pull Request or Publish to npm
         id: changesets
         uses: changesets/action@v1
         with:
-          title: "chore(release): version packages 🦋"
-          publish: yarn publish:packages
-          version: yarn version:packages
-          commit: "chore(release): version packages 🦋 [skip ci]"
+          # This expects you to have a script called release which does a build for your packages and calls changeset publish
+          publish: yarn release
         env:
-          GITHUB_TOKEN: ${{ env.GITHUB_TOKEN }}
-          NPM_TOKEN: ${{ env.NPM_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
