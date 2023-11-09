@@ -4941,10 +4941,10 @@ prettier-plugin-packagejson@^2.4.5:
     sort-package-json "2.6.0"
     synckit "0.8.5"
 
-prettier-plugin-svelte@^2.10.1:
-  version "2.10.1"
-  resolved "https://registry.npmjs.org/prettier-plugin-svelte/-/prettier-plugin-svelte-2.10.1.tgz"
-  integrity sha512-Wlq7Z5v2ueCubWo0TZzKc9XHcm7TDxqcuzRuGd0gcENfzfT4JZ9yDlCbEgxWgiPmLHkBjfOtpAWkcT28MCDpUQ==
+prettier-plugin-svelte@^3.0.3:
+  version "3.0.3"
+  resolved "https://registry.yarnpkg.com/prettier-plugin-svelte/-/prettier-plugin-svelte-3.0.3.tgz#a823295167f27dc71a4462ee6cb3da9f3f5ca2ea"
+  integrity sha512-dLhieh4obJEK1hnZ6koxF+tMUrZbV5YGvRpf2+OADyanjya5j0z1Llo8iGwiHmFWZVG/hLEw/AJD5chXd9r3XA==
 
 prettier-plugin-tailwindcss@^0.5.3:
   version "0.5.6"
@@ -6174,12 +6174,7 @@ typed-array-length@^1.0.4:
     for-each "^0.3.3"
     is-typed-array "^1.1.9"
 
-typescript@^4.8.0:
-  version "4.9.5"
-  resolved "https://registry.npmjs.org/typescript/-/typescript-4.9.5.tgz"
-  integrity sha512-1FXk9E2Hm+QzZQ7z+McJiHL4NW1F2EzMu9Nq9i3zAaGqibafqYwCVU6WyWAuyQRRzOlxou8xZSyXLEN8oKj24g==
-
-typescript@^5.0.0, typescript@^5.0.3, typescript@^5.1.6, typescript@^5.2.2:
+typescript@^5.0.3, typescript@^5.2.2:
   version "5.2.2"
   resolved "https://registry.npmjs.org/typescript/-/typescript-5.2.2.tgz"
   integrity sha512-mI4WrpHsbCIcwT9cF4FZvr80QUeKvsUsUvKDoR+X/7XHQH98xYD8YHZg7ANtz2GtZt/CBq2QJ0thkGJMHfqc1w==
