@@ -4,14 +4,14 @@ default configurations for valiantlynx fleet of projects. so it only contains th
 e.g. themes, colors, fonts, etc.
 
 # current configurations
-- [o] theme
-- [0] icons
-- [0] site metadata
-- [x] fonts
-- [x] colors
-- [x] images
-- [x] social media
-- [x] analytics
+- [x] theme
+- [x] icons
+- [x] site metadata
+- [] fonts
+- [] colors
+- [] images
+- [] social media
+- [] analytics
 
 
 # usage of changeset
