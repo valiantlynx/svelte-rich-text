@@ -1,4 +1,4 @@
-name: Animevariant
+name: svelte-manga
 
 run-name: ${{ github.actor }} is building svelte-manga 🚀
 

@@ -8,8 +8,8 @@ export const pb = new PocketBase(site.pocketbase);
 
 export const currentUser = writable(pb.authStore.model);
 
-export const getImageURL = (collectionId: string, recordId: string, fileName: string, thumb: string) => {
-	return `${site.pocketbase}/api/files/${collectionId}/${recordId}/${fileName}?${thumb}`;
+export const getImageURL = (collectionId: string, recordId: string, fileName: string) => {
+	return `${site.pocketbase}/api/files/${collectionId}/${recordId}/${fileName}`;
 };
 
 export const authPocketbase = async (user: string, password: string) => {
