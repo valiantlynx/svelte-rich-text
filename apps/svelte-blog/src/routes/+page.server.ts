@@ -9,7 +9,7 @@ export const load = async (event) => {
   });
 
   for (const item of blogs.items) {
-    item.image = getImageURL(item.collectionId, item.id, item.image, 'thumb=200x100');
+    item.image = getImageURL(item.collectionId, item.id, item.image);
   }
 
   return {

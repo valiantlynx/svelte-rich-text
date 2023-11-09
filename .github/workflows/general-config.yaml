@@ -1,0 +1,36 @@
+---
+name: general config CI
+
+run-name: ${{ github.actor }} is building general-config 🚀
+
+on:
+  push:
+    branches:
+      - 'main'
+    paths:
+      - 'packages/general-config/**'
+      - 'packages/tsconfig/ts-library.json'
+      - 'packages/tailwind-config/**'
+  pull_request:
+    branches:
+      - 'main'
+    paths:
+      - 'packages/general-config/**'
+      - 'packages/tsconfig/ts-library.json'
+      - 'packages/tailwind-config/**'
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+            node-version: 16
+            registry-url: https://npm.pkg.github.com/
+      - run: yarn install
+      - run: yarn lint
+      - run: yarn build
+        env:
+            NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}

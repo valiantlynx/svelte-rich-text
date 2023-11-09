@@ -6,13 +6,16 @@
 [![Lint Code Base](https://github.com/valiantlynx/valiantlynx-turborepo/actions/workflows/linter.yaml/badge.svg)](https://github.com/valiantlynx/valiantlynx-turborepo/actions/workflows/linter.yaml)
 [![weather](https://github.com/valiantlynx/valiantlynx-turborepo/actions/workflows/weather.yml/badge.svg)](https://github.com/valiantlynx/valiantlynx-turborepo/actions/workflows/weather.yml)
 
-
 # Animevariant
 
 ## Quick Start
+
 ## Included Packages and Tools
+
 This Turborepo includes the following packages/apps and utilities:
+
 ### Apps and Packages
+
 `docs`: A documentation app with [Next.js](https://nextjs.org/) and [Tailwind CSS](https://tailwindcss.com/)
 `web`: A web app with [Next.js](https://nextjs.org/) and [Tailwind CSS](https://tailwindcss.com/)
 `ui`: A React component library with [Tailwind CSS](https://tailwindcss.com/) shared by both `web` and `docs` applications
@@ -22,9 +25,12 @@ This Turborepo includes the following packages/apps and utilities:
 `eslint-config-custom`: ESLint configurations (includes `eslint-config-next`, `eslint-plugin-svelte`, and `eslint-config-prettier`)
 `tsconfig`: `tsconfig.json` files used throughout the monorepo
 Each package/app is 100% [TypeScript](https://www.typescriptlang.org/).
-### Building  `packages/ui`
+
+### Building `packages/ui`
+
 This example is set up to build `packages/ui` and output the transpiled source and compiled styles to `dist/`. This is done to share one `tailwind.config.js` easily and ensure that only the CSS used by the current application and its dependencies is generated.
 An alternative is to consume `packages/ui` directly from source without building. If you choose this option, update your `tailwind.config.js` to recognize your package locations, so it can find all usages of the `tailwindcss` class names. For instance:
+
 ```js
   content: [
     // App content
@@ -32,34 +38,48 @@ An alternative is to consume `packages/ui` directly from source without building
     // Include packages if not transpiling
     "../../packages/**/*.{js,ts,jsx,tsx}",
   ],
-  ```
+```
+
 ### Utilities
+
 This Turborepo includes a set of useful tools:
 [Tailwind CSS](https://tailwindcss.com/) for styling
 [TypeScript](https://www.typescriptlang.org/) for static type checking
 [ESLint](https://eslint.org/) for code linting
 [Prettier](https://prettier.io/) for code formatting
+
 # Turborepo Docker Starter
+
 This repository is your Turborepo Docker starter pack. It's designed to help you quickly set up a Turborepo project that includes a Docker-based deployment workflow.
+
 ## Getting Started
 
 1. Build the Docker containers and start the applications:
+
 ```sh
   docker network create minfuel-turborepo
   COMPOSE_DOCKER_CLI_BUILD=1 DOCKER_BUILDKIT=1 docker-compose -f docker-compose.yml build
   docker-compose -f docker-compose.yml up -d
-  
-  ```
+
+```
 
 Open [http://localhost:3000](http://localhost:3000/) in your browser.
 
 2. To shut down all running containers:
+
 ```sh
   docker kill $(docker ps -q) && docker rm $(docker ps -a -q)
-  
-  ```
+
+```
+
 ### Remote Caching
+
 This Turborepo includes optional remote caching. In the Dockerfiles of the apps, uncomment the build arguments for `TURBO_TEAM` and `TURBO_TOKEN`. Then, pass these build arguments to your Docker build.
 You can test this behavior using a command like:
 `docker build -f apps/svelte-manga/Dockerfile . --build
 
+```sh
+git subtree add --prefix=packages/general-config https://github.com/valiantlynx/general-config.git valiantlynx-turborepo --squash
+git subtree pull --prefix=packages/general-config https://github.com/valiantlynx/general-config.git valiantlynx-turborepo --squash
+git subtree push --prefix=packages/general-config https://github.com/valiantlynx/general-config.git valiantlynx-turborepo
+```
