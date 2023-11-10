@@ -6,7 +6,7 @@
     "dist"
   ],
   "scripts": {
-    "build": "rm -rf dist && mkdir dist && cp base.json nextjs.json react-library.json ts-library.json svelte.json dist/",
+    "build": "rm -rf dist && mkdir dist && cp base.json nextjs.json react-library.json ts-library.json svelte.json noentry.js dist/",
     "changeset": "changeset",
     "publish:packages": "changeset publish",
     "version:packages": "changeset version",
@@ -15,7 +15,7 @@
   "publishConfig": {
     "access": "public"
   },
-  "main": "./dist/base.json",
+  "main": "dist/noentry.js",
   "devDependencies": {
     "@changesets/cli": "^2.26.2"
   }
