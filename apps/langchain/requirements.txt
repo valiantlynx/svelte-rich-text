@@ -1,4 +1,0 @@
-langchain
-fastapi
-uvicorn
-debugpy

@@ -1,38 +1,21 @@
 {
-  "private": true,
-  "version": "0.0.0",
+  "name": "@valiantlynx/tsconfig",
+  "version": "0.0.2",
+  "license": "MIT",
+  "files": [
+    "dist"
+  ],
   "scripts": {
-    "build": "turbo build",
-    "dev": "turbo run dev --concurrency=11",
-    "python": "turbo run python",
-    "lint": "turbo lint",
-    "clean": "turbo clean",
-    "format": "turbo format",
-    "preview": "turbo preview",
-    "package": "turbo package",
+    "build": "rm -rf dist && mkdir dist && cp base.json nextjs.json react-library.json ts-library.json svelte.json dist/",
     "changeset": "changeset",
     "publish:packages": "changeset publish",
     "version:packages": "changeset version",
     "release": "yarn version:packages && yarn publish:packages"
   },
-  "devDependencies": {
-    "eslint": "^8.48.0",
-    "prettier": "^3.0.3",
-    "prettier-plugin-tailwindcss": "^0.5.3",
-    "@valiantlynx/tsconfig": "*",
-    "turbo": "latest"
+  "publishConfig": {
+    "access": "public"
   },
-  "workspaces": [
-    "apps/*",
-    "packages/*",
-    "packages/scripts/python/*"
-  ],
-  "packageManager": "yarn@1.22.19",
-  "usePackagemanager": "yarn@1.22.19 or pnpm@8.6.10 or npm@8.19.4",
-  "engines": {
-    "node": ">=18.0.0",
-    "npm": ">=7.0.0"
-  },
+  "main": "./dist/base.json",
   "dependencies": {
     "@changesets/cli": "^2.26.2"
   }
