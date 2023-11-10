@@ -4,7 +4,8 @@
 
 ### Patch Changes
 
-- a9ad51e: though its just a patch. im done for now i dont need to edit this package further
+- though its just a patch. im done for now i dont need to edit this package further
+
 
 ## 0.0.2
 
