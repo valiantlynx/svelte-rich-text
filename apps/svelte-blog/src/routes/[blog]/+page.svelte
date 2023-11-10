@@ -2,15 +2,22 @@
 	import { page } from '$app/stores';
 	import { ValiantRichText, getData } from '@valiantlynx/svelte-rich-text';
 	import { pb } from '$lib/utils/api';
+	import toast from 'svelte-french-toast';
 
   const blog = $page.data.blog;
 
   const saveData = (data) => {
-	console.log(data);
+	try {
+		console.log(data);
 	const datapb = {
     "content_object": data
 };
  pb.collection('blogs').update(blog.id, datapb);
+ toast.success('Blog post updated successfully');
+	} catch (error) {
+		console.log(error);
+		toast.error('Something went wrong please try again');
+	}
   };
 
 </script>
