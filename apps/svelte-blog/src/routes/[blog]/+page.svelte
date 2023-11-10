@@ -10,10 +10,9 @@
 	const datapb = {
     "content_object": data
 };
-
  pb.collection('blogs').update(blog.id, datapb);
-
   };
+
 </script>
 
 
@@ -40,13 +39,11 @@
     <p class="text-sm text-accent">Updated: {blog?.updated}</p>
 
     <div class="mt-4 progress-primary">
-    {@html blog?.content}
-    </div>
-
-		<p class="text-sm text-secondary">Tags: {blog?.tags}</p>
 		{#if $page.data.user}
 		{#if $page.data.user.id === blog.author}
-		<ValiantRichText />
+		<ValiantRichText
+		intailData={blog.content_object}
+		 />
 		<button 
 		class="btn btn-primary"
 		on:click={()=>{
@@ -66,6 +63,10 @@
 		</h3>
 <ValiantRichText viewMode={true} />
 		{/if}
+    </div>
+
+		<p class="text-sm text-secondary">Tags: {blog?.tags}</p>
+	
 	</div>
 </div>
 
