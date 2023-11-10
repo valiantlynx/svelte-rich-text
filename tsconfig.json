@@ -1,3 +1,3 @@
 {
-  "extends": "@valiantlynx/tsconfig/base.json"
+  "extends": "@valiantlynx/tsconfig/src/base.json"
 }

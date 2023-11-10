@@ -1,9 +1,22 @@
 {
   "name": "@valiantlynx/tsconfig",
-  "version": "0.0.0",
-  "private": true,
+  "version": "0.0.2",
   "license": "MIT",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "rm -rf dist && mkdir dist && cp base.json nextjs.json react-library.json ts-library.json svelte.json dist/",
+    "changeset": "changeset",
+    "publish:packages": "changeset publish",
+    "version:packages": "changeset version",
+    "release": "yarn version:packages && yarn publish:packages"
+  },
   "publishConfig": {
     "access": "public"
+  },
+  "main": "./dist/base.json",
+  "dependencies": {
+    "@changesets/cli": "^2.26.2"
   }
 }
