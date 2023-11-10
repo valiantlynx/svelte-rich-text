@@ -1,4 +1,3 @@
-
 # Valiant Rich Text Svelte Component
 
 ![valiantlynx logo](./static/valiantlynx.jpg)
@@ -15,7 +14,7 @@ To get started with the Valiant Rich Text Svelte Component, you can install it v
 npm install @valiantlynx/svelte-rich-text
 # or
 yarn add @valiantlynx/svelte-rich-text
-# or 
+# or
 pnpm i @valiantlynx/svelte-rich-text
 ```
 
@@ -45,21 +44,21 @@ The rich text editor works with a specific data structure known as `dataBlock`. 
 
 ```ts
 type dataBlock =
-| { name: 'image'; id: string; data: { base64: string; name: string; caption: string } }
-| { name: 'paragraph'; id: string; data: { text: string } }
-| { name: 'code'; id: string; data: { text: string; lang: languages } }
-| { name: 'quote'; id: string; data: { text: string; owner: string } }
-| { name: 'header'; id: string; data: { text: string; level: 1 | 2 | 3 | 4 } }
-| { name: 'space'; id: string; data: { size: number } }
-| { name: 'list'; id: string; data: { items: string[]; type: 'ordered' | 'unordered' } };
+	| { name: 'image'; id: string; data: { base64: string; name: string; caption: string } }
+	| { name: 'paragraph'; id: string; data: { text: string } }
+	| { name: 'code'; id: string; data: { text: string; lang: languages } }
+	| { name: 'quote'; id: string; data: { text: string; owner: string } }
+	| { name: 'header'; id: string; data: { text: string; level: 1 | 2 | 3 | 4 } }
+	| { name: 'space'; id: string; data: { size: number } }
+	| { name: 'list'; id: string; data: { items: string[]; type: 'ordered' | 'unordered' } };
 ```
 
 ### Block States
 
-Each block in the Valiant Rich Text editor can exist in one of three states: 
+Each block in the Valiant Rich Text editor can exist in one of three states:
 
-1. **View State:** In this state, the block displays its information based on its type and associated data. 
-2. **Focus State:** When a user clicks on a block, it switches to the focus state. In this state, the block is wrapped with a wrapper that provides options for deleting the block and reordering it (moving it up or down). 
+1. **View State:** In this state, the block displays its information based on its type and associated data.
+2. **Focus State:** When a user clicks on a block, it switches to the focus state. In this state, the block is wrapped with a wrapper that provides options for deleting the block and reordering it (moving it up or down).
 3. **Edit State:** Upon another click, the block enters the edit state, allowing the user to modify the block's information. ## Customization
 
 ## Customization
@@ -67,16 +66,19 @@ Each block in the Valiant Rich Text editor can exist in one of three states:
 You can customize various aspects of the rich text editor:
 
 - **Colors:**
+
   - `primaryColor`: Used in both focus and view states.
   - `secondaryColor`: Specifically used in the edit state.
   - `textColor`: Defines the text color within the editor.
   - `bgColor`: Specifies the background color of the editor.
 
 - **Fonts:**
+
   - `headerFont`: Set the font for header elements (e.g., h1, h2, h3, h4).
   - `bodyFont`: Define the font for general text elements (e.g., p, span, label, li, a).
 
 - **Font Sizes and Line Heights:**
+
   - Customize font sizes using `h1`, `h2`, `h3`, `h4`, `body`, `small`.
   - Set line heights for various text elements using `lh1`, `lh2`, `lh3`, `lh4`, and `lbody`.
 
@@ -89,34 +91,30 @@ You can customize various aspects of the rich text editor:
 - **Custom spacing:** By default **valiant** separate blocks with 10px gap and have **margin-block** set to 30px you can change that using **blocksGap** and **marginBlock** props .
 
 - **Custom Components:** You can replace the default view components for various block types with your custom components. For example:
-    - `customImage` for image blocks
-    - `customCode` for code blocks
-    - `customList` for list blocks
-    - `customHeader` for header blocks
-    - `customParagraph` for paragraph blocks
-    - `customQuote` for quote blocks
+  - `customImage` for image blocks
+  - `customCode` for code blocks
+  - `customList` for list blocks
+  - `customHeader` for header blocks
+  - `customParagraph` for paragraph blocks
+  - `customQuote` for quote blocks
 
 ```ts
 export let customImage: ComponentType<
-SvelteComponent<{ base64: string; name: string; caption: string }>
+	SvelteComponent<{ base64: string; name: string; caption: string }>
 > = ViewImage;
 
-export let customCode: ComponentType<SvelteComponent<{ text: string; lang: languages }>> =
-ViewCode;
+export let customCode: ComponentType<SvelteComponent<{ text: string; lang: languages }>> = ViewCode;
 
 export let customList: ComponentType<
-SvelteComponent<{ items: string[]; type: 'ordered' | 'unordered' }>
+	SvelteComponent<{ items: string[]; type: 'ordered' | 'unordered' }>
 > = ViewList;
 
 export let customHeader: ComponentType<SvelteComponent<{ text: string; level: 1 | 2 | 3 | 4 }>> =
-ViewHeader;
+	ViewHeader;
 
-export let customParagraph: ComponentType<SvelteComponent<{ text: string }
+export let customParagraph: ComponentType<SvelteComponent<{ text: string }>> = ViewParagraph;
 
->> = ViewParagraph;
-
-export let customQuote: ComponentType<SvelteComponent<{ text: string; owner: string }>> =
-ViewQuote;
+export let customQuote: ComponentType<SvelteComponent<{ text: string; owner: string }>> = ViewQuote;
 ```
 
 ## View Mode
@@ -201,31 +199,29 @@ export let lbody = '1.6';
 export let codeTheme: string = nightOwl;
 
 export let customImage: ComponentType<
-SvelteComponent<{ base64: string; name: string; caption: string }>
+	SvelteComponent<{ base64: string; name: string; caption: string }>
 > = ViewImage;
 
-export let customCode: ComponentType<SvelteComponent<{ text: string; lang: languages }>> =
-ViewCode;
+export let customCode: ComponentType<SvelteComponent<{ text: string; lang: languages }>> = ViewCode;
 
 export let customList: ComponentType<
-SvelteComponent<{ items: string[]; type: 'ordered' | 'unordered' }>
+	SvelteComponent<{ items: string[]; type: 'ordered' | 'unordered' }>
 > = ViewList;
 
 export let customHeader: ComponentType<SvelteComponent<{ text: string; level: 1 | 2 | 3 | 4 }>> =
-ViewHeader;
+	ViewHeader;
 
 export let customParagraph: ComponentType<SvelteComponent<{ text: string }>> = ViewParagraph;
 
-export let customQuote: ComponentType<SvelteComponent<{ text: string; owner: string }>> =
-ViewQuote;
+export let customQuote: ComponentType<SvelteComponent<{ text: string; owner: string }>> = ViewQuote;
 
 export let codeBlockLanguages: languages[] = [
-'javascript',
-'java',
-'c',
-'css',
-'typescript',
-'python',
-'csharp'
+	'javascript',
+	'java',
+	'c',
+	'css',
+	'typescript',
+	'python',
+	'csharp'
 ];
 ```
