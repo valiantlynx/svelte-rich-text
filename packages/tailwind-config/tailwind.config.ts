@@ -16,7 +16,6 @@ const config: Config = {
 		darkTheme: "forest",
 		utils: true,
 		logs: false
-
 	 }
 };
 export default config;
