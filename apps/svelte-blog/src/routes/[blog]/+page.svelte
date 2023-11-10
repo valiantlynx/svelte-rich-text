@@ -1,11 +1,18 @@
 <script>
 	import { page } from '$app/stores';
 	import { ValiantRichText, getData } from '@valiantlynx/svelte-rich-text';
+	import { pb } from '$lib/utils/api';
 
   const blog = $page.data.blog;
 
   const saveData = (data) => {
 	console.log(data);
+	const datapb = {
+    "content_object": data
+};
+
+ pb.collection('blogs').update(blog.id, datapb);
+
   };
 </script>
 
