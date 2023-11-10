@@ -1,8 +1,10 @@
 {
   "name": "@valiantlynx/tsconfig",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "license": "MIT",
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "build": "rm -rf dist && mkdir dist && cp base.json nextjs.json react-library.json ts-library.json svelte.json dist/"
   },
