@@ -1,1 +1,2 @@
-## tsconfig rules for valianlynx projects
+## tsconfig rules for Valianlynx projects
+
