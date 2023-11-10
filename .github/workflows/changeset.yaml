@@ -27,7 +27,7 @@ jobs:
         run: yarn
 
       - name: Build
-        run: yarn build --filter=general-config
+        run: yarn build
 
       - name: Create Release Pull Request or Publish to npm
         id: changesets
