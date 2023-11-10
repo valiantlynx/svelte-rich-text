@@ -1314,10 +1314,10 @@
   resolved "https://registry.npmjs.org/@valiantlynx/image/-/image-0.0.2.tgz"
   integrity sha512-cthhGEd+g4FHfqrszd/cD6ubbJdQdWvHloviWraIifdp/xcmp9KvyTXJQKo4XoFKDFt9hXzsm2DQHy2hbXyWOw==
 
-"@valiantlynx/svelte-rich-text@^0.0.2":
-  version "0.0.2"
-  resolved "https://registry.yarnpkg.com/@valiantlynx/svelte-rich-text/-/svelte-rich-text-0.0.2.tgz#c332d358103829be0a80ec34b367b21a6dca6ad7"
-  integrity sha512-sPomKXsRjX6QVTjivZedCOP6AFHEhUrHAwyf0p1NcnfyB0qdhVsAsusU3GyLuUhZEVKq1MzI2NEEMpGxQ/5C3g==
+"@valiantlynx/svelte-rich-text@^0.0.4":
+  version "0.0.4"
+  resolved "https://registry.yarnpkg.com/@valiantlynx/svelte-rich-text/-/svelte-rich-text-0.0.4.tgz#b1b100abe499c50fbc966bfa4bbd7fdb7e949978"
+  integrity sha512-A91xAjX5CgX9CfMexL+E1FDWVbEjWWxN8dfLp0VYhEBXcE8wRJU4Ckcrdj1foEJpBZzRJP4vxddSM495kCSPHA==
   dependencies:
     short-uuid "^4.2.2"
     svelte-highlight "^7.4.1"
