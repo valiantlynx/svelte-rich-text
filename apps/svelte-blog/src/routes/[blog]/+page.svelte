@@ -32,7 +32,7 @@
 		/>
 
 		
-    <p class="text-sm text-accent">By: {blog?.author}</p>
+    <p class="text-sm text-accent">By: {blog?.expand?.author.username}</p>
 
     <p class="text-sm text-accent">Published: {blog?.created}</p>
 
