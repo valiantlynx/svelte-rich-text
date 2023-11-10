@@ -1,5 +1,12 @@
 # @valiantlynx/tsconfig
 
+## 0.0.7
+
+### Patch Changes
+
+- 22e260c: new empty index.js to remove errors
+- a9ad51e: though its just a patch. im done for now i dont need to edit this package further
+
 ## 0.0.6
 
 ### Patch Changes
