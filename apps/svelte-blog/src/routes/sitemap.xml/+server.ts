@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import type { RequestHandler } from './$types';
-import { site } from '$lib/config/site';
+import { site } from '@valiantlynx/general-config';
 import { genPosts } from '$lib/utils/posts';
 // import { google } from 'googleapis';
 
@@ -14,20 +14,20 @@ const render = (): string =>
     xmlns:image="https://www.google.com/schemas/sitemap-image/1.1"
     xmlns:video="https://www.google.com/schemas/sitemap-video/1.1">
     <url>
-      <loc>${site.protocol + site.domain}</loc>
+      <loc>${site.site.protocol + site.site.domain}</loc>
     </url>
     ${genPosts()
 			.map(
 				(post) => `
         <url>
-            <loc>${site.protocol + site.domain + post.path}</loc>
+            <loc>${site.site.protocol + site.site.domain + post.path}</loc>
             <lastmod>${new Date(
 							post.updated ?? post.published ?? post.created
 						).toISOString()}</lastmod>
             <priority>0.5</priority>
             <changefreq>monthly</changefreq>
             <image:image>
-              <image:loc>${site.protocol + site.domain + post.image}</image:loc>
+              <image:loc>${site.site.protocol + site.site.domain + post.image}</image:loc>
               <image:caption>${post.summary}</image:caption>
               <image:geo_location>Norway</image:geo_location>
               <image:title>${post.alt}</image:title>
@@ -39,8 +39,8 @@ const render = (): string =>
 
 // ping google to update the the urls of the company and the images
 const pingGoogle = async () => {
-	const urls = genPosts().map((post) => site.protocol + site.domain + post.path);
-	const imageUrls = genPosts().map((post) => site.protocol + site.domain + post.image);
+	const urls = genPosts().map((post) => site.site.protocol + site.site.domain + post.path);
+	const imageUrls = genPosts().map((post) => site.site.protocol + site.site.domain + post.image);
 
 	// index the urls
 	// indexer()
@@ -60,7 +60,7 @@ let apiCalls = 0;
 let lastCallTime = Date.now();
 
 async function indexer(google: any) {
-	const urls = genPosts().map((post) => site.protocol + site.domain + post.path);
+	const urls = genPosts().map((post) => site.site.protocol + site.site.domain + post.path);
 
 	console.log('google api- r', urls);
 

@@ -71,7 +71,8 @@
 		"tslib": "^2.4.1",
 		"typescript": "^5.2.2",
 		"vite": "^4.4.2",
-		"vitest": "^0.34.0"
+		"vitest": "^0.34.0",
+		"@valiantlynx/svelte-rich-text": "^0.0.1"
 	},
 	"svelte": "./dist/index.js",
 	"types": "./dist/index.d.ts",

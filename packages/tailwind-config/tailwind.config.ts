@@ -3,6 +3,7 @@ import type { Config } from "tailwindcss";
 import daisyui from 'daisyui';
 import { general } from '@valiantlynx/general-config';
 
+
 const { theme } = general;
 
 const config: Config = {

@@ -1,7 +1,7 @@
 
 # Valiant Rich Text Svelte Component
 
-![altronLogo](./static/valiantlynx.jpg)
+![valiantlynx logo](./static/valiantlynx.jpg)
 
 ## Introduction
 

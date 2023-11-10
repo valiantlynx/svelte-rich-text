@@ -20,6 +20,7 @@
 		"@sveltejs/kit": "^1.20.4",
 		"@typescript-eslint/eslint-plugin": "^6.0.0",
 		"@typescript-eslint/parser": "^6.0.0",
+		"@valiantlynx/general-config": "^0.0.2",
 		"autoprefixer": "^10.4.16",
 		"eslint-config-custom": "*",
 		"marked": "^9.1.4",
@@ -34,7 +35,7 @@
 		"tslib": "^2.4.1",
 		"typescript": "^5.2.2",
 		"vite": "^4.4.2",
-		"@valiantlynx/general-config": "^0.0.2"
+		"@valiantlynx/svelte-rich-text": "^0.0.2"
 	},
 	"type": "module"
 }

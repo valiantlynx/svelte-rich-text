@@ -1,5 +1,5 @@
 <script>
-	import { site } from '$lib/config/site';
+	import { site } from '@valiantlynx/general-config';
 	/**
 	 * @type {{ expand: { sender: { username: any; avatar: any; id: any; }; }; created: string | number | Date; message: any; }}
 	 */
@@ -11,7 +11,7 @@
 
 	const messageClass = message.expand?.sender.username === sender ? 'chat-end' : 'chat-start';
 	const avatar = message.expand?.sender?.avatar
-		? `${site.pocketbase}/api/files/${message.expand?.sender?.collectionId}/${message.expand?.sender?.id}/${message.expand?.sender?.avatar}`
+		? `${site.site.pocketbase}/api/files/${message.expand?.sender?.collectionId}/${message.expand?.sender?.id}/${message.expand?.sender?.avatar}`
 		: `https://api.dicebear.com/7.x/adventurer-neutral/svg?seed=${message.expand?.sender?.username}`;
 
 	const ts = new Date(message.created);
