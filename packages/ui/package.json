@@ -1,5 +1,5 @@
 {
-  "name": "ui",
+  "name": "@valiantlynx/react-ui",
   "version": "0.0.0",
   "private": true,
   "sideEffects": [
@@ -23,12 +23,12 @@
   "devDependencies": {
     "@types/react": "^18.2.5",
     "autoprefixer": "^10.4.13",
-    "eslint-config-custom": "*",
+    "@valiantlynx/eslint-config-custom": "*",
     "postcss": "^8.4.20",
     "react": "^18.2.0",
-    "tailwind-config": "*",
+    "@valiantlynx/tailwind-config": "*",
     "tailwindcss": "^3.2.4",
-    "tsconfig": "*",
+    "@valiantlynx/tsconfig": "*",
     "tsup": "^7.2.0",
     "typescript": "^5.1.6"
   }

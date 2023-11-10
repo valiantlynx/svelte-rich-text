@@ -1,12 +1,14 @@
 {
-  "name": "tailwind-config",
+  "name": "@valiantlynx/tailwind-config",
   "version": "0.0.0",
   "private": true,
   "main": "index.ts",
   "types": "index.ts",
   "devDependencies": {
-    "tailwindcss": "^3.2.4",
     "daisyui": "^3.6.1",
-    "@valiantlynx/general-config": "*"
+    "tailwindcss": "^3.2.4"
+  },
+  "dependencies": {
+    "@valiantlynx/general-config": "^0.0.2"
   }
 }
