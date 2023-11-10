@@ -1,5 +1,11 @@
 # @valiantlynx/tsconfig
 
+## 0.0.6
+
+### Patch Changes
+
+- d284225: though its just a patch. im done for now i dont need to edit this package further
+
 ## 0.0.5
 
 ### Patch Changes
