@@ -4,7 +4,6 @@ import { goto } from '$app/navigation';
 import { site } from '@valiantlynx/general-config';
 import { writable } from 'svelte/store';
 
-
 export const pb = new PocketBase(site.site.pocketbase);
 
 export const currentUser = writable(pb.authStore.model);
@@ -100,7 +99,6 @@ export const patchPocketbase1only = async (collection: string, id: string, data:
 };
 
 export const serializeNonPOJOs = (obj: any) => {
-
 	// // if the object is not a POJO, then serialize it
 	// if (obj && typeof obj === 'object' && obj.constructor !== Object) {
 	// 	return JSON.stringify(obj);
@@ -109,4 +107,4 @@ export const serializeNonPOJOs = (obj: any) => {
 	// return obj;
 
 	return structuredClone(obj);
-}
+};

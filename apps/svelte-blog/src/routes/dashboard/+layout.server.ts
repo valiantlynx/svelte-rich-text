@@ -1,4 +1,3 @@
-
 import { redirect } from '@sveltejs/kit';
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars

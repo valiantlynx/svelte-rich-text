@@ -1,6 +1,7 @@
 <script>
 	import { onMount } from 'svelte';
-	import { pb, currentUser, getImageURL } from '$lib/utils/api'; // Adjust these imports accordingly
+	import { pb, getImageURL } from '$lib/utils/api'; // Adjust these imports accordingly
+	import { page } from '$app/stores';
 
 	/**
 	 * Fetches and processes category data.
@@ -88,8 +89,8 @@
 		<div class="-mt-6 aspect-w-5 aspect-h-3 md:aspect-w-2 md:aspect-h-1">
 			<img
 				class="transform translate-x-6 translate-y-6 rounded-md object-cover object-left-top sm:translate-x-16 lg:translate-y-20"
-				src={$currentUser?.avatar
-					? getImageURL($currentUser?.collectionId, $currentUser?.id || '', $currentUser?.avatar)
+				src={$page.data.user?.avatar
+					? getImageURL($page.data.user?.collectionId, $page.data.user?.id || '', $page.data.user?.avatar)
 					: 'https://img.freepik.com/free-vector/page-found-concept-illustration_114360-1869.jpg?w=2000'}
 				alt="App screenshot"
 			/>

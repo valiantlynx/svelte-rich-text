@@ -1,7 +1,6 @@
 import { error, redirect } from '@sveltejs/kit';
 import { state, verifier } from '$lib/utils/stores';
 
-
 /** @type {import('./$types').Actions} */
 export const actions = {
 	signup: async (event) => {
@@ -68,20 +67,22 @@ export const actions = {
 		throw redirect(303, '/login');
 	},
 	oauth2google: async (event) => {
-        const authMethods = await event.locals.pb?.collection('users_valiantlynx').listAuthMethods(); // generates a state and a verifier
-        if (!authMethods) {
-            return {
-                authProviders: ''
-            };
-        }
-    
-        const redirectUrl = `${event.url.origin}/api/oauth/google`;
-        const googleAuthProvider = authMethods.authProviders.find((provider) => provider.name === 'google');
-        const authProviderRedirect = `${googleAuthProvider?.authUrl}${redirectUrl}&googleAuthState=${googleAuthProvider?.state}`;
-        // Save the state and verifier in a cookie
+		const authMethods = await event.locals.pb?.collection('users_valiantlynx').listAuthMethods(); // generates a state and a verifier
+		if (!authMethods) {
+			return {
+				authProviders: ''
+			};
+		}
+
+		const redirectUrl = `${event.url.origin}/api/oauth/google`;
+		const googleAuthProvider = authMethods.authProviders.find(
+			(provider) => provider.name === 'google'
+		);
+		const authProviderRedirect = `${googleAuthProvider?.authUrl}${redirectUrl}&googleAuthState=${googleAuthProvider?.state}`;
+		// Save the state and verifier in a cookie
 		state.set(googleAuthProvider.state);
 		verifier.set(googleAuthProvider.codeVerifier);
 
-        throw redirect(302, authProviderRedirect);
-    }
+		throw redirect(302, authProviderRedirect);
+	}
 };

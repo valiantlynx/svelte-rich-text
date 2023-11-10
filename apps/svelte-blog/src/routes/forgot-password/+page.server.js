@@ -13,7 +13,7 @@ export const actions = {
 			if (err.response?.data.email?.message) {
 				throw error(err.status, `Your email ${err.response?.data.email?.message}`);
 			} else {
-				throw error(err.status, err.response?.message,);
+				throw error(err.status, err.response?.message);
 			}
 		}
 	}

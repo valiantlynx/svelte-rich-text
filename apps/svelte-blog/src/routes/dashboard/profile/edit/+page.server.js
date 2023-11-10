@@ -10,7 +10,9 @@ export const actions = {
 		}
 
 		try {
-			const { username, avatar } = await locals.pb.collection('users_valiantlynx').update(locals?.user?.id, data);
+			const { username, avatar } = await locals.pb
+				.collection('users_valiantlynx')
+				.update(locals?.user?.id, data);
 
 			locals.user.username = username;
 			locals.user.avatar = avatar;

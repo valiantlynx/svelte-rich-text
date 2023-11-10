@@ -1,4 +1,4 @@
-import { error, redirect } from "@sveltejs/kit";
+import { error, redirect } from '@sveltejs/kit';
 import { state, verifier } from '$lib/utils/stores';
 
 export const load = ({ locals }) => {
@@ -15,12 +15,9 @@ export const actions = {
 		const password = data.get('password');
 		try {
 			// Authenticate the user and get the token from the server
-			await event.locals.pb
-				.collection("users_valiantlynx")
-				.authWithPassword(email, password);
+			await event.locals.pb.collection('users_valiantlynx').authWithPassword(email, password);
 			// get their IP address
 			// console.log('event', event.getClientAddress());
-
 		} catch (err) {
 			if (err.data?.data?.identity?.message) {
 				throw error(err.status, `Your email ${err.data?.data?.identity?.message}`);
@@ -30,23 +27,25 @@ export const actions = {
 				throw error(err.status, err.message);
 			}
 		}
-		throw redirect(303, '/dashboard',);
+		throw redirect(303, '/dashboard');
 	},
 	oauth2google: async (event) => {
-        const authMethods = await event.locals.pb?.collection('users_valiantlynx').listAuthMethods(); // generates a state and a verifier
-        if (!authMethods) {
-            return {
-                authProviders: ''
-            };
-        }
-    
-        const redirectUrl = `${event.url.origin}/api/oauth/google`;
-        const googleAuthProvider = authMethods.authProviders.find((provider) => provider.name === 'google');
-        const authProviderRedirect = `${googleAuthProvider?.authUrl}${redirectUrl}&googleAuthState=${googleAuthProvider?.state}`;
-        // Save the state and verifier in a cookie
+		const authMethods = await event.locals.pb?.collection('users_valiantlynx').listAuthMethods(); // generates a state and a verifier
+		if (!authMethods) {
+			return {
+				authProviders: ''
+			};
+		}
+
+		const redirectUrl = `${event.url.origin}/api/oauth/google`;
+		const googleAuthProvider = authMethods.authProviders.find(
+			(provider) => provider.name === 'google'
+		);
+		const authProviderRedirect = `${googleAuthProvider?.authUrl}${redirectUrl}&googleAuthState=${googleAuthProvider?.state}`;
+		// Save the state and verifier in a cookie
 		state.set(googleAuthProvider.state);
 		verifier.set(googleAuthProvider.codeVerifier);
 
-        throw redirect(302, authProviderRedirect);
-    }
+		throw redirect(302, authProviderRedirect);
+	}
 };

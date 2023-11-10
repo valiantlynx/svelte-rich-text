@@ -1,8 +1,12 @@
 <script>
 	import { page } from '$app/stores';
-	import { ValiantRichText } from '@valiantlynx/svelte-rich-text';
+	import { ValiantRichText, getData } from '@valiantlynx/svelte-rich-text';
 
   const blog = $page.data.blog;
+
+  const saveData = (data) => {
+	console.log(data);
+  };
 </script>
 
 
@@ -20,7 +24,8 @@
 			alt={blog?.title}
 			class="w-full h-auto rounded-lg mb-4"
 		/>
-		<ValiantRichText />
+
+		
     <p class="text-sm text-accent">By: {blog?.author}</p>
 
     <p class="text-sm text-accent">Published: {blog?.created}</p>
@@ -32,6 +37,28 @@
     </div>
 
 		<p class="text-sm text-secondary">Tags: {blog?.tags}</p>
+		{#if $page.data.user}
+		{#if $page.data.user.id === blog.author}
+		<ValiantRichText />
+		<button 
+		class="btn btn-primary"
+		on:click={()=>{
+			const data = getData(); // returns dataBlock[] type
+			saveData(data);
+		  }}>Save</button>
+		{:else}
+		<h3 class="text-xl text-accent md:text-2xl lg:text-3xl font-bold mb-4">
+			you can not edit this blog post. as you are not the author of this blog post. Create your own blog post <a href="/blogs/new" class="link link-primary">here</a>
+		</h3>
+		<ValiantRichText viewMode={true} />
+		{/if}
+
+{:else}
+<h3 class="text-xl text-accent md:text-2xl lg:text-3xl font-bold mb-4">
+			It is possible to edit this blog post. Please <a href="/login" class="link link-primary">login</a> to edit.
+		</h3>
+<ValiantRichText viewMode={true} />
+		{/if}
 	</div>
 </div>
 

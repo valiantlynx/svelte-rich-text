@@ -1,4 +1,3 @@
-
 export const load = async (event) => {
 	if (event.locals.user) {
 		return {
@@ -6,9 +5,8 @@ export const load = async (event) => {
 		};
 	}
 
-	
-	const data = { 
+	const data = {
 		user: undefined
-	 };
+	};
 	return data;
 };

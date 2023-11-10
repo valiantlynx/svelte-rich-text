@@ -83,4 +83,3 @@ export const minimum_fuel_economy = 0.1;
 
 export const state = writable(null);
 export const verifier = writable(null);
-
