@@ -9,6 +9,7 @@
     "clean": "turbo clean",
     "format": "turbo format",
     "preview": "turbo preview",
+    "package": "turbo package",
     "changeset": "changeset",
     "publish:packages": "changeset publish",
     "version:packages": "changeset version",

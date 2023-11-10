@@ -19,6 +19,9 @@
       "dependsOn": ["^format", "^build"]
     },
     "format": {},
+    "package": {
+      "dependsOn": [ "^build"]
+    },
     "python": {
       "dependsOn": ["python:pip"]
     },
