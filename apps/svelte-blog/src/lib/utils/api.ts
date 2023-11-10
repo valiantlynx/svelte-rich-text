@@ -1,16 +1,16 @@
 import PocketBase from 'pocketbase';
 import { authData } from '$lib/utils/stores';
 import { goto } from '$app/navigation';
-import { site } from '$lib/config/site';
+import { site } from '@valiantlynx/general-config';
 import { writable } from 'svelte/store';
 
 
-export const pb = new PocketBase(site.pocketbase);
+export const pb = new PocketBase(site.site.pocketbase);
 
 export const currentUser = writable(pb.authStore.model);
 
 export const getImageURL = (collectionId: string, recordId: string, fileName: string) => {
-	return `${site.pocketbase}/api/files/${collectionId}/${recordId}/${fileName}`;
+	return `${site.site.pocketbase}/api/files/${collectionId}/${recordId}/${fileName}`;
 };
 
 export const authPocketbase = async (user: string, password: string) => {

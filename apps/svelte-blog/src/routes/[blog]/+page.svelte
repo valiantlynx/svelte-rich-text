@@ -1,7 +1,9 @@
 <script>
 	import { page } from '$app/stores';
+
   const blog = $page.data.blog;
 </script>
+
 
 <div class="p-4 md:p-8 lg:p-12 flex justify-center">
 	<div class="w-3/4">

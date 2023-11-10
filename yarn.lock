@@ -1314,6 +1314,15 @@
   resolved "https://registry.npmjs.org/@valiantlynx/image/-/image-0.0.2.tgz"
   integrity sha512-cthhGEd+g4FHfqrszd/cD6ubbJdQdWvHloviWraIifdp/xcmp9KvyTXJQKo4XoFKDFt9hXzsm2DQHy2hbXyWOw==
 
+"@valiantlynx/svelte-rich-text@^0.0.2":
+  version "0.0.2"
+  resolved "https://registry.yarnpkg.com/@valiantlynx/svelte-rich-text/-/svelte-rich-text-0.0.2.tgz#c332d358103829be0a80ec34b367b21a6dca6ad7"
+  integrity sha512-sPomKXsRjX6QVTjivZedCOP6AFHEhUrHAwyf0p1NcnfyB0qdhVsAsusU3GyLuUhZEVKq1MzI2NEEMpGxQ/5C3g==
+  dependencies:
+    short-uuid "^4.2.2"
+    svelte-highlight "^7.4.1"
+    svelte-select "^5.7.0"
+
 "@vercel/nft@^0.23.0":
   version "0.23.1"
   resolved "https://registry.yarnpkg.com/@vercel/nft/-/nft-0.23.1.tgz#f17c5f9d3f3a0178ea25eb7397a14618c00529bf"

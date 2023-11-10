@@ -1,10 +1,11 @@
 import PocketBase from 'pocketbase';
-import { site } from '$lib/config/site';
+import { site } from '@valiantlynx/general-config';
+
 import { serializeNonPOJOs } from '$lib/utils/api';
 
 /** @type {import('@sveltejs/kit').Handle} */ 
 export const handle = async ({ event, resolve }) => {
-	event.locals.pb = new PocketBase(site.pocketbase);
+	event.locals.pb = new PocketBase(site.site.pocketbase);
 	event.locals.pb.authStore.loadFromCookie(event.request.headers.get('cookie') || '');
 
 	try {
