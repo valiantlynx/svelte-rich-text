@@ -1,5 +1,11 @@
 # @valiantlynx/svelte-rich-text
 
+## 0.0.4
+
+### Patch Changes
+
+- 997dfad: finally able to release a functioning one
+
 ## 0.0.3
 
 ### Patch Changes
