@@ -2,8 +2,8 @@
 	<script
 		async
 		src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7827487944601896"
-		crossorigin="anonymous"
-	></script>
+		crossorigin="anonymous">{}</script
+	>
 	<!-- animevariant homepage add -->
 	<ins
 		class="adsbygoogle"
@@ -13,7 +13,5 @@
 		data-ad-format="auto"
 		data-full-width-responsive="true"
 	/>
-	<script>
-		(adsbygoogle = window.adsbygoogle || []).push({});
-	</script>
+	<script>{}</script>
 </div>
