@@ -1,5 +1,11 @@
 # @valiantlynx/svelte-rich-text
 
+## 0.0.3
+
+### Patch Changes
+
+- f1d52b6: bug fix, the projects was published before it was built
+
 ## 0.0.2
 
 ### Patch Changes
