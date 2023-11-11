@@ -1,5 +1,11 @@
 # @valiantlynx/tsconfig
 
+## 0.0.10
+
+### Patch Changes
+
+- e105828: gg
+
 ## 0.0.9
 
 ### Patch Changes

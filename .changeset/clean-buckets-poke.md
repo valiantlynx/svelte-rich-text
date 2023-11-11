@@ -1,5 +1,0 @@
----
-"@valiantlynx/tsconfig": patch
----
-
-gg
