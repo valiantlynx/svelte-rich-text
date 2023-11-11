@@ -6,7 +6,7 @@ name: 🚀 CI - publish
 on:
   push:
     branches:
-      - 'main'
+      - 'valiantlynx-turborepo'
   workflow_dispatch:
 concurrency: ${{ github.workflow }}-${{ github.ref }}
 
