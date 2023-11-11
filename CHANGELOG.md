@@ -4,8 +4,8 @@
 
 ### Patch Changes
 
-- new empty index.js to remove errors
-- though its just a patch. im done for now i dont need to edit this package further
+- 22e260c: new empty index.js to remove errors
+- a9ad51e: though its just a patch. im done for now i dont need to edit this package further
 
 ## 0.0.6
 
