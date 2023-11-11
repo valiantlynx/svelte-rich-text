@@ -1,5 +1,11 @@
 # @valiantlynx/tsconfig
 
+## 0.0.9
+
+### Patch Changes
+
+- 72e7c66: no credible changes
+
 ## 0.0.8
 
 ### Patch Changes
