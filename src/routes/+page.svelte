@@ -5,7 +5,7 @@
 
 <div>
 	<Main
-		intailData={[
+	initialData={[
 			{
 				id: '123',
 				name: 'paragraph',

@@ -13,7 +13,7 @@
 	import EditMode from './editMode.svelte';
 
 	// exports
-	export let intailData: dataBlock[] = [];
+	export let initialData: dataBlock[] = [];
 	export let viewMode = false;
 	export let headerFont = `Verdana, sans-serif`;
 	export let bodyFont = `Helvetica, sans-serif`;
@@ -68,7 +68,7 @@
 	setContext('Quote', customQuote);
 	setContext('languages', codeBlockLanguages);
 
-	data.set(intailData);
+	data.set(initialData);
 </script>
 
 <div
