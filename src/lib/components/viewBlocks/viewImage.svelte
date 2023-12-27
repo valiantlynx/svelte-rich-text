@@ -2,13 +2,12 @@
 	export let base64: string;
 	export let caption: string;
 	export let name: string;
-	import defaultImg from '../../assets/default.jpg';
 	let fallback = base64 == '';
 </script>
 
 <div class="imageView">
 	{#if fallback}
-		<img src={defaultImg} alt="favicon" />
+		<img src='/default.jpg' alt="favicon" />
 	{:else}
 		<img src={base64} alt="sorry {name} image does not exist" on:error={() => (fallback = true)} />
 	{/if}
