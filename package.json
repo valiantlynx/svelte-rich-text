@@ -1,6 +1,6 @@
 {
 	"name": "@valiantlynx/svelte-rich-text",
-	"version": "0.0.6",
+	"version": "0.0.9",
 	"publishConfig": {
 		"access": "public"
 	},
@@ -27,7 +27,7 @@
 	},
 	"scripts": {
 		"dev": "vite --host",
-		"build": "vite build",
+		"build": "vite build && yarn package",
 		"preview": "vite preview",
 		"package": "svelte-kit sync && svelte-package && publint",
 		"release": "yarn package && npx changeset publish",
@@ -73,6 +73,11 @@
 		"vite": "^4.4.2",
 		"vitest": "^0.34.0"
 	},
+	"dependencies": {
+		"short-uuid": "^4.2.2",
+		"svelte-highlight": "^7.4.1",
+		"svelte-select": "^5.7.0"
+	},
 	"svelte": "./dist/index.js",
 	"types": "./dist/index.d.ts",
 	"main": "dist/index.js",
@@ -83,10 +88,5 @@
 				"./dist/index.d.ts"
 			]
 		}
-	},
-	"dependencies": {
-		"short-uuid": "^4.2.2",
-		"svelte-highlight": "^7.4.1",
-		"svelte-select": "^5.7.0"
 	}
 }

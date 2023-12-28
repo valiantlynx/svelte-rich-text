@@ -7,7 +7,7 @@ docker exec svelte-rich-text /bin/bash
 git subtree add --prefix=packages/svelte-rich-text https://github.com/valiantlynx/svelte-rich-text.git valiantlynx-turborepo --squash
 
 # pull the subtree
-git subtree pull --prefix=packages/svelte-rich-text https://github.com/valiantlynx/svelte-rich-text.git valiantlynx-turborepo --squash
+git subtree pull --prefix=packages/svelte-rich-text https://github.com/valiantlynx/svelte-rich-text.git main --squash
 
 # push the subtree
-git subtree push --prefix=packages/svelte-rich-text https://github.com/valiantlynx/svelte-rich-text.git valiantlynx-turborepo
+git subtree push --prefix=packages/svelte-rich-text https://github.com/valiantlynx/svelte-rich-text.git main
