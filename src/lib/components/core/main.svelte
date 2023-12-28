@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { data } from '../../utils/stores.js';
 	import { type SvelteComponent, type ComponentType, setContext } from 'svelte';
-	import { nightOwl } from 'svelte-highlight/styles';
+	//import { nightOwl } from 'svelte-highlight/styles';
 	import ViewImage from '../viewBlocks/viewImage.svelte';
 	import ViewCode from '../viewBlocks/viewCode.svelte';
 	import ViewHeader from '../viewBlocks/viewHeader.svelte';
@@ -34,7 +34,8 @@
 	export let lh3 = '1.4';
 	export let lh4 = '1.5';
 	export let lbody = '1.6';
-	export let codeTheme: string = nightOwl;
+	export let codeTheme: string = "nebula";
+	// export let codeTheme: string = nightOwl; // this is commented because it's not working with svelte-highlight
 	export let customImage: ComponentType<
 		SvelteComponent<{ base64: string; name: string; caption: string }>
 	> = ViewImage;
