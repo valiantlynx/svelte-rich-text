@@ -74,18 +74,18 @@
         display: flex;
         flex-direction: column;
     }
-
     #code-snippet-container {
-        margin: 2rem auto; /* Increased margin for better spacing */
-        background-color: #1F2937; /* Dark background for contrast */
-        border-radius: 0.5rem; /* Rounded edges */
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
-        overflow: hidden;
+        width: 100%; /* Ensure full width */
+        margin: 2rem auto; /* Centering the container */
+        background-color: #1F2937;
+        border-radius: 0.5rem;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        overflow: hidden; /* Hide overflow */
     }
 
     #padding-container {
         padding: 1rem;
-        background-color: #2c3e50; /* Slightly different shade for the header */
+        background-color: #2c3e50;
         border-top-left-radius: 0.5rem;
         border-top-right-radius: 0.5rem;
     }
@@ -121,34 +121,38 @@
         outline: none;
         box-shadow: 0 0 0 3px #F87171;
     }
-
     #code-content {
         position: relative;
         padding: 1rem;
         background-color: #1F2937;
         border-bottom-left-radius: 0.5rem;
         border-bottom-right-radius: 0.5rem;
-        overflow: auto; /* Enable scrolling within this container */
-        max-height: 500px; /* Adjust max height as necessary */
+        overflow: auto; /* Enable scrolling for overflow content */
+    }
+
+    pre {
+        margin: 0;
+        padding: 0; /* Remove padding to use full width */
+        max-height: 500px;
+        overflow: auto; /* Scroll for overflow */
     }
 
     #code-text {
         font-size: 0.875rem;
-        white-space: pre-wrap;
-        color: #E5E7EB; /* Light text for readability */
-        tab-size: 4; /* Adjust tab size for code indentation */
+        white-space: pre;
+        color: #E5E7EB;
+        tab-size: 4;
     }
 
     .line-number {
         display: inline-block;
-        width: auto; /* Adjust width as needed */
+        min-width: 2em;
         text-align: right;
-        margin-right: 16px; /* Ensure spacing between line numbers and code */
+        margin-right: 16px;
         color: #888;
         user-select: none;
-        /* Other styles... */
     }
-
+    
     @media (max-width: 768px) {
         #title {
             font-size: 1rem;
