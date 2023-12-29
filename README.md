@@ -82,7 +82,7 @@ You can customize various aspects of the rich text editor:
   - Customize font sizes using `h1`, `h2`, `h3`, `h4`, `body`, `small`.
   - Set line heights for various text elements using `lh1`, `lh2`, `lh3`, `lh4`, and `lbody`.
 
-- **Custom Code Themes:** Users can import and apply custom themes from `svelte-highlight` for code highlighting by setting the `codeTheme` prop.
+- **Custom Code Themes:** Uses themes from `prism.js` for code blocks and highlights.
 
 - **Initial Data:** You can prepopulate the editor with initial data by passing an array of `dataBlock` to the `initialData` prop.
 
@@ -147,7 +147,15 @@ The package provides a function to retrieve the `dataBlock` at any given moment.
 
 ## Svelte Highlight
 
-The package uses `svelte-highlight` with `autoHighlight` functionality for code highlighting. This feature enhances the visual representation of code blocks in your rich text editor. However, note that enabling `autoHighlight` may result in a larger bundle size. You may need to consider using customCode component.
+The package uses `prism.js` for code highlighting. To use it, you need to import the `prism.css` file in your application. You can do this by adding the following line to your `index.html` file:
+
+```html
+<svelte:head>
+    <!-- Include Prism.js and its CSS theme for syntax highlighting -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.25.0/prism.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.25.0/themes/prism-okaidia.min.css" />
+</svelte:head>
+```
 
 ## Props
 
@@ -215,13 +223,67 @@ export let customParagraph: ComponentType<SvelteComponent<{ text: string }>> = V
 
 export let customQuote: ComponentType<SvelteComponent<{ text: string; owner: string }>> = ViewQuote;
 
-export let codeBlockLanguages: languages[] = [
-	'javascript',
-	'java',
-	'c',
-	'css',
-	'typescript',
-	'python',
-	'csharp'
+		export let codeBlockLanguages: languages[] = [
+    'actionscript',
+    'angular', // For Angular templates
+    'assembly',
+    'bash',
+    'c',
+    'clojure',
+    'cobol',
+    'cpp', // C++
+    'csharp', // C#
+    'css',
+    'dart',
+    'dockerfile',
+    'elixir',
+    'elm',
+    'erlang',
+    'fortran',
+    'fsharp', // F#
+    'graphql',
+    'groovy',
+    'haskell',
+    'html',
+    'java',
+    'javascript',
+    'json',
+    'julia',
+    'kotlin',
+    'less',
+    'lua',
+    'markdown',
+    'matlab',
+    'nim',
+    'nodejs',
+    'objective-c',
+    'ocaml',
+    'pascal',
+    'perl',
+    'php',
+    'plaintext',
+    'powershell',
+    'python',
+    'r',
+    'react', // JSX
+    'reason', // ReasonML
+    'ruby',
+    'rust',
+    'sass',
+    'scala',
+    'scheme',
+    'shell', // General shell scripting
+    'sql',
+    'stylus',
+    'svelte',
+    'swift',
+    'toml',
+    'typescript',
+    'vbnet', // Visual Basic .NET
+    'vue',
+    'wasm', // WebAssembly
+    'xml',
+    'yaml'
 ];
+
 ```
