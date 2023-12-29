@@ -1,7 +1,6 @@
 <script lang="ts">
 	import { data } from '../../utils/stores.js';
 	import { type SvelteComponent, type ComponentType, setContext } from 'svelte';
-	//import { nightOwl } from 'svelte-highlight/styles';
 	import ViewImage from '../viewBlocks/viewImage.svelte';
 	import ViewCode from '../viewBlocks/viewCode.svelte';
 	import ViewHeader from '../viewBlocks/viewHeader.svelte';
@@ -34,8 +33,6 @@
 	export let lh3 = '1.4';
 	export let lh4 = '1.5';
 	export let lbody = '1.6';
-	export let codeTheme: string = "nebula";
-	// export let codeTheme: string = nightOwl; // this is commented because it's not working with svelte-highlight
 	export let customImage: ComponentType<
 		SvelteComponent<{ base64: string; name: string; caption: string }>
 	> = ViewImage;
@@ -49,18 +46,71 @@
 	export let customParagraph: ComponentType<SvelteComponent<{ text: string }>> = ViewParagraph;
 	export let customQuote: ComponentType<SvelteComponent<{ text: string; owner: string }>> =
 		ViewQuote;
-	export let codeBlockLanguages: languages[] = [
-		'javascript',
-		'java',
-		'c',
-		'css',
-		'typescript',
-		'python',
-		'csharp'
-	];
+		export let codeBlockLanguages: languages[] = [
+    'actionscript',
+    'angular', // For Angular templates
+    'assembly',
+    'bash',
+    'c',
+    'clojure',
+    'cobol',
+    'cpp', // C++
+    'csharp', // C#
+    'css',
+    'dart',
+    'dockerfile',
+    'elixir',
+    'elm',
+    'erlang',
+    'fortran',
+    'fsharp', // F#
+    'graphql',
+    'groovy',
+    'haskell',
+    'html',
+    'java',
+    'javascript',
+    'json',
+    'julia',
+    'kotlin',
+    'less',
+    'lua',
+    'markdown',
+    'matlab',
+    'nim',
+    'nodejs',
+    'objective-c',
+    'ocaml',
+    'pascal',
+    'perl',
+    'php',
+    'plaintext',
+    'powershell',
+    'python',
+    'r',
+    'react', // JSX
+    'reason', // ReasonML
+    'ruby',
+    'rust',
+    'sass',
+    'scala',
+    'scheme',
+    'shell', // General shell scripting
+    'sql',
+    'stylus',
+    'svelte',
+    'swift',
+    'toml',
+    'typescript',
+    'vbnet', // Visual Basic .NET
+    'vue',
+    'wasm', // WebAssembly
+    'xml',
+    'yaml'
+];
+
 
 	// context setup
-	setContext('codeTheme', codeTheme);
 	setContext('Image', customImage);
 	setContext('Code', customCode);
 	setContext('Header', customHeader);
