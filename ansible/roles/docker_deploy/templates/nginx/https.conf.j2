@@ -9,18 +9,18 @@ http {
     # Always redirect HTTP to HTTPS
     server {
         listen 80;
-        server_name server_name {% for domain in cloudflare_zone_ids.keys() %}{{ domain }} www.{{ domain }} {% endfor %};
+        server_name server_name {% for domain in cloudflare_zone_ids.keys() %}svelte-rich-text.{{ domain }} {% endfor %};
         return 301 https://$host$request_uri;
     }
     # Configuration for astromanga.com
     server {
         listen 443 ssl http2;
-        server_name server_name {% for domain in cloudflare_zone_ids.keys() %}{{ domain }} www.{{ domain }} {% endfor %};
+        server_name server_name {% for domain in cloudflare_zone_ids.keys() %}svelte-rich-text.{{ domain }} {% endfor %};
 
         # Use the first domain in the list for SSL certificate paths
         {% set primary_domain = cloudflare_zone_ids.keys() | list | first %}
-        ssl_certificate /etc/letsencrypt/live/{{ primary_domain }}/fullchain.pem;
-        ssl_certificate_key /etc/letsencrypt/live/{{ primary_domain }}/privkey.pem;
+        ssl_certificate /etc/letsencrypt/live/svelte-rich-text.{{ primary_domain }}/fullchain.pem;
+        ssl_certificate_key /etc/letsencrypt/live/svelte-rich-text.{{ primary_domain }}/privkey.pem;
         # include /etc/letsencrypt/options-ssl-nginx.conf; # Recommended SSL settings
         # ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem; # DH parameters
 
