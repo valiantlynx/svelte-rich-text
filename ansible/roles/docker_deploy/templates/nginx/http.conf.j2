@@ -9,7 +9,7 @@ http {
     # Configuration for astromanga.com
     server {
         listen 80;
-        server_name server_name {% for domain in cloudflare_zone_ids.keys() %}{{ domain }} www.{{ domain }} {% endfor %};
+        server_name server_name {% for domain in cloudflare_zone_ids.keys() %}svelte-rich-text.{{ domain }} {% endfor %};
 
         location / {
             proxy_pass http://svelte-rich-text:3000;
