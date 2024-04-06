@@ -97,7 +97,7 @@ jobs:
 
     # New step to dispatch an event
     - name: Dispatch Deployment Event
-      if: ${{ github.event_name != 'pull_request' }} && success()
+      if: ${{ github.event_name != 'pull_request' }} && success() && github.event.workflow_run.head_branch == 'main'
       run: |
         curl -X POST \
         -H "Authorization: token ${{ secrets.PAT }}" \
