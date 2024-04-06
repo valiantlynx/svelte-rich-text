@@ -6,8 +6,6 @@ services:
     image: valiantlynx/svelte-rich-text:latest
     container_name: svelte-rich-text
     restart: always
-    ports:
-    - 3000:3000
     networks:
       - monitoring
 
@@ -15,8 +13,6 @@ services:
     image: valiantlynx/valiantos:latest
     container_name: valiantos
     restart: always
-    ports:
-    - 3001:3000
     networks:
       - monitoring
 
