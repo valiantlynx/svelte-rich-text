@@ -11,11 +11,11 @@ variable "subnets" {
 variable "ec2_names" {
     description = "EC2 names"
     type = list(string)
-    default = ["kasm1"] # e.g ["kasm1", "kasm2"]
+    default = ["svelte-rich-text1"] # e.g ["svelte-rich-text1", "svelte-rich-text2"]
 }
 
 variable "key_name" {
-  description = "Key name for kasm EC2"
+  description = "Key name for svelte-rich-text EC2"
   type = string
 }
 
