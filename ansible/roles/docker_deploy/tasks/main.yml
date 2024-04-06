@@ -23,9 +23,6 @@
     src: "docker/docker-compose.yaml.j2"
     dest: "{{ ansible_env.HOME }}/docker-compose.yml"
     mode: "0644"
-  vars:
-    docker_hub_username: "{{ lookup('env', 'DOCKER_HUB_USERNAME') }}"
-    docker_hub_password: "{{ lookup('env', 'DOCKER_HUB_PASSWORD') }}"
 
 - name: Generate Docker Compose file for certbot with dynamic domain names
   ansible.builtin.template:
@@ -49,12 +46,6 @@
     dest: "{{ ansible_env.HOME }}/nginx/nginx.conf"
     mode: "0644"
 
-- name: Stop existing Docker Compose services
-  command: docker-compose down --remove-orphans
-  become: true
-  args:
-    chdir: "{{ ansible_env.HOME }}/"
-    
 - name: Create 'monitoring' network if it does not exist
   become: true # Escalate if necessary for Docker commands
   ansible.builtin.command: docker network create monitoring
@@ -127,7 +118,7 @@
     special_time: "hourly"
     job: "cd {{ ansible_env.HOME }} && docker system prune -a -f"
     user: ubuntu
-    
+
 - name: Schedule automated certificate renewal
   ansible.builtin.cron:
     name: "Renew Let's Encrypt certificates"
