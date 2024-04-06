@@ -37,6 +37,11 @@ variable "cloudflare_zone_ids" {
           name    = "valiantos",
           service = "valiantos",
           port    = 3000
+        },
+        {
+          name    = "os",
+          service = "valiantos",
+          port    = 3000
         }
       ],
       include_root = false,
