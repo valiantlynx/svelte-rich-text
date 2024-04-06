@@ -16,6 +16,13 @@ services:
     networks:
       - monitoring
 
+  raga:
+    image: valiantlynx/raga:latest
+    container_name: raga
+    restart: always
+    networks:
+      - monitoring
+
   nginx:
     image: nginx:latest
     container_name: nginx

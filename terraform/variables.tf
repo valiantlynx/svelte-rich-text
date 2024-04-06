@@ -39,8 +39,8 @@ variable "cloudflare_zone_ids" {
           port    = 3000
         },
         {
-          name    = "os",
-          service = "valiantos",
+          name    = "raga",
+          service = "raga",
           port    = 3000
         }
       ],
