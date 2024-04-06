@@ -83,6 +83,12 @@
   ansible.builtin.debug:
     var: primary_domain
 
+- name: Stop existing Docker Compose services
+  command: docker-compose down --remove-orphans
+  become: true
+  args:
+    chdir: "{{ ansible_env.HOME }}/"
+
 - name: Obtain SSL certificates with Certbot if needed
   command: docker-compose -f docker-compose.certbot.yml run --rm certbot
   become: true
@@ -95,12 +101,6 @@
     src: "nginx/https.conf.j2"
     dest: "{{ ansible_env.HOME }}/nginx/nginx.conf"
     mode: "0644"
-
-- name: Stop existing Docker Compose services
-  command: docker-compose down --remove-orphans
-  become: true
-  args:
-    chdir: "{{ ansible_env.HOME }}/"
 
 - name: Deploy services using Docker Compose
   command: docker-compose up -d
