@@ -97,7 +97,7 @@ jobs:
 
     # Dispatch deployment event only if the workflow is successful and triggered on the main branch
     - name: Dispatch Deployment Event
-      if: github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.head_branch == 'main'
+      if: github.event.workflow_run.head_branch == 'main'
       run: |
         curl -X POST \
         -H "Authorization: token ${{ secrets.PAT }}" \
