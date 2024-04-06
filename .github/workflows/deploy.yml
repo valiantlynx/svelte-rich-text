@@ -2,6 +2,8 @@ name: Deploy
 run-name: ${{ github.actor }} is deploying 🚀🚀🚀
 
 on:
+  repository_dispatch:
+    types: [image_pushed]
   workflow_dispatch:
   workflow_run:
     workflows: ["svelte-rich-text"]  # This triggers the deployment after ollama-docker workflow completes
