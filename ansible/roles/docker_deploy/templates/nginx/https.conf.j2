@@ -5,7 +5,6 @@ events {
 http {
     server_tokens off;
     charset utf-8;
-    {% set primary_domain = cloudflare_zone_ids.keys() | list | first %}
     {% for domain, details in cloudflare_zone_ids.items() %}
     # Always redirect HTTP to HTTPS
     server {
