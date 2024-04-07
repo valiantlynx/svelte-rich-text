@@ -75,15 +75,12 @@
   set_fact:
     primary_domain: "{{ cloudflare_zone_ids.keys() | list | first }}"
 
-- name: Determine the primary domain
-  set_fact:
-    primary_domain: "{{ cloudflare_zone_ids.keys() | list | first }}"
-
 - name: Debug primary_domain variable content
   ansible.builtin.debug:
     var: primary_domain
 
 - name: Check if SSL certificate file exists for the primary domain
+  become: true
   ansible.builtin.stat:
     path: "{{ ansible_env.HOME }}/certbot/conf/live/{{ primary_domain }}/fullchain.pem"
   register: cert_file
