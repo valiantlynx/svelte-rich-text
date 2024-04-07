@@ -29,6 +29,35 @@ services:
     networks:
       - monitoring
 
+  gun-chat:
+    container_name: gun-chat
+    image: valiantlynx/gun-chat:latest
+    restart: unless-stopped
+    mem_limit: 100m
+    memswap_limit: 100m
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://gun-chat.valiantlynx.com"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+    networks:
+      - monitoring
+    depends_on:
+      - gun-relay
+
+  gun-relay:
+    container_name: gun-relay
+    image: valiantlynx/gun-relay:latest
+    restart: unless-stopped
+    mem_limit: 100m
+    memswap_limit: 100m
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://gun-relay.valiantlynx.com"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+    networks:
+      - monitoring
   nginx:
     image: nginx:latest
     container_name: nginx
@@ -45,6 +74,8 @@ services:
       - valiantos
       - raga
       - raga-backend
+      - gun-chat
+      - gun-relay
       
     restart: unless-stopped
     networks:

@@ -47,6 +47,16 @@ variable "cloudflare_zone_ids" {
           name    = "raga-backend",
           service = "raga-backend",
           port    = 3000
+        },
+        {
+          name    = "gun-chat",
+          service = "gun-chat",
+          port    = 3000
+        },
+        {
+          name    = "gun-relay",
+          service = "gun-relay",
+          port    = 8765
         }
       ],
       include_root = false,
