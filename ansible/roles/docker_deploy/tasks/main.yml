@@ -75,6 +75,10 @@
   set_fact:
     primary_domain: "{{ cloudflare_zone_ids.keys() | list | first }}"
 
+- name: Debug primary_domain variable content
+  ansible.builtin.debug:
+    var: primary_domain
+
 - name: Check if SSL certificate needs renewal for the primary domain
   ansible.builtin.command: >
     openssl x509 -checkend 864000 -noout -in {{ ansible_env.HOME }}/certbot/conf/live/{{ primary_domain }}/fullchain.pem
@@ -82,22 +86,35 @@
   failed_when: cert_check.rc > 1
   ignore_errors: yes
 
-- name: Debug primary_domain variable content
-  ansible.builtin.debug:
-    var: primary_domain
+- name: Extract domain name from the existing certificate
+  ansible.builtin.command: >
+    openssl x509 -in {{ ansible_env.HOME }}/certbot/conf/live/{{ primary_domain }}/fullchain.pem -text -noout
+  register: cert_info
+  failed_when: cert_info.rc != 0
+  ignore_errors: yes
+  when: cert_check.rc != 2  # Only attempt if the certificate file exists
+
+- name: Set flag if primary domain matches certificate domain
+  set_fact:
+    domain_matches_cert: "{{ 'DNS:' + primary_domain in cert_info.stdout }}"
+  when: cert_check.rc != 2
 
 - name: Obtain SSL certificates with Certbot if needed
   command: docker-compose -f docker-compose.certbot.yml run --rm certbot
   become: true
   args:
     chdir: "{{ ansible_env.HOME }}/"
-  when: cert_check.rc == 1
+  when: cert_check.rc == 1 or not domain_matches_cert | default(true)
 
 - name: Generate https NGINX configuration with dynamic domain names (switch to HTTPS)
   ansible.builtin.template:
     src: "nginx/https.conf.j2"
     dest: "{{ ansible_env.HOME }}/nginx/nginx.conf"
     mode: "0644"
+  vars:
+    primary_domain: "{{ primary_domain }}"
+
+
 
 - name: Stop existing Docker Compose services
   command: docker-compose down --remove-orphans
