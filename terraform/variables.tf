@@ -42,6 +42,11 @@ variable "cloudflare_zone_ids" {
           name    = "raga",
           service = "raga",
           port    = 3000
+        },
+        {
+          name    = "raga-backend",
+          service = "raga-backend",
+          port    = 3000
         }
       ],
       include_root = false,
