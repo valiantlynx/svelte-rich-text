@@ -18,13 +18,13 @@ jobs:
       - name: Checkout Repo
         uses: actions/checkout@v3
 
-      - name: Setup Node.js 18.x
+      - name: Setup Node.js and npm config
         uses: actions/setup-node@v3
         with:
-          node-version: 18.x
-
-      - name: Setup .npmrc file
-        run: echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" > .npmrc
+          node-version: '21'
+          registry-url: 'https://registry.npmjs.org/'
+          scope: '@valiantlynx'
+          node-auth-token: ${{ secrets.NPM_TOKEN }}
 
       - name: Install Dependencies
         run: yarn
@@ -36,8 +36,9 @@ jobs:
         id: changesets
         uses: changesets/action@v1
         with:
-          # This expects you to have a script called release which does a build for your packages and calls changeset publish
           publish: yarn release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          # The NPM_TOKEN is now only necessary if the publish script or any other step explicitly requires it,
+          # but the setup-node action has already configured npm authentication globally for this job.
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
