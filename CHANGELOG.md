@@ -1,5 +1,11 @@
 # @valiantlynx/svelte-rich-text
 
+## 0.2.5
+
+### Patch Changes
+
+- 9591131: just checking if changelog using changesets wor as expected
+
 ## 0.2.4
 
 ### Patch Changes
