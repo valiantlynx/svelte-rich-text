@@ -91,11 +91,17 @@
   when: cert_file.stat.exists
 
 - name: Check if SSL certificate needs renewal for the primary domain
+  become: true
   ansible.builtin.command: >
     openssl x509 -checkend 864000 -noout -in {{ ansible_env.HOME }}/certbot/conf/live/{{ primary_domain }}/fullchain.pem
   register: cert_check
   failed_when: cert_check.rc > 1
   ignore_errors: yes
+  when: cert_file.stat.exists
+
+- name: Debug - Show openssl command output
+  ansible.builtin.debug:
+    msg: "{{ cert_check.stdout }} within the next 864000 seconds (10 days)"
   when: cert_file.stat.exists
 
 - name: Obtain SSL certificates with Certbot if needed
