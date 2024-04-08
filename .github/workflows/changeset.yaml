@@ -28,7 +28,6 @@ jobs:
           node-version: 21
           registry-url: 'https://registry.npmjs.org/'
           scope: '@valiantlynx'
-          cache: "pnpm"
       - name: install pnpm
         run: npm i pnpm@latest -g
       - name: Setup npmrc
