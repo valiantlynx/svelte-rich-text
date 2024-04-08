@@ -2,7 +2,8 @@
 	"name": "@valiantlynx/svelte-rich-text",
 	"version": "0.2.4",
 	"publishConfig": {
-		"access": "public"
+		"access": "public",
+		"registry": "https://registry.npmjs.org/"
 	},
 	"description": "Rich text editor as a svelte component",
 	"homepage": "https://svelte-rich-text.valiantlynx.com",
