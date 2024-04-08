@@ -1,5 +1,11 @@
 # @valiantlynx/svelte-rich-text
 
+## 0.2.4
+
+### Patch Changes
+
+- 6e8ccc7: added homepage to package.json
+
 ## 0.0.4
 
 ### Patch Changes
