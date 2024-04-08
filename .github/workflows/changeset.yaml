@@ -27,12 +27,16 @@ jobs:
           node-version: '21'
           registry-url: 'https://registry.npmjs.org/'
           scope: '@valiantlynx'
-
+      
       - name: Install Dependencies
         run: yarn
 
       - name: Build
         run: yarn build && yarn package
+
+      - name: Configure .npmrc for Publishing
+        run: |
+          echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" >> .npmrc
 
       - name: Create Release Pull Request or Publish to npm
         id: changesets
@@ -41,7 +45,5 @@ jobs:
           publish: yarn release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          # The NPM_TOKEN is now only necessary if the publish script or any other step explicitly requires it,
-          # but the setup-node action has already configured npm authentication globally for this job.
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
