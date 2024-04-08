@@ -5,6 +5,7 @@
 		"access": "public"
 	},
 	"description": "Rich text editor as a svelte component",
+	"homepage": "https://svelte-rich-text.valiantlynx.com",
 	"maintainers": [
 		"valiantlynx <valiantlynxz@gmail.com> (https://www.valiantlynx.com/)"
 	],
