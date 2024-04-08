@@ -24,18 +24,23 @@ jobs:
       - name: Checkout Repo
         uses: actions/checkout@v3
 
+      - uses: pnpm/action-setup@v2
+        with:
+          version: 8
+
       - name: Setup Node.js and npm config
         uses: actions/setup-node@v3
         with:
-          node-version: '21'
+          node-version: '21.x'
           registry-url: 'https://registry.npmjs.org/'
           scope: '@valiantlynx'
+          cache: "pnpm"
 
       - name: Install Dependencies
-        run: npm install
+        run: pnpm install --frozen-lockfile
 
       - name: Build
-        run: npm run build && npm run package
+        run: pnpm run build && pnpm run package
 
       - name: Configure .npmrc for Publishing
         run: |
@@ -47,7 +52,7 @@ jobs:
         with:
           # Ensure you have a script in your package.json named "release" that is configured for npm.
           # This could simply be: "release": "npm publish --access public" or include the changeset publish command as needed.
-          publish: npm run release
+          publish: pnpm run release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
