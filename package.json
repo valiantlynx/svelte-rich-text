@@ -1,6 +1,6 @@
 {
 	"name": "@valiantlynx/svelte-rich-text",
-	"version": "0.2.5",
+	"version": "0.2.6",
 	"publishConfig": {
 		"access": "public",
 		"registry": "https://registry.npmjs.org/"
