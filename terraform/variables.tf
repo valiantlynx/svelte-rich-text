@@ -62,6 +62,11 @@ variable "cloudflare_zone_ids" {
           name    = "gun-relay1",
           service = "gun-relay",
           port    = 8765
+        },
+        {
+          name    = "gun-relay2",
+          service = "gun-relay",
+          port    = 8765
         }
       ],
       include_root = false,
