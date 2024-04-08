@@ -1,6 +1,6 @@
 import adapterAuto from '@sveltejs/adapter-auto';
 import adapterNode from '@sveltejs/adapter-node';
-import { vitePreprocess } from '@sveltejs/kit/vite';
+import { vitePreprocess } from '@sveltejs/vite-plugin-svelte';
 import dotenv from 'dotenv'
 dotenv.config()
 
@@ -22,3 +22,5 @@ const config = {
 };
 
 export default config;
+
+
