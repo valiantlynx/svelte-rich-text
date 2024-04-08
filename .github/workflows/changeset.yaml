@@ -14,6 +14,9 @@ jobs:
   release:
     name: Release
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
     steps:
       - name: Checkout Repo
         uses: actions/checkout@v3
@@ -24,7 +27,6 @@ jobs:
           node-version: '21'
           registry-url: 'https://registry.npmjs.org/'
           scope: '@valiantlynx'
-          node-auth-token: ${{ secrets.NPM_TOKEN }}
 
       - name: Install Dependencies
         run: yarn
@@ -42,3 +44,4 @@ jobs:
           # The NPM_TOKEN is now only necessary if the publish script or any other step explicitly requires it,
           # but the setup-node action has already configured npm authentication globally for this job.
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
