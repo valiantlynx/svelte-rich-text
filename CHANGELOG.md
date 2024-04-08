@@ -1,5 +1,11 @@
 # @valiantlynx/svelte-rich-text
 
+## 0.2.6
+
+### Patch Changes
+
+- 0135d76: some stuff. not important to users. just action testing
+
 ## 0.2.5
 
 ### Patch Changes
