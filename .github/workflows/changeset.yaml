@@ -27,12 +27,12 @@ jobs:
           node-version: '21'
           registry-url: 'https://registry.npmjs.org/'
           scope: '@valiantlynx'
-      
+
       - name: Install Dependencies
-        run: yarn
+        run: npm install
 
       - name: Build
-        run: yarn build && yarn package
+        run: npm run build && npm run package
 
       - name: Configure .npmrc for Publishing
         run: |
@@ -42,8 +42,9 @@ jobs:
         id: changesets
         uses: changesets/action@v1
         with:
-          publish: yarn release
+          # Ensure you have a script in your package.json named "release" that is configured for npm.
+          # This could simply be: "release": "npm publish --access public" or include the changeset publish command as needed.
+          publish: npm run release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
