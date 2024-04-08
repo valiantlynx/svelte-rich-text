@@ -29,7 +29,7 @@
 	},
 	"scripts": {
 		"dev": "vite --host",
-		"build": "vite build && pnpm run package",
+		"build": "vite build && yarn run package",
 		"preview": "vite preview",
 		"package": "svelte-kit sync && svelte-package && publint",
 		"release": "pnpm run package && changeset publish",
