@@ -3,8 +3,7 @@
 	"version": "0.2.5",
 	"publishConfig": {
 		"access": "public",
-		"registry": "https://registry.npmjs.org/",
-		"provenance": true
+		"registry": "https://registry.npmjs.org/"
 	},
 	"description": "Rich text editor as a svelte component",
 	"homepage": "https://svelte-rich-text.valiantlynx.com",
