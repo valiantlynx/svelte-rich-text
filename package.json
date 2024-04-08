@@ -3,7 +3,8 @@
 	"version": "0.2.6",
 	"publishConfig": {
 		"access": "public",
-		"registry": "https://registry.npmjs.org/"
+		"registry": "https://registry.npmjs.org/",
+		"engine-strict": true
 	},
 	"description": "Rich text editor as a svelte component",
 	"homepage": "https://svelte-rich-text.valiantlynx.com",
@@ -34,7 +35,7 @@
 		"package": "svelte-kit sync && svelte-package && publint",
 		"release": "pnpm run package && changeset publish",
 		"ci:version": "pnpm changeset version",
-		"ci:publish": "pnpm publish -r",
+		"ci:publish": "pnpm publish -r --no-git-checks",
 		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
 		"test": "vitest",
