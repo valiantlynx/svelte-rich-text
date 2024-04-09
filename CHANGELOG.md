@@ -1,14 +1,20 @@
 # @valiantlynx/svelte-rich-text
 
+## 0.2.7
+
+### Patch Changes
+
+- 90875d1: description change and pnpm cache currently committed. this is a bug from pnpm actions docs im working on fixing it. i've already notified pnpm
+
 ## 0.2.6
 
 ### Patch Changes
 
 <<<<<<< HEAD
-- 0135d76: some stuff. not important to users. just action testing
-=======
+
+- # 0135d76: some stuff. not important to users. just action testing
 - 80ac4e7: some stuff. not important to users. just action testing
->>>>>>> ef1768af86066c66d5b34b018ffbb0c04b680eed
+  > > > > > > > ef1768af86066c66d5b34b018ffbb0c04b680eed
 
 ## 0.2.5
 
