@@ -4,7 +4,11 @@
 
 ### Patch Changes
 
+<<<<<<< HEAD
+- 0135d76: some stuff. not important to users. just action testing
+=======
 - 80ac4e7: some stuff. not important to users. just action testing
+>>>>>>> ef1768af86066c66d5b34b018ffbb0c04b680eed
 
 ## 0.2.5
 
