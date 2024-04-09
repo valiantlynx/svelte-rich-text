@@ -1,5 +1,11 @@
 # @valiantlynx/svelte-rich-text
 
+## 0.2.8
+
+### Patch Changes
+
+- d0c0431: changeset finally worked as expected. except the pnpm bug. this is the final test for today
+
 ## 0.2.7
 
 ### Patch Changes
