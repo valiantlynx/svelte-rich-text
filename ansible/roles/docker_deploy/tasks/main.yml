@@ -51,7 +51,7 @@
   ansible.builtin.command: docker network create monitoring
   register: network_creation
   failed_when: network_creation.rc != 0 and 'already exists' not in network_creation.stderr
-  ignore_errors: yes
+  ignore_errors: true
 
 - name: Stop existing Docker Compose services
   command: docker-compose down --remove-orphans
@@ -79,7 +79,7 @@
   ansible.builtin.stat:
     path: "{{ ansible_env.HOME }}/certbot/conf/live/{{ primary_domain }}/fullchain.pem"
   register: cert_file
-  ignore_errors: yes
+  ignore_errors: true
 
 - name: Debug primary_domain variable content
   ansible.builtin.debug:
@@ -96,7 +96,7 @@
     openssl x509 -checkend 864000 -noout -in {{ ansible_env.HOME }}/certbot/conf/live/{{ primary_domain }}/fullchain.pem
   register: cert_check
   failed_when: cert_check.rc > 1
-  ignore_errors: yes
+  ignore_errors: true
   when: cert_file.stat.exists
 
 - name: Debug - Show openssl command output
