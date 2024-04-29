@@ -83,7 +83,7 @@
 		"tslib": "^2.4.1",
 		"vitest": "^0.34.0",
 		"@sveltejs/adapter-node": "^5.0.1",
-		"short-uuid": "^4.2.2",
+		"short-uuid": "^5.0.0",
 		"svelte-select": "^5.7.0"
 	},
 	"svelte": "./dist/index.js",
